@@ -1,10 +1,12 @@
 import java.util.*;
+import java.time.LocalDate;
 
 public class Sapatilha {
     private int tamanho;
     private boolean atacadores; //sapatilhas podem ter: atacadores ou atilhos
 
-    private Date data;
+    private LocalDate data;
+
     private String cor;
 
     //Construtores
@@ -19,7 +21,7 @@ public class Sapatilha {
         return atacadores;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
@@ -37,7 +39,7 @@ public class Sapatilha {
         this.atacadores = atacadores;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -46,7 +48,14 @@ public class Sapatilha {
     }
 
     //Equals
+    public boolean equals(Object o){
+        if (this == o) return true;
 
+        if ((o == null) || (this.getClass() != o.getClass())) return false;
+
+        Sapatilha umaSapatilha = (Sapatilha) o;
+        return ();
+    }
     //Clone
     //toString
     //Hash
