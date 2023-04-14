@@ -93,7 +93,7 @@ public class Artigo {
         this.correcaoPreco = correcaoPreco;
     }
 
-    //equals
+    //Equals
     public boolean equals(Object o){
         if (this == o) return true;
 
@@ -126,7 +126,7 @@ public class Artigo {
         if (novo) return "Novo"; else return "Usado";
     }
 
-
+    //Hash
     @Override
     public int hashCode(){
         return Objects.hash(novo,numDonos,avaliacao,descricao,codigo,precoBase,correcaoPreco);
