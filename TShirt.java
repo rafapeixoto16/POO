@@ -1,4 +1,4 @@
-public class TShirt {
+public class TShirt extends Artigo {
     public static final int S = 0;
     public static final int M = 1;
     public static final int L = 2;
@@ -11,6 +11,11 @@ public class TShirt {
     private int tamanho;
     private int padrao;
 
+
+    public TShirt(boolean novo, String descricao, String codigo, double precoBase) {
+        super(novo, descricao, codigo, precoBase);
+
+    }
 
 
 }
