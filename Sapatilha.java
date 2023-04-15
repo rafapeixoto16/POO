@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.util.*;
 
-public class Sapatilha {
+public class Sapatilha extends Artigo {
     private int tamanho;
     private boolean atacadores; //sapatilhas podem ter: atacadores ou atilhos
 
@@ -62,7 +62,7 @@ public class Sapatilha {
         if ((o == null) || (this.getClass() != o.getClass())) return false;
 
         Sapatilha umaSapatilha = (Sapatilha) o;
-        return (this.tamanho.equals(umaSapatilha.getTamanho()) && this.atacadores.equals(umaSapatilha.isAtacadores()) &&
+        return (this.tamanho == umaSapatilha.getTamanho() && this.atacadores == umaSapatilha.isAtacadores() &&
                 this.cor.equals(umaSapatilha.getCor()) && this.data.equals(umaSapatilha.getData()));
     }
     //Clone
