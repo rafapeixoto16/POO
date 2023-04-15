@@ -1,5 +1,5 @@
-import java.util.*;
 import java.time.LocalDate;
+import java.util.*;
 
 public class Sapatilha {
     private int tamanho;
@@ -10,6 +10,14 @@ public class Sapatilha {
     private String cor;
 
     //Construtores
+
+    public Sapatilha (Sapatilha sapatilha){
+        super(sapatilha);
+        this.tamanho = sapatilha.getTamanho();
+        this.atacadores = sapatilha.isAtacadores();
+        this.data = sapatilha.getData();
+        this.cor = sapatilha.getCor();
+    }
 
 
     //Getters
@@ -54,10 +62,35 @@ public class Sapatilha {
         if ((o == null) || (this.getClass() != o.getClass())) return false;
 
         Sapatilha umaSapatilha = (Sapatilha) o;
-        return ();
+        return (this.tamanho.equals(umaSapatilha.getTamanho()) && this.atacadores.equals(umaSapatilha.isAtacadores()) &&
+                this.cor.equals(umaSapatilha.getCor()) && this.data.equals(umaSapatilha.getData()));
     }
     //Clone
+    @Override
+    public Sapatilha clone(){
+        return new Sapatilha(this); //falta acho eu copiar os atributos da super-classe(Artigo)
+    }
+
     //toString
+
+    @Override
+    public String toString() {
+        return "Estado da Sapatilha:" +
+                "\n    Tamanho -> " + tamanho +
+                "\n    Tipo -> " + auxAtacadores(atacadores) +
+                "\n    Data de Lançamento -> " + data +
+                "\n    Cor -> " + cor +
+                '\n';
+    }
+
+    private String auxAtacadores(boolean atacadores) {
+        if (atacadores) return "Atacadores"; else return "Atilhos";
+    }
+
     //Hash
+    @Override
+    public int hashCode(){
+        return Objects.hash(tamanho,atacadores,data,cor);
+    }
 
 }
