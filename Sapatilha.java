@@ -11,6 +11,24 @@ public class Sapatilha extends Artigo {
 
     //Construtores
 
+
+    public Sapatilha (){
+        super();
+        tamanho = 0;
+        atacadores = false;
+        data = LocalDate.now();
+        cor="";
+    }
+
+    public Sapatilha(boolean novo,int numDonos ,int avaliacao, String descricao, String codigo, double precoBase ,double correcaoPreco, int tamanho,
+    boolean atacadores,LocalDate data,String cor ){
+        super(novo,numDonos , avaliacao,descricao,codigo, precoBase ,correcaoPreco);
+        this.tamanho = tamanho;
+        this.atacadores = atacadores;
+        this.data = data;
+        this.cor = cor;
+    }
+
     public Sapatilha (Sapatilha sapatilha){
         super(sapatilha);
         this.tamanho = sapatilha.getTamanho();
@@ -68,13 +86,14 @@ public class Sapatilha extends Artigo {
     //Clone
     @Override
     public Sapatilha clone(){
-        return new Sapatilha(this); //falta acho eu copiar os atributos da super-classe(Artigo)
+        return new Sapatilha(this);
     }
 
     //toString
 
     @Override
     public String toString() {
+        StringBuilder string;
         return "Estado da Sapatilha:" +
                 "\n    Tamanho -> " + tamanho +
                 "\n    Tipo -> " + auxAtacadores(atacadores) +

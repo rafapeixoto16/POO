@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Artigo {
+public abstract class Artigo {
     private boolean novo;
     private int numDonos;
     private int avaliacao;
@@ -14,7 +14,31 @@ public class Artigo {
     /**
      * Construtor para um novo Artigo
      */
-    public Artigo(boolean novo, String descricao, String codigo, double precoBase) {
+
+
+    public Artigo(){
+        novo = false;
+        numDonos = 0;
+        avaliacao = 0;
+        descricao = "";
+        codigo = "S-1";//codigo sapatilha alterar
+        precoBase = 0;
+        correcaoPreco = 0;
+    }
+
+
+
+    public Artigo(boolean novo,int numDonos ,int avaliacao, String descricao, String codigo, double precoBase ,double correcaoPreco){
+        this.avaliacao = avaliacao;
+        this.codigo = codigo;
+        this.novo = novo;
+        this.numDonos = numDonos;
+        this.descricao = descricao;
+        this.precoBase = precoBase;
+        this.correcaoPreco = correcaoPreco;
+    }
+
+    /*public Artigo(boolean novo, String descricao, String codigo, double precoBase) {
         this.novo = novo;
         this.numDonos = 0;
         this.avaliacao = 100;
@@ -22,7 +46,7 @@ public class Artigo {
         this.codigo = codigo;
         this.precoBase = precoBase;
         this.correcaoPreco = 0;
-    }
+    }*/
 
     public Artigo (Artigo artigo){
         this.novo = artigo.isNovo();
@@ -103,17 +127,16 @@ public class Artigo {
         return (this.codigo.equals(umArtigo.getCodigo())); //possivelmente comparar os outros atributos
     }
 
-    //Clone
     @Override
-    public Artigo clone(){
-        return new Artigo(this);
-    }
+    public abstract Artigo clone();
 
     //toString
     @Override
     public String toString() {
+        StringBuilder stringBuilder;
+
         return "Estado do Artigo:" +
-                "\n    Estado -> " + auxNovo(novo) +
+                "\n    Estado -> " + (novo ? "novo" : "usado") +
                 "\n    Numero de Donos -> " + numDonos +
                 "\n    Avaliacao -> " + avaliacao + "%" +
                 "\n    Descricao -> " + descricao +
