@@ -11,11 +11,9 @@ public abstract class Artigo {
 
     //Construtores
 
-    /**
-     * Construtor para um novo Artigo
-     */
-
-
+    /**----------------------------------------------
+              Construtor para um novo Artigo
+     ----------------------------------------------**/
     public Artigo(){
         novo = false;
         numDonos = 0;
@@ -26,8 +24,9 @@ public abstract class Artigo {
         correcaoPreco = 0;
     }
 
-
-
+    /**----------------------------------------------
+              Construtor para um novo Artigo
+     ----------------------------------------------**/
     public Artigo(boolean novo,int numDonos ,int avaliacao, String descricao, String codigo, double precoBase ,double correcaoPreco){
         this.avaliacao = avaliacao;
         this.codigo = codigo;
@@ -38,16 +37,9 @@ public abstract class Artigo {
         this.correcaoPreco = correcaoPreco;
     }
 
-    /*public Artigo(boolean novo, String descricao, String codigo, double precoBase) {
-        this.novo = novo;
-        this.numDonos = 0;
-        this.avaliacao = 100;
-        this.descricao = descricao;
-        this.codigo = codigo;
-        this.precoBase = precoBase;
-        this.correcaoPreco = 0;
-    }*/
-
+    /**----------------------------------------------
+              Construtor para um novo Artigo
+     ----------------------------------------------**/
     public Artigo (Artigo artigo){
         this.novo = artigo.isNovo();
         this.numDonos = artigo.getNumDonos();
@@ -59,7 +51,9 @@ public abstract class Artigo {
     }
 
 
-    //Getters
+    /**----------------------------------------------
+                           Getters
+     ----------------------------------------------**/
     public boolean isNovo() {
         return novo;
     }
@@ -88,7 +82,9 @@ public abstract class Artigo {
     }
 
 
-    //Setters
+    /**----------------------------------------------
+                        Setters
+     ----------------------------------------------**/
     public void setNovo(boolean novo) {
         this.novo = novo;
     }
