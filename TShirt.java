@@ -6,6 +6,7 @@ public class TShirt extends Artigo {
     public static final int L = 2;
     public static final int XL = 3;
 
+    //todo aqui tambem
     public static final int LISO = 0;          //liso tem sempre desconto
     public static final int RISCAS = 1;        //outras só tem desconto (50%) se forem usadas
     public static final int PALMEIRAS = 2;
