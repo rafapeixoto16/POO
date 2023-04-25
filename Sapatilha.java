@@ -93,7 +93,6 @@ public class Sapatilha extends Artigo {
 
     @Override
     public String toString() {
-        StringBuilder string;
         return "Estado da Sapatilha:" +
                 "\n    Tamanho -> " + tamanho +
                 "\n    Tipo -> " + auxAtacadores(atacadores) +

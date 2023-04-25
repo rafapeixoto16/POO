@@ -129,7 +129,6 @@ public abstract class Artigo {
     //toString
     @Override
     public String toString() {
-        StringBuilder stringBuilder;
 
         return "Estado do Artigo:" +
                 "\n    Estado -> " + (novo ? "novo" : "usado") +

@@ -1,19 +1,15 @@
 public class TShirt extends Artigo {
-
-    //todo pensar no uso de enum em vez de todas estas variaveis.
     public static final int S = 0;
     public static final int M = 1;
     public static final int L = 2;
     public static final int XL = 3;
 
-    //todo aqui tambem
     public static final int LISO = 0;          //liso tem sempre desconto
     public static final int RISCAS = 1;        //outras só tem desconto (50%) se forem usadas
     public static final int PALMEIRAS = 2;
 
     private int tamanho;
     private int padrao;
-
 
     public TShirt(boolean novo,int numDonos ,int avaliacao, String descricao, String codigo, double precoBase ,double correcaoPreco,int tamanho,int padrao) {
         super(novo,numDonos,avaliacao, descricao, codigo, precoBase,correcaoPreco);
@@ -42,7 +38,6 @@ public class TShirt extends Artigo {
     public void setPadrao(int padrao) {
         this.padrao = padrao;
     }
-
 
     @Override
     public Artigo clone() {
