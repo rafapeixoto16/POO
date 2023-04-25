@@ -4,9 +4,7 @@ import java.util.*;
 public class Sapatilha extends Artigo {
     private int tamanho;
     private boolean atacadores; //sapatilhas podem ter: atacadores ou atilhos
-
     private LocalDate data;
-
     private String cor;
 
     //Construtores
@@ -20,9 +18,9 @@ public class Sapatilha extends Artigo {
         cor="";
     }
 
-    public Sapatilha(boolean novo,int numDonos ,int avaliacao, String descricao, String codigo, double precoBase ,double correcaoPreco, int tamanho,
+    public Sapatilha(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco, int tamanho,
     boolean atacadores,LocalDate data,String cor ){
-        super(novo,numDonos , avaliacao,descricao,codigo, precoBase ,correcaoPreco);
+        super(novo,numDonos , avaliacao,descricao, precoBase ,correcaoPreco);
         this.tamanho = tamanho;
         this.atacadores = atacadores;
         this.data = data;
@@ -74,13 +72,14 @@ public class Sapatilha extends Artigo {
     }
 
     //Equals
+    @Override
     public boolean equals(Object o){
         if (this == o) return true;
 
         if ((o == null) || (this.getClass() != o.getClass())) return false;
 
         Sapatilha umaSapatilha = (Sapatilha) o;
-        return (this.tamanho == umaSapatilha.getTamanho() && this.atacadores == umaSapatilha.isAtacadores() &&
+        return (this.equals(umaSapatilha) && this.tamanho == umaSapatilha.getTamanho() && this.atacadores == umaSapatilha.isAtacadores() &&
                 this.cor.equals(umaSapatilha.getCor()) && this.data.equals(umaSapatilha.getData()));
     }
     //Clone

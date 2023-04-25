@@ -15,8 +15,10 @@ public class Mala extends Artigo {
     public Mala() {
     }
 
-    public Mala(boolean novo, int numDonos, int avaliacao, String descricao, String codigo, double precoBase, double correcaoPreco) {
-        super(novo, numDonos, avaliacao, descricao, codigo, precoBase, correcaoPreco);
+    public Mala(boolean novo, int numDonos, int avaliacao, String descricao, double precoBase, double correcaoPreco,String material,LocalDate ano_colecao) {
+        super(novo, numDonos, avaliacao, descricao, precoBase, correcaoPreco);
+        this.material = material;
+        this.ano_colecao = ano_colecao;
     }
 
     public Mala(Artigo artigo) {

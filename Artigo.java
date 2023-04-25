@@ -1,11 +1,14 @@
 import java.util.*;
 
 public abstract class Artigo {
+    private static int numeroArtigos = 0;
+    public static void incTotalArtigos(){numeroArtigos++;}
+    public static int numeroArtigosF(){return numeroArtigos;}
     private boolean novo;
     private int numDonos;
     private int avaliacao;
     private String descricao;
-    private String codigo;
+    private int codigo;//!todo alterarei para int
     private double precoBase;
     private double correcaoPreco;
 
@@ -19,7 +22,8 @@ public abstract class Artigo {
         numDonos = 0;
         avaliacao = 0;
         descricao = "";
-        codigo = "S-1";//codigo sapatilha alterar
+        incTotalArtigos();
+        codigo = numeroArtigosF();
         precoBase = 0;
         correcaoPreco = 0;
     }
@@ -27,9 +31,10 @@ public abstract class Artigo {
     /**----------------------------------------------
               Construtor para um novo Artigo
      ----------------------------------------------**/
-    public Artigo(boolean novo,int numDonos ,int avaliacao, String descricao, String codigo, double precoBase ,double correcaoPreco){
+    public Artigo(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco){
         this.avaliacao = avaliacao;
-        this.codigo = codigo;
+        incTotalArtigos();
+        this.codigo = numeroArtigosF();
         this.novo = novo;
         this.numDonos = numDonos;
         this.descricao = descricao;
@@ -69,7 +74,7 @@ public abstract class Artigo {
         return descricao;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
@@ -80,7 +85,6 @@ public abstract class Artigo {
     public double getCorrecaoPreco() {
         return correcaoPreco;
     }
-
 
     /**----------------------------------------------
                         Setters
@@ -101,10 +105,6 @@ public abstract class Artigo {
         this.descricao = descricao;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
     public void setPrecoBase(double precoBase) {
         this.precoBase = precoBase;
     }
@@ -114,13 +114,14 @@ public abstract class Artigo {
     }
 
     //Equals
+    @Override
     public boolean equals(Object o){
         if (this == o) return true;
 
         if ((o == null) || (this.getClass() != o.getClass())) return false;
 
         Artigo umArtigo = (Artigo) o;
-        return (this.codigo.equals(umArtigo.getCodigo())); //possivelmente comparar os outros atributos
+        return (this.codigo == umArtigo.codigo && this.numDonos == umArtigo.numDonos);
     }
 
     @Override
@@ -129,7 +130,6 @@ public abstract class Artigo {
     //toString
     @Override
     public String toString() {
-
         return "Estado do Artigo:" +
                 "\n    Estado -> " + (novo ? "novo" : "usado") +
                 "\n    Numero de Donos -> " + numDonos +

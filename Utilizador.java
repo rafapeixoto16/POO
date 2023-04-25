@@ -1,10 +1,14 @@
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Utilizador implements Serializable {
     private static int numeroUtizadores = 0;
     public static void incTotalUsers(){numeroUtizadores++;}
     public static int numeroUser(){return numeroUtizadores;}
+    private Map<Integer,Artigo> vendidos;
+    private Map<Integer,Artigo> comprados;
     private int codigo;
     private String email;
     private String nome;
@@ -19,6 +23,8 @@ public class Utilizador implements Serializable {
     public Utilizador(){
         incTotalUsers();
         this.codigo = numeroUtizadores;
+        this.vendidos = new HashMap<>();
+        this.comprados = new HashMap<>();
         this.email = "";
         this.nome  = "";
         this.morada = "";
@@ -28,6 +34,8 @@ public class Utilizador implements Serializable {
     public Utilizador(String email,String nome ,String morada,int numeroFiscal,double dinheiroVendas){
         incTotalUsers();
         this.codigo = numeroUtizadores;
+        this.vendidos = new HashMap<>();
+        this.comprados = new HashMap<>();
         this.email = email;
         this.nome = nome;
         this.morada = morada;
@@ -36,6 +44,10 @@ public class Utilizador implements Serializable {
     }
 
     public Utilizador (Utilizador utilizador){
+        this.vendidos = new HashMap<>();
+        this.comprados = new HashMap<>();
+        vendidos.putAll(utilizador.vendidos);
+        comprados.putAll(utilizador.comprados);
         this.codigo = utilizador.codigo;
         this.email = utilizador.email;
         this.nome = utilizador.nome;
