@@ -8,7 +8,7 @@ public abstract class Artigo {
     private int numDonos;
     private int avaliacao;
     private String descricao;
-    private int codigo;//!todo alterarei para int
+    private String codigo;//!todo alterarei para int
     private double precoBase;
     private double correcaoPreco;
 
@@ -23,7 +23,7 @@ public abstract class Artigo {
         avaliacao = 0;
         descricao = "";
         incTotalArtigos();
-        codigo = numeroArtigosF();
+        codigo = "A" + numeroArtigosF();
         precoBase = 0;
         correcaoPreco = 0;
     }
@@ -34,7 +34,7 @@ public abstract class Artigo {
     public Artigo(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco){
         this.avaliacao = avaliacao;
         incTotalArtigos();
-        this.codigo = numeroArtigosF();
+        this.codigo ="A" + numeroArtigosF();
         this.novo = novo;
         this.numDonos = numDonos;
         this.descricao = descricao;
@@ -74,7 +74,7 @@ public abstract class Artigo {
         return descricao;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 

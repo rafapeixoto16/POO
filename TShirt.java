@@ -30,7 +30,6 @@ public class TShirt extends Artigo {
         this.padrao = LISO;
         this.tamanho = S;
     }
-
     public TShirt(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco,int tamanho,int padrao) {
         super(novo,numDonos,avaliacao, descricao,precoBase,correcaoPreco);
         this.padrao = padrao;
@@ -66,7 +65,7 @@ public class TShirt extends Artigo {
 
     @Override
     public String toString(){
-        return "";
+        return "";//!todo fazer toString
     }
 
     @Override

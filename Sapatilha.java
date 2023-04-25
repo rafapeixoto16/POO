@@ -104,10 +104,4 @@ public class Sapatilha extends Artigo {
         if (atacadores) return "Atacadores"; else return "Atilhos";
     }
 
-    //Hash
-    @Override
-    public int hashCode(){
-        return Objects.hash(tamanho,atacadores,data,cor);
-    }
-
 }
