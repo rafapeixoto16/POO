@@ -1,4 +1,6 @@
 import java.io.Serializable;
+import java.util.Objects;
+
 public class Utilizador implements Serializable {
     private static int numeroUtizadores = 0;
     public static void incTotalUsers(){numeroUtizadores++;}
@@ -10,6 +12,10 @@ public class Utilizador implements Serializable {
     private int numeroFiscal;
     private double dinheiroVendas;
 
+
+    /**----------------------------------------------
+                        Utilizador
+     ----------------------------------------------**/
     public Utilizador(){
         incTotalUsers();
         this.codigo = numeroUtizadores;
@@ -19,7 +25,6 @@ public class Utilizador implements Serializable {
         this.numeroFiscal = 0;
         this.dinheiroVendas = 0.0;
     }
-
     public Utilizador(String email,String nome ,String morada,int numeroFiscal,double dinheiroVendas){
         incTotalUsers();
         this.codigo = numeroUtizadores;
@@ -38,6 +43,11 @@ public class Utilizador implements Serializable {
         this.numeroFiscal = utilizador.numeroFiscal;
         this.dinheiroVendas = utilizador.dinheiroVendas;
     }
+
+
+    /**----------------------------------------------
+                         Getters
+     ----------------------------------------------**/
 
     public int getCodigo() {
         return codigo;
@@ -63,6 +73,10 @@ public class Utilizador implements Serializable {
         return dinheiroVendas;
     }
 
+    /**----------------------------------------------
+                        Setters
+     ----------------------------------------------**/
+
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
@@ -87,10 +101,19 @@ public class Utilizador implements Serializable {
         this.dinheiroVendas = dinheiroVendas;
     }
 
+
+    /**----------------------------------------------
+                          Clone
+     ----------------------------------------------**/
+
     @Override
     public Utilizador clone(){
         return new Utilizador(this);
     }
+
+    /**----------------------------------------------
+                          Equals
+     ----------------------------------------------**/
 
     @Override
     public boolean equals(Object obj){
@@ -101,4 +124,30 @@ public class Utilizador implements Serializable {
         Utilizador utilizador = (Utilizador) obj;
         return (this.codigo == utilizador.codigo && this.nome.equals(utilizador.nome) && this.email.equals(utilizador.email) && this.numeroFiscal == utilizador.numeroFiscal);
     }
+
+    /**----------------------------------------------
+                          toString
+     ----------------------------------------------**/
+
+    @Override
+    public String toString() {
+        return "Informaçao do utilizador:" +
+                "\n    Nome     -> " + nome +
+                "\n    NIF      -> " + numeroFiscal +
+                "\n    Email    -> " + email +
+                "\n    Morada   -> " + morada +
+                "\n    Cod.User -> " + codigo +
+                "\n    Dinheiro Vendas : " + dinheiroVendas;
+    }
+
+    /**----------------------------------------------
+                          hashCode
+     ----------------------------------------------**/
+
+    @Override
+    public int hashCode() {
+         return Objects.hash(nome,numeroFiscal,email,morada,codigo);
+    }
+
+
 }
