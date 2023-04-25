@@ -35,7 +35,6 @@ public class Sapatilha extends Artigo {
         this.cor = sapatilha.getCor();
     }
 
-
     //Getters
     public int getTamanho() {
         return tamanho;
@@ -52,7 +51,6 @@ public class Sapatilha extends Artigo {
     public String getCor() {
         return cor;
     }
-
 
     //Setters
     public void setTamanho(int tamanho) {

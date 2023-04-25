@@ -121,7 +121,7 @@ public abstract class Artigo {
         if ((o == null) || (this.getClass() != o.getClass())) return false;
 
         Artigo umArtigo = (Artigo) o;
-        return (this.codigo == umArtigo.codigo && this.numDonos == umArtigo.numDonos);
+        return (this.codigo.equals(umArtigo.codigo) && this.numDonos == umArtigo.numDonos);
     }
 
     @Override

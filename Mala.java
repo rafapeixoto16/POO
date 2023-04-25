@@ -66,4 +66,12 @@ public class Mala extends Artigo {
     public Mala clone(){
         return new Mala(this);
     }
+
+    @Override
+    public String toString(){
+        return "Estado da Mala"+
+                "\n Dimensao -> "+ dim+
+                "\n Material -> "+ material+
+                "\n Ano Launch -> "+ ano_colecao;//!todo
+    }
 }

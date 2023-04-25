@@ -65,7 +65,7 @@ public class TShirt extends Artigo {
 
     @Override
     public String toString(){
-        return "";//!todo fazer toString
+        return "Estado da Tshirt";//!todo fazer toString
     }
 
     @Override
