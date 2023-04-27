@@ -8,7 +8,7 @@ public abstract class Artigo {
     private int numDonos;
     private int avaliacao;
     private String descricao;
-    private String codigo;//!todo alterarei para int
+    private String codigo;
     private double precoBase;
     private double correcaoPreco;
 
@@ -147,7 +147,7 @@ public abstract class Artigo {
     //Hash
     @Override
     public int hashCode(){
-        return Objects.hash(novo,numDonos,avaliacao,descricao,codigo,precoBase,correcaoPreco);
+        return Objects.hash(codigo);
     }
 
 }
