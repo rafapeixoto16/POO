@@ -17,8 +17,8 @@ public class Mala extends Artigo {
         this.ano_colecao = LocalDate.now();
     }
 
-    public Mala(boolean novo, int numDonos, int avaliacao, String descricao, double precoBase, double correcaoPreco,int dim,String material,LocalDate ano_colecao) {
-        super(novo, numDonos, avaliacao, descricao, precoBase, correcaoPreco);
+    public Mala(boolean novo, int numDonos, int avaliacao, String descricao, double precoBase, double correcaoPreco,int dim,String material,LocalDate ano_colecao,int numeroUtilizador) {
+        super(novo, numDonos, avaliacao, descricao, precoBase, correcaoPreco,numeroUtilizador);
         this.dim = dim;
         this.material = material;
         this.ano_colecao = ano_colecao;

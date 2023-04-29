@@ -19,8 +19,8 @@ public class Sapatilha extends Artigo {
     }
 
     public Sapatilha(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco, int tamanho,
-    boolean atacadores,LocalDate data,String cor ){
-        super(novo,numDonos , avaliacao,descricao, precoBase ,correcaoPreco);
+    boolean atacadores,LocalDate data,String cor,int numeroUtilizador ){
+        super(novo,numDonos , avaliacao,descricao, precoBase ,correcaoPreco,numeroUtilizador);
         this.tamanho = tamanho;
         this.atacadores = atacadores;
         this.data = data;
