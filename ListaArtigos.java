@@ -1,5 +1,7 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ListaArtigos implements Serializable {
@@ -26,17 +28,41 @@ public class ListaArtigos implements Serializable {
         if(listaArtigos.containsKey(artigo.getCodigo())){
             throw new ArtigoJaExistente("O artigo ja existe");
         }
-        else
-        {
-            listaArtigos.put(artigo.getCodigo(),artigo.clone());
-        }
+        listaArtigos.put(artigo.getCodigo(),artigo.clone());
     }
     public boolean existeArtigo(String codigo){
         return listaArtigos.containsKey(codigo);
     }
+    public void removeArtigo(String codigo) throws ArtigoNaoExiste{
+        if(codigo.isEmpty()){
+            throw new NullPointerException("O campo codigo encontra-se vazio");
+        }
+        else if (!existeArtigo(codigo)) {
+            throw new ArtigoNaoExiste("O artigo com codigo"+ codigo + "nao existe");
+        }
+        listaArtigos.remove(codigo);
+    }
 
+    public Artigo getArtigoLista(String codigo) throws ArtigoNaoExiste{
+        if(codigo.isEmpty()){
+            throw new NullPointerException("O campo codigo encontra-se vazio");
+        }
+        else if (!existeArtigo(codigo)) {
+            throw new ArtigoNaoExiste("O artigo com codigo"+ codigo + "nao existe");
+        }
+        return listaArtigos.get(codigo).clone();
+    }
 
+    public List<Artigo> getArtigos(){
+        return new ArrayList<>(listaArtigos.values());
+    }
 
+    public int numeroArtigos(){
+        return listaArtigos.size();
+    }
 
-
+    @Override
+    public String toString(){
+        return "Lista de Artigos{"+"lista = "+listaArtigos+ '}';
+    }
 }
