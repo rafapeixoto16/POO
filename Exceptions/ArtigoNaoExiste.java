@@ -1,3 +1,5 @@
+package Exceptions;
+
 public class ArtigoNaoExiste extends Exception{
     public ArtigoNaoExiste(){
         super();

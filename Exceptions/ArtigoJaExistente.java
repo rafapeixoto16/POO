@@ -1,3 +1,5 @@
+package Exceptions;
+
 public class ArtigoJaExistente extends Exception {
     public ArtigoJaExistente(){
         super();

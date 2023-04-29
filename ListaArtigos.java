@@ -1,4 +1,5 @@
-import javax.lang.model.type.NullType;
+import Exceptions.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +35,7 @@ public class ListaArtigos implements Serializable {
     public boolean existeArtigo(String codigo){
         return listaArtigos.containsKey(codigo);
     }
-    public void removeArtigo(String codigo) throws ArtigoNaoExiste{
+    public void removeArtigo(String codigo) throws ArtigoNaoExiste {
         if(codigo == null || codigo.isEmpty()){
             throw new NullPointerException("O campo codigo encontra-se vazio");
         }
