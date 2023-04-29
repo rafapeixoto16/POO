@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.*;
 
-public abstract class Artigo {
+public abstract class Artigo implements Serializable {
     private static int numeroArtigos = 0;
     public static void incTotalArtigos(){numeroArtigos++;}
     public static int numeroArtigosF(){return numeroArtigos;}
