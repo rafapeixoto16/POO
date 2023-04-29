@@ -1,3 +1,5 @@
+package src;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +9,7 @@ public class Utilizador implements Serializable {
     private static int numeroUtizadores = 0;
     public static void incTotalUsers(){numeroUtizadores++;}
     public static int numeroUser(){return numeroUtizadores;}
-    private Map<Integer,Artigo> vendidos;
+    private Map<Integer, Artigo> vendidos;
     private Map<Integer,Artigo> comprados;
     private int codigo;
     private String email;
@@ -18,7 +20,7 @@ public class Utilizador implements Serializable {
 
 
     /**----------------------------------------------
-                        Utilizador
+                        src.Utilizador
      ----------------------------------------------**/
     public Utilizador(){
         incTotalUsers();

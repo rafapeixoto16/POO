@@ -1,5 +1,6 @@
+package src;
+
 import java.time.LocalDate;
-import java.util.*;
 
 public class Sapatilha extends Artigo {
     private int tamanho;
@@ -90,7 +91,7 @@ public class Sapatilha extends Artigo {
 
     @Override
     public String toString() {
-        return "Estado da Sapatilha:" +
+        return "Estado da src.Sapatilha:" +
                 "\n    Tamanho -> " + tamanho +
                 "\n    Tipo -> " + auxAtacadores(atacadores) +
                 "\n    Data de Lançamento -> " + data +

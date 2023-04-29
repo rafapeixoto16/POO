@@ -1,3 +1,5 @@
+package src;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -17,7 +19,7 @@ public abstract class Artigo implements Serializable {
     //Construtores
 
     /**----------------------------------------------
-              Construtor para um novo Artigo
+              Construtor para um novo src.Artigo
      ----------------------------------------------**/
     public Artigo(){
         novo = false;
@@ -32,7 +34,7 @@ public abstract class Artigo implements Serializable {
     }
 
     /**----------------------------------------------
-              Construtor para um novo Artigo
+              Construtor para um novo src.Artigo
      ----------------------------------------------**/
     public Artigo(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco,int numeroUtilizador){
         this.avaliacao = avaliacao;
@@ -47,7 +49,7 @@ public abstract class Artigo implements Serializable {
     }
 
     /**----------------------------------------------
-              Construtor para um novo Artigo
+              Construtor para um novo src.Artigo
      ----------------------------------------------**/
 
     public Artigo (Artigo artigo){
@@ -136,7 +138,7 @@ public abstract class Artigo implements Serializable {
     //toString
     @Override
     public String toString() {
-        return "Estado do Artigo:" +
+        return "Estado do src.Artigo:" +
                 "\n    Estado -> " + (novo ? "novo" : "usado") +
                 "\n    Numero de Donos -> " + numDonos +
                 "\n    Avaliacao -> " + avaliacao + "%" +

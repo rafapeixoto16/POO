@@ -1,3 +1,5 @@
+package src;
+
 public class TShirt extends Artigo {
     private  enum Tamanho{
         S,

@@ -1,3 +1,5 @@
+package src;
+
 import Exceptions.*;
 
 import java.io.Serializable;
@@ -7,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ListaArtigos implements Serializable {
-    private final Map<String,Artigo> listaArtigos;
+    private final Map<String, Artigo> listaArtigos;
 
     public ListaArtigos(){
         this.listaArtigos = new HashMap<>();
@@ -19,7 +21,7 @@ public class ListaArtigos implements Serializable {
             this.listaArtigos.put(artigo.getCodigo(),artigo.clone());
         }
     }
-    public Map<String,Artigo> getListaArtigos(){
+    public Map<String, Artigo> getListaArtigos(){
         return listaArtigos;
     }
 

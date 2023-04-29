@@ -1,5 +1,6 @@
+package src;
+
 import java.time.LocalDate;
-import java.util.*;
 
 public class Mala extends Artigo {
 
@@ -8,7 +9,7 @@ public class Mala extends Artigo {
     private LocalDate ano_colecao;
 
     /**----------------------------------------------
-                Construtor para uma nova Mala
+                Construtor para uma nova src.Mala
      ----------------------------------------------**/
     public Mala() {
         super();
@@ -69,7 +70,7 @@ public class Mala extends Artigo {
 
     @Override
     public String toString(){
-        return "Estado da Mala"+
+        return "Estado da src.Mala"+
                 "\n Dimensao -> "+ dim+
                 "\n Material -> "+ material+
                 "\n Ano Launch -> "+ ano_colecao;//!todo
