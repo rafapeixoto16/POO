@@ -1,5 +1,7 @@
 package src;
 
-public class ListaUtilizadores {
+import java.io.Serializable;
+
+public class ListaUtilizadores implements Serializable {
 
 }
