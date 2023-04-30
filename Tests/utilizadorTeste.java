@@ -19,18 +19,31 @@ public class utilizadorTeste {
     public void testConstructor() {
         Utilizador utilizador = new Utilizador();
         assertTrue(utilizador!=null);
-        utilizador = new Utilizador("email","Peixoto","Avenida das Cruzes",309144557);
+        utilizador = new Utilizador("email","Peixoto","Avenida das Cruzes Frades",309144557);
         assertTrue(utilizador!=null);
     }
 
     @Test
-    public void testGetMail(){
-        Utilizador utilizador = new Utilizador("email","Peixoto","Avenida das Cruzes",309144557);
+    public void testGets(){
+        Utilizador utilizador = new Utilizador("email","Peixoto","Avenida das Cruzes Frades",309144557);
         assertTrue(utilizador.getEmail().equals("email"));
+        assertTrue(utilizador.getNome().equals("Peixoto"));
+        utilizador.setNome("Peixotao");
+        assertFalse(utilizador.getNome().equals("Peixoto"));
     }
 
+    @Test
+    public void testEquals(){
+        Utilizador utilizador = new Utilizador("email","Peixoto","Avenida das Cruzes Frades",309144557);
+        Utilizador utilizador2 = new Utilizador("email2","Anao","GarfeMid",409142222);
+        assertFalse(utilizador.equals(utilizador2));
+        assertTrue(utilizador.equals(utilizador));
+    }
 
-
-
-
+    @Test
+    public void testEncTotalDinheiro(){
+        Utilizador utilizador = new Utilizador("email","Peixoto","Avenida das Cruzes Frades",309144557);
+        utilizador.incrementaDinheiroTotal(45);
+        assertTrue(utilizador.getDinheiroVendas() == 45);
+    }
 }
