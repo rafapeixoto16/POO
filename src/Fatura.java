@@ -17,4 +17,36 @@ public class Fatura {
         this.comprador = fatura.comprador.clone();
         this.vendedor = fatura.vendedor.clone();
     }
+
+    public Encomenda getEncomenda() {
+        return encomenda;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public Utilizador getVendedor() {
+        return vendedor;
+    }
+
+    public Utilizador getComprador() {
+        return comprador;
+    }
+
+    public void setEncomenda(Encomenda encomenda) {
+        this.encomenda = encomenda;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public void setVendedor(Utilizador vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    public void setComprador(Utilizador comprador) {
+        this.comprador = comprador;
+    }
 }
