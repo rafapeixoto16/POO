@@ -14,5 +14,7 @@ public class Fatura {
     public Fatura(Fatura fatura){
         this.encomenda = fatura.encomenda;
         this.preco = fatura.preco;
+        this.comprador = fatura.comprador.clone();
+        this.vendedor = fatura.vendedor.clone();
     }
 }
