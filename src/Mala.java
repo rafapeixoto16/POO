@@ -3,7 +3,6 @@ package src;
 import java.time.LocalDate;
 
 public class Mala extends Artigo {
-
     private int dim;
     private String material;
     private LocalDate ano_colecao;
@@ -74,5 +73,16 @@ public class Mala extends Artigo {
                 "\n Dimensao -> "+ dim+
                 "\n Material -> "+ material+
                 "\n Ano Launch -> "+ ano_colecao;//!todo
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+
+        if ((o == null) || (this.getClass() != o.getClass())) return false;
+
+        Mala umArtigo = (Mala) o;
+        return super.equals(umArtigo) && this.dim == umArtigo.dim && this.ano_colecao.equals(umArtigo.ano_colecao) &&
+                this.material.equals(umArtigo.material);
     }
 }

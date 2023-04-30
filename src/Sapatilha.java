@@ -78,8 +78,8 @@ public class Sapatilha extends Artigo {
         if ((o == null) || (this.getClass() != o.getClass())) return false;
 
         Sapatilha umaSapatilha = (Sapatilha) o;
-        return (this.equals(umaSapatilha) && this.tamanho == umaSapatilha.getTamanho() && this.atacadores == umaSapatilha.isAtacadores() &&
-                this.cor.equals(umaSapatilha.getCor()) && this.data.equals(umaSapatilha.getData()));
+        return  super.equals(umaSapatilha) && this.tamanho == umaSapatilha.getTamanho() && this.atacadores == umaSapatilha.isAtacadores() &&
+                this.cor.equals(umaSapatilha.getCor()) && this.data.equals(umaSapatilha.getData());
     }
     //Clone
     @Override
@@ -102,5 +102,4 @@ public class Sapatilha extends Artigo {
     private String auxAtacadores(boolean atacadores) {
         if (atacadores) return "Atacadores"; else return "Atilhos";
     }
-
 }

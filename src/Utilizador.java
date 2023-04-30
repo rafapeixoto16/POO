@@ -163,5 +163,7 @@ public class Utilizador implements Serializable {
          return Objects.hash(nome,numeroFiscal,email,morada,codigo);
     }
 
-
+    public void incrementaDinheiroTotal(double acc){
+        this.dinheiroVendas += acc;
+    }
 }

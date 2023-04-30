@@ -77,7 +77,7 @@ public class TShirt extends Artigo {
         if ((o == null) || (this.getClass() != o.getClass())) return false;
 
         TShirt umaTshirt = (TShirt) o;
-        return (this.equals(umaTshirt) && this.tamanho == umaTshirt.getTamanho() && this.padrao ==  umaTshirt.padrao);
+        return super.equals(umaTshirt) && this.tamanho == umaTshirt.getTamanho() && this.padrao ==  umaTshirt.padrao;
     }
 
 }

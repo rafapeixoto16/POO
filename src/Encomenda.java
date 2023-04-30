@@ -158,11 +158,23 @@ public class Encomenda implements Serializable {
 
         this.encomenda.put(transportadora.clone(), artigos1);
     }
-    public void remEncomenda(Transportadora transportadora,List<Artigo> artigos){
+    public void removeArtigo(Transportadora transportadora,List<Artigo> artigos){//todo alterar talvez para um map e adicionar transportadora
         List<Artigo> artigos1 = encomenda.get(transportadora);
         artigos1.removeAll(artigos);
         encomenda.remove(transportadora);
         encomenda.put(transportadora,artigos1);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+
+        if(o == null || o.getClass() != this.getClass())
+            return false;
+
+        Encomenda encomenda1 = (Encomenda) o;
+        return encomenda1.estado == this.estado && this.encomenda.equals(encomenda1.encomenda) && this.dataEncomenda.equals(encomenda1.dataEncomenda)&&
+                this.codEnc == encomenda1.codEnc && this.dataLimite.equals(encomenda1.dataLimite);
     }
 
 
