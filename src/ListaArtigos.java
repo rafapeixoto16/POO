@@ -10,11 +10,9 @@ import java.util.Map;
 
 public class ListaArtigos implements Serializable {
     private final Map<String, Artigo> listaArtigos;
-
     public ListaArtigos(){
         this.listaArtigos = new HashMap<>();
     }
-
     public ListaArtigos(ListaArtigos listas){
         this.listaArtigos = new HashMap<>();
         for (Artigo artigo : listas.listaArtigos.values()){
@@ -69,4 +67,20 @@ public class ListaArtigos implements Serializable {
     public String toString(){
         return "Lista de Artigos{"+"lista = "+listaArtigos+ '}';
     }
+
+    @Override
+    public ListaArtigos clone(){
+        return new ListaArtigos(this);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o) return true;
+
+        if ((o == null) || (this.getClass() != o.getClass())) return false;
+
+        ListaArtigos umArtigo = (ListaArtigos) o;
+        return this.getArtigos().equals(umArtigo.getArtigos());
+    }
+
 }

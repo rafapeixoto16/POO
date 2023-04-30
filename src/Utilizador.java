@@ -9,8 +9,8 @@ public class Utilizador implements Serializable {
     private static int numeroUtizadores = 0;
     public static void incTotalUsers(){numeroUtizadores++;}
     public static int numeroUser(){return numeroUtizadores;}
-    private Map<Integer, Artigo> vendidos;
-    private Map<Integer,Artigo> comprados;
+    private final Map<Integer, Artigo> vendidos;
+    private final Map<Integer,Artigo> comprados;
     private int codigo;
     private String email;
     private String nome;
@@ -20,11 +20,11 @@ public class Utilizador implements Serializable {
 
 
     /**----------------------------------------------
-                        src.Utilizador
+                        Utilizador
      ----------------------------------------------**/
     public Utilizador(){
         incTotalUsers();
-        this.codigo = numeroUtizadores;
+        this.codigo = numeroUser();
         this.vendidos = new HashMap<>();
         this.comprados = new HashMap<>();
         this.email = "";
@@ -35,7 +35,7 @@ public class Utilizador implements Serializable {
     }
     public Utilizador(String email,String nome ,String morada,int numeroFiscal,double dinheiroVendas){
         incTotalUsers();
-        this.codigo = numeroUtizadores;
+        this.codigo = numeroUser();
         this.vendidos = new HashMap<>();
         this.comprados = new HashMap<>();
         this.email = email;

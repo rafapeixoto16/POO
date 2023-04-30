@@ -11,7 +11,7 @@ public abstract class Artigo implements Serializable {
     private int numDonos;
     private int avaliacao;
     private String descricao;
-    private String codigo;
+    private final String codigo;
     private double precoBase;
     private double correcaoPreco;
     private int numeroUtilizador;
