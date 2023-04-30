@@ -1,7 +1,5 @@
 package src;
 
-import Exceptions.ArtigoJaExistente;
-import Exceptions.ArtigoNaoExiste;
 import Exceptions.TransportadoraJaExistente;
 import Exceptions.TransportadoraNaoExiste;
 

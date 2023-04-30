@@ -24,7 +24,7 @@ public class Encomenda implements Serializable {
     private boolean estado;
     private LocalDate dataEncomenda;
     private int codUtilizadorCompra;
-    private final Map<Transportadora, List<Artigo>> encomenda;
+    private final Map<Transportadora, List<Artigo> > encomenda;
 
     private Encomenda() {
         this.encomenda = new HashMap<>();

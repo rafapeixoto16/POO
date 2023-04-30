@@ -33,7 +33,7 @@ public class Utilizador implements Serializable {
         this.numeroFiscal = 0;
         this.dinheiroVendas = 0.0;
     }
-    public Utilizador(String email,String nome ,String morada,int numeroFiscal,double dinheiroVendas){
+    public Utilizador(String email,String nome ,String morada,int numeroFiscal){
         incTotalUsers();
         this.codigo = numeroUser();
         this.vendidos = new HashMap<>();
@@ -42,7 +42,7 @@ public class Utilizador implements Serializable {
         this.nome = nome;
         this.morada = morada;
         this.numeroFiscal = numeroFiscal;
-        this.dinheiroVendas = dinheiroVendas;
+        this.dinheiroVendas = 0;
     }
 
     public Utilizador (Utilizador utilizador){
