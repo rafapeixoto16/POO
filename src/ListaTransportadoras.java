@@ -20,7 +20,7 @@ public class ListaTransportadoras implements Serializable {
             this.listaTransportadoras.put(transportadora.getCodTransportadora(),transportadora.clone());
         }
     }
-    public Map<Integer, Transportadora> getListaTransportadoras(){
+    public Map<Integer, Transportadora> getTransportadorasMap(){
         return listaTransportadoras;
     }
     public void addTransportadora (Transportadora transportadora) throws TransportadoraJaExistente {
@@ -55,17 +55,17 @@ public class ListaTransportadoras implements Serializable {
         return listaTransportadoras.get(codigo).clone();
     }
 
-    public List<Transportadora> getTransportadoras(){
+    public List<Transportadora> getTransportadorasList(){
         return new ArrayList<>(listaTransportadoras.values());
     }
 
-    public int numeroArtigos(){
+    public int numeroTransportadoras(){
         return listaTransportadoras.size();
     }
 
     @Override
     public String toString(){
-        return "Lista de Artigos{"+"lista = "+listaTransportadoras+ '}';
+        return "Lista de transportadoras{"+"lista = "+listaTransportadoras+ '}';
     }
 
     @Override
@@ -80,7 +80,7 @@ public class ListaTransportadoras implements Serializable {
         if ((o == null) || (this.getClass() != o.getClass())) return false;
 
         ListaTransportadoras transportadoras= (ListaTransportadoras) o;
-        return this.getTransportadoras().equals(transportadoras.getTransportadoras());
+        return this.getTransportadorasList().equals(transportadoras.getTransportadorasList());
     }
 
 }

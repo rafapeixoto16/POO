@@ -19,7 +19,7 @@ public class ListaArtigos implements Serializable {
             this.listaArtigos.put(artigo.getCodigo(),artigo.clone());
         }
     }
-    public Map<String, Artigo> getListaArtigos(){
+    public Map<String, Artigo> getArtigosMap(){
         return listaArtigos;
     }
 
@@ -55,7 +55,7 @@ public class ListaArtigos implements Serializable {
         return listaArtigos.get(codigo).clone();
     }
 
-    public List<Artigo> getArtigos(){
+    public List<Artigo> getArtigosList(){
         return new ArrayList<>(listaArtigos.values());
     }
 
@@ -80,7 +80,7 @@ public class ListaArtigos implements Serializable {
         if ((o == null) || (this.getClass() != o.getClass())) return false;
 
         ListaArtigos umArtigo = (ListaArtigos) o;
-        return this.getArtigos().equals(umArtigo.getArtigos());
+        return this.getArtigosList().equals(umArtigo.getArtigosList());
     }
 
 }

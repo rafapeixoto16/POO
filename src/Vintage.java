@@ -13,4 +13,6 @@ public class Vintage implements Serializable {
         listaTransportadoras = new ListaTransportadoras();
         listaEncomendas = new ListaEncomendas();
     }
+
+    //todo funçoes de jeito
 }

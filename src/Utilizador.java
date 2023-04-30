@@ -6,12 +6,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Utilizador implements Serializable {
-    private static int numeroUtizadores = 0;
-    public static void incTotalUsers(){numeroUtizadores++;}
-    public static int numeroUser(){return numeroUtizadores;}
     private final Map<Integer, Artigo> vendidos;
     private final Map<Integer,Artigo> comprados;
-    private int codigo;
     private String email;
     private String nome;
     private String morada;
@@ -23,8 +19,6 @@ public class Utilizador implements Serializable {
                         Utilizador
      ----------------------------------------------**/
     public Utilizador(){
-        incTotalUsers();
-        this.codigo = numeroUser();
         this.vendidos = new HashMap<>();
         this.comprados = new HashMap<>();
         this.email = "";
@@ -34,8 +28,6 @@ public class Utilizador implements Serializable {
         this.dinheiroVendas = 0.0;
     }
     public Utilizador(String email,String nome ,String morada,int numeroFiscal){
-        incTotalUsers();
-        this.codigo = numeroUser();
         this.vendidos = new HashMap<>();
         this.comprados = new HashMap<>();
         this.email = email;
@@ -50,7 +42,6 @@ public class Utilizador implements Serializable {
         this.comprados = new HashMap<>();
         vendidos.putAll(utilizador.vendidos);
         comprados.putAll(utilizador.comprados);
-        this.codigo = utilizador.codigo;
         this.email = utilizador.email;
         this.nome = utilizador.nome;
         this.morada = utilizador.morada;
@@ -62,10 +53,6 @@ public class Utilizador implements Serializable {
     /**----------------------------------------------
                          Getters
      ----------------------------------------------**/
-
-    public int getCodigo() {
-        return codigo;
-    }
 
     public String getEmail() {
         return email;
@@ -90,11 +77,6 @@ public class Utilizador implements Serializable {
     /**----------------------------------------------
                         Setters
      ----------------------------------------------**/
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -136,7 +118,7 @@ public class Utilizador implements Serializable {
         if ((obj == null) || (this.getClass() != obj.getClass())) return false;
 
         Utilizador utilizador = (Utilizador) obj;
-        return (this.codigo == utilizador.codigo && this.nome.equals(utilizador.nome) && this.email.equals(utilizador.email) && this.numeroFiscal == utilizador.numeroFiscal);
+        return this.nome.equals(utilizador.nome) && this.email.equals(utilizador.email) && this.numeroFiscal == utilizador.numeroFiscal;
     }
 
     /**----------------------------------------------
@@ -150,7 +132,6 @@ public class Utilizador implements Serializable {
                 "\n    NIF      -> " + numeroFiscal +
                 "\n    Email    -> " + email +
                 "\n    Morada   -> " + morada +
-                "\n    Cod.User -> " + codigo +
                 "\n    Dinheiro Vendas : " + dinheiroVendas;
     }
 
@@ -160,7 +141,7 @@ public class Utilizador implements Serializable {
 
     @Override
     public int hashCode() {
-         return Objects.hash(nome,numeroFiscal,email,morada,codigo);
+         return Objects.hash(nome,numeroFiscal,email,morada);
     }
 
     public void incrementaDinheiroTotal(double acc){
