@@ -1,12 +1,6 @@
 package src;
 
 public class TShirt extends Artigo {
-    private  enum Tamanho{
-        S,
-        M,
-        L,
-        XL
-    }
     private enum Padrao{
         LISO,
         RISCAS,
@@ -67,7 +61,40 @@ public class TShirt extends Artigo {
 
     @Override
     public String toString(){
-        return "Estado da Tshirt";//!todo fazer toString
+        return super.toString() + "Estado da Tshirt" +
+                "\n    Tamanho -> " + auxTamanho(this.getTamanho()) +
+                "\n    Padrao -> "+ auxPadrao(this.getPadrao())  +
+                '\n';
+    }
+
+    private String auxTamanho(int tamanho){
+        String s;
+        if(tamanho==0)
+            s="S";
+
+        else if(tamanho == 1)
+            s="M";
+
+        else if(tamanho==2)
+            s="L";
+        else
+            s="XL";
+
+        return s;
+    }
+
+    private String auxPadrao(int padrao){
+        String s;
+        if(padrao==0)
+            s="Liso";
+
+        else if(padrao == 1)
+            s="Riscas";
+
+        else
+            s="Palmeiras";
+
+        return s;
     }
 
     @Override

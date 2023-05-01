@@ -92,7 +92,7 @@ public class Sapatilha extends Artigo {
 
     @Override
     public String toString() {
-        return "Estado da src.Sapatilha:" +
+        return super.toString()+"Estado da src.Sapatilha:" +
                 "\n    Tamanho -> " + tamanho +
                 "\n    Tipo -> " + auxAtacadores(atacadores) +
                 "\n    Data de Lançamento -> " + data +

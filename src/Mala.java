@@ -69,7 +69,7 @@ public class Mala extends Artigo {
 
     @Override
     public String toString(){
-        return "Estado da src.Mala"+
+        return super.toString() + "Estado da src.Mala"+
                 "\n Dimensao -> "+ dim+
                 "\n Material -> "+ material+
                 "\n Ano Launch -> "+ ano_colecao;//!todo
