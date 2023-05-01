@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import src.TShirt;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class tshirtTeste {
@@ -21,13 +22,28 @@ public class tshirtTeste {
     public void testConstructor(){
         TShirt tshirt = new TShirt();
         assertTrue(tshirt!=null);
-        tshirt = new TShirt(true,1,10,"adidas",50,0,0,0,"mail");
+        tshirt = new TShirt(true,1,10,"adidas",50,0,0,"mail");
         assertTrue(tshirt!=null);
     }
 
     @Test
     public void testGets(){
-        TShirt tshirt
+        TShirt tshirt = new TShirt(true,1,10,"adidas",50,0,0,"mail");
+        assertTrue(tshirt.isNovo() == true);
+        assertTrue(tshirt.getNumDonos() == 1);
+        assertTrue(tshirt.getAvaliacao() == 10);
+        assertTrue(tshirt.getDescricao().equals("adidas"));
+        assertTrue(tshirt.getPrecoBase() == 50);
+        assertTrue(tshirt.getTamanho() == 0);
+        assertTrue(tshirt.getPadrao() == 0);
+        assertTrue(tshirt.getEmailUtilizador().equals("mail"));
+    }
+
+    @Test
+    public void testEquals(){
+        TShirt tshirt1 = new TShirt(true,1,10,"adidas",50,0,0,"mail");
+        TShirt tshirt2 = new TShirt(true,1,10,"nike",50,0,0,"mail2");
+        assertFalse(tshirt1.equals(tshirt2));
     }
 }
 
