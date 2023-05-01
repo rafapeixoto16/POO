@@ -53,7 +53,19 @@ public class Fatura {
     }
 
     @Override
+    public String toString(){
+        return "Encomenda"+encomenda.toString()+"\npreço "+preco +
+                "\n comprador : "+comprador.toString() +"\n vendedor :" + vendedor.toString();
+    }
+
+
+    @Override
+    public Fatura clone(){
+        return new Fatura(this);
+    }
+
+    @Override
     public int hashCode() {
-        return Objects.hash(preco);
+        return Objects.hash(encomenda,vendedor,comprador);
     }
 }

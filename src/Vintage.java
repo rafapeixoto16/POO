@@ -108,7 +108,7 @@ public class Vintage implements Serializable {
         this.userLigado = userLigado;
     }
 
-    public Sapatilha criaSapatilha(argumentos){
+    /*public Sapatilha criaSapatilha(argumentos){
 
     }
 
@@ -118,5 +118,12 @@ public class Vintage implements Serializable {
 
     public TShirt criaTShirt(argumentos){
 
+    }*/
+
+
+    public void salvaFicheirosDados(Serializacao ficheiro){
+        ficheiro.guardar(this);
     }
+
+
 }

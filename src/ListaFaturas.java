@@ -1,5 +1,7 @@
 package src;
 
-public class ListaFaturas {
+import java.io.Serializable;
+
+public class ListaFaturas implements Serializable {
     
 }

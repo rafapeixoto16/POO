@@ -22,7 +22,7 @@ public class Serializacao {
         return ficheiro;
     }
 
-    //Carrega/lê a Vintage de ficheiro
+    ///Carrega/lê a Vintage de ficheiro
     public Vintage carregar() {
         try (FileInputStream fileIn = new FileInputStream(ficheiro);
              ObjectInputStream in = new ObjectInputStream(fileIn)) {

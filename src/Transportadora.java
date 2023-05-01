@@ -8,7 +8,7 @@ public class Transportadora implements Serializable {
     public static int numeroTransp() {return numeroTransportadoras;}
     private final int codTransportadora;
     private int imposto;
-
+    private int diasEntrega;
     public Transportadora(){
         incTotalTransp();
         codTransportadora = numeroTransp();
