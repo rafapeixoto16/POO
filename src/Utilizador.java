@@ -164,7 +164,7 @@ public class Utilizador implements Serializable {
 
     @Override
     public int hashCode() {
-         return Objects.hash(nome,numeroFiscal,email,morada);
+         return Objects.hash(email);
     }
     public void incrementaDinheiroTotal(double acc){
         this.dinheiroVendas += acc;
@@ -175,6 +175,7 @@ public class Utilizador implements Serializable {
     public void adicionaEncomendasUtilizador (Encomenda encomenda){
         encomendas.add(encomenda.getCodEnc());
     }
+
     public void removeEncomendasUtilizador (Encomenda encomenda){
         encomendas.remove(encomenda.getCodEnc());
         //todo nao sei se esta a remover do index
@@ -182,6 +183,7 @@ public class Utilizador implements Serializable {
     public void addCompradosUtilizadores(Artigo artigo){
         artigosComprados.put(artigo.getCodigo(),artigo.clone());
     }
+
     public void removeCompradosUtilizadores(Artigo artigo){
         artigosComprados.remove(artigo.getCodigo());
     }
