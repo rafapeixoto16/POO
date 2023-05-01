@@ -1,7 +1,7 @@
 package src;
 
 public class FaturaVendedor extends Fatura{
-    private  Utilizador vendedor;
+    private Utilizador vendedor;
 
     public FaturaVendedor (){
         super();
@@ -18,4 +18,4 @@ public class FaturaVendedor extends Fatura{
         return new FaturaVendedor(this);
     }
 }
-}
+
