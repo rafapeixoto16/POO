@@ -1,8 +1,11 @@
 package src;
 
 public class SapatilhaPremium extends Sapatilha implements Premium {
-    public double precoPremium(){
-        return 0;
-        //todo funçao preço premium
+    public double calculaPrecoFinal(){
+        double precoFinal = getPrecoBase();
+
+
+
+        return 1;
     }
 }
