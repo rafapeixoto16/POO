@@ -206,4 +206,12 @@ public class Utilizador implements Serializable {
     public boolean existeArtigosVendidos(Artigo artigo){
         return artigosVendidos.containsKey(artigo.getCodigo());
     }
+    public void vendeArtigos(Artigo artigo){
+        removeArtigosPorVender(artigo);
+        addArtigosVendidos(artigo);
+    }
+    public void cancelaVenda(Artigo artigo){
+        removeArtigosVendidos(artigo);
+        addArtigosPorVender(artigo);
+    }
 }
