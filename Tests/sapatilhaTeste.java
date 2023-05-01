@@ -14,7 +14,9 @@ public class sapatilhaTeste {
     public sapatilhaTeste(){}
 
     @BeforeEach
-    public void setUp() {}
+    public void setUp() {
+
+    }
 
     @AfterEach
     public void tearDown() {}

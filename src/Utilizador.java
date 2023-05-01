@@ -1,13 +1,15 @@
 package src;
 
+import Exceptions.ArtigoJaExistente;
+
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class Utilizador implements Serializable {
-    private final Map<Integer, Artigo> vendidos;
-    private final Map<Integer,Artigo> comprados;
+    private final Map<String, Artigo> artigosVendidos;
+    private final List<Integer> encomendas;
+    private final Map<String,Artigo> artigosPorVender;
+    private final Map<String ,Artigo> artigosComprados;
     private String email;
     private String nome;
     private String morada;
@@ -19,29 +21,50 @@ public class Utilizador implements Serializable {
                         Utilizador
      ----------------------------------------------**/
     public Utilizador(){
-        this.vendidos = new HashMap<>();
-        this.comprados = new HashMap<>();
+        this.artigosVendidos = new HashMap<>();
+        this.artigosComprados = new HashMap<>();
+        this.artigosPorVender = new HashMap<>();
+        this.encomendas = new ArrayList<>();
         this.email = "";
         this.nome  = "";
         this.morada = "";
         this.numeroFiscal = 0;
         this.dinheiroVendas = 0.0;
     }
+
     public Utilizador(String email,String nome ,String morada,int numeroFiscal){
-        this.vendidos = new HashMap<>();
-        this.comprados = new HashMap<>();
+        this.artigosVendidos = new HashMap<>();
+        this.artigosComprados = new HashMap<>();
+        this.artigosPorVender = new HashMap<>();
+        this.encomendas = new ArrayList<>();
         this.email = email;
         this.nome = nome;
         this.morada = morada;
         this.numeroFiscal = numeroFiscal;
         this.dinheiroVendas = 0;
+
     }
 
     public Utilizador (Utilizador utilizador){
-        this.vendidos = new HashMap<>();
-        this.comprados = new HashMap<>();
-        vendidos.putAll(utilizador.vendidos);
-        comprados.putAll(utilizador.comprados);
+        this.artigosVendidos = new HashMap<>();
+        this.artigosComprados = new HashMap<>();
+        this.artigosPorVender = new HashMap<>();
+        this.encomendas = new ArrayList<>();
+
+        encomendas.addAll(utilizador.encomendas);
+
+        for (Artigo b : utilizador.artigosPorVender.values()){
+            this.artigosPorVender.put(b.getCodigo(),b.clone());
+        }
+
+        for (Artigo b : utilizador.artigosComprados.values()){
+            this.artigosComprados.put(b.getCodigo(),b.clone());
+        }
+
+        for (Artigo b : utilizador.artigosVendidos.values()){
+            this.artigosVendidos.put(b.getCodigo(),b.clone());
+        }
+
         this.email = utilizador.email;
         this.nome = utilizador.nome;
         this.morada = utilizador.morada;
@@ -143,8 +166,44 @@ public class Utilizador implements Serializable {
     public int hashCode() {
          return Objects.hash(nome,numeroFiscal,email,morada);
     }
-
     public void incrementaDinheiroTotal(double acc){
         this.dinheiroVendas += acc;
+    }
+    public boolean encomendaUtilizador (Encomenda encomenda){
+        return encomendas.contains(encomenda.getCodEnc());
+    }
+    public void adicionaEncomendasUtilizador (Encomenda encomenda){
+        encomendas.add(encomenda.getCodEnc());
+    }
+    public void removeEncomendasUtilizador (Encomenda encomenda){
+        encomendas.remove(encomenda.getCodEnc());
+        //todo nao sei se esta a remover do index
+    }
+    public void addCompradosUtilizadores(Artigo artigo){
+        artigosComprados.put(artigo.getCodigo(),artigo.clone());
+    }
+    public void removeCompradosUtilizadores(Artigo artigo){
+        artigosComprados.remove(artigo.getCodigo());
+    }
+    public boolean comprouArtigoUtilizador(Artigo artigo){
+        return artigosComprados.containsKey(artigo.getCodigo());
+    }
+    public void removeArtigosPorVender(Artigo artigo){
+        artigosPorVender.remove(artigo.getCodigo());
+    }
+    public void addArtigosPorVender(Artigo artigo){
+        artigosPorVender.put(artigo.getCodigo(),artigo.clone());
+    }
+    public boolean temArtigoPorVender(Artigo artigo){
+        return artigosPorVender.containsKey(artigo.getCodigo());
+    }
+    public void addArtigosVendidos(Artigo artigo){
+        artigosVendidos.put(artigo.getCodigo(),artigo.clone());
+    }
+    public void removeArtigosVendidos(Artigo artigo) {
+        artigosVendidos.remove(artigo.getCodigo());
+    }
+    public boolean existeArtigosVendidos(Artigo artigo){
+        return artigosVendidos.containsKey(artigo.getCodigo());
     }
 }
