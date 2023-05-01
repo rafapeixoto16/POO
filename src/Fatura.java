@@ -1,5 +1,7 @@
 package src;
 
+import java.util.Objects;
+
 public class Fatura {
     private Encomenda encomenda;
     private double preco;
@@ -48,5 +50,10 @@ public class Fatura {
 
     public void setComprador(Utilizador comprador) {
         this.comprador = comprador;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(preco);
     }
 }

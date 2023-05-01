@@ -70,17 +70,23 @@ public class Mala extends Artigo {
 
     public double calculaPrecoFinal(){
         double precoFinal = getPrecoBase();
+        double desconto = precoFinal - ( precoFinal / dim ) * ( getAno_colecao().getDayOfYear() - LocalDate.now().getDayOfYear());
+
+        if(desconto <= 0)
+            precoFinal = precoFinal * 0.95;
+
+        else
+            precoFinal = precoFinal - desconto;
 
 
-
-        return 1;
+        return precoFinal;
     }
     @Override
     public String toString(){
         return super.toString() + "Estado da src.Mala"+
                 "\n Dimensao -> "+ dim+
                 "\n Material -> "+ material+
-                "\n Ano Launch -> "+ ano_colecao;//!todo
+                "\n Ano Launch -> "+ ano_colecao;
     }
 
     @Override

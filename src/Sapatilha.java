@@ -1,6 +1,7 @@
 package src;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Sapatilha extends Artigo {
     private int tamanho;
@@ -71,13 +72,14 @@ public class Sapatilha extends Artigo {
         this.cor = cor;
     }
 
-
     public double calculaPrecoFinal(){
         double precoFinal = getPrecoBase();
 
+        if(super.getNumDonos() > 1  ||data.getDayOfYear() - LocalDate.now().getDayOfYear() > 0 || tamanho > 45){
+            precoFinal = precoFinal - precoFinal/(super.getNumDonos()*super.getAvaliacao());
+        }
 
-
-        return 1;
+        return precoFinal;
     }
     //Equals
     @Override
