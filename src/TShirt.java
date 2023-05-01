@@ -32,8 +32,8 @@ public class TShirt extends Artigo {
         this.padrao = LISO;
         this.tamanho = S;
     }
-    public TShirt(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco,int tamanho,int padrao,int numeroUtilizador) {
-        super(novo,numDonos,avaliacao, descricao,precoBase,correcaoPreco,numeroUtilizador);
+    public TShirt(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco,int tamanho,int padrao,String emailUtilizador) {
+        super(novo,numDonos,avaliacao, descricao,precoBase,correcaoPreco,emailUtilizador);
         this.padrao = padrao;
         this.tamanho = tamanho;
     }

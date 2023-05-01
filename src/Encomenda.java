@@ -23,7 +23,7 @@ public class Encomenda implements Serializable {
     private LocalDate dataLimite;
     private boolean estado;
     private LocalDate dataEncomenda;
-    private int codUtilizadorCompra;
+    private String emailUtilizadorCompra;
     private final Map<Transportadora, List<Artigo> > encomenda;
 
     private Encomenda() {
@@ -35,9 +35,10 @@ public class Encomenda implements Serializable {
         this.dataEncomenda = LocalDate.now();
         this.dataLimite = LocalDate.now();
         this.precoTotal = 0;
+        this.emailUtilizadorCompra = "";
     }
 
-    private Encomenda(double precoTotal, LocalDate dataLimite, boolean estado, LocalDate dataEncomenda, Transportadora transportadora, List<Artigo> artigos, int codUtilizadorCompra) {
+    private Encomenda(double precoTotal, LocalDate dataLimite, boolean estado, LocalDate dataEncomenda, Transportadora transportadora, List<Artigo> artigos, String emailUtilizadorCompra) {
         this.encomenda = new HashMap<>();
         List<Artigo> artigos1 = new ArrayList<>();
 
@@ -46,7 +47,7 @@ public class Encomenda implements Serializable {
         }
 
         this.encomenda.put(transportadora, artigos1);
-        this.codUtilizadorCompra = codUtilizadorCompra;
+        this.emailUtilizadorCompra = emailUtilizadorCompra;
         this.dimensao = encomenda.values().size();
         incTotalEnc();
         this.codEnc = numeroEnc();
@@ -74,8 +75,8 @@ public class Encomenda implements Serializable {
         this.dataLimite = encomenda.dataLimite;
         this.precoTotal = encomenda.precoTotal;
     }
-    public void setCodUtilizadorCompra(int codUtilizadorCompra) {
-        this.codUtilizadorCompra = codUtilizadorCompra;
+    public void setEmailUtilizadorCompra(String emailUtilizadorCompra) {
+        this.emailUtilizadorCompra = emailUtilizadorCompra;
     }
 
     public static void setNumeroEncomendas(int numeroEncomendas) {
@@ -102,8 +103,8 @@ public class Encomenda implements Serializable {
         this.dataEncomenda = dataEncomenda;
     }
 
-    public int getCodUtilizadorCompra() {
-        return codUtilizadorCompra;
+    public String getEmailUtilizadorCompra() {
+        return emailUtilizadorCompra;
     }
 
     public static int getNumeroEncomendas() {
@@ -174,7 +175,8 @@ public class Encomenda implements Serializable {
 
         Encomenda encomenda1 = (Encomenda) o;
         return encomenda1.estado == this.estado && this.encomenda.equals(encomenda1.encomenda) && this.dataEncomenda.equals(encomenda1.dataEncomenda)&&
-                this.codEnc == encomenda1.codEnc && this.dataLimite.equals(encomenda1.dataLimite);
+                this.codEnc == encomenda1.codEnc && this.dataLimite.equals(encomenda1.dataLimite) &&
+                this.emailUtilizadorCompra.equals(encomenda1.emailUtilizadorCompra);
     }
 
 

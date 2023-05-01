@@ -39,7 +39,6 @@ public class utilizadorTeste {
         assertFalse(utilizador.equals(utilizador2));
         assertTrue(utilizador.equals(utilizador));
     }
-
     @Test
     public void testEncTotalDinheiro(){
         Utilizador utilizador = new Utilizador("email","Peixoto","Avenida das Cruzes Frades",309144557);
