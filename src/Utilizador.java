@@ -1,5 +1,7 @@
 package src;
 
+import Exceptions.ArtigoJaExistente;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -164,36 +166,44 @@ public class Utilizador implements Serializable {
     public int hashCode() {
          return Objects.hash(nome,numeroFiscal,email,morada);
     }
-
     public void incrementaDinheiroTotal(double acc){
         this.dinheiroVendas += acc;
     }
-
     public boolean encomendaUtilizador (Encomenda encomenda){
         return encomendas.contains(encomenda.getCodEnc());
     }
-
     public void adicionaEncomendasUtilizador (Encomenda encomenda){
         encomendas.add(encomenda.getCodEnc());
     }
-
     public void removeEncomendasUtilizador (Encomenda encomenda){
         encomendas.remove(encomenda.getCodEnc());
         //todo nao sei se esta a remover do index
     }
-
     public void addCompradosUtilizadores(Artigo artigo){
         artigosComprados.put(artigo.getCodigo(),artigo.clone());
     }
-
     public void removeCompradosUtilizadores(Artigo artigo){
         artigosComprados.remove(artigo.getCodigo());
     }
-
     public boolean comprouArtigoUtilizador(Artigo artigo){
         return artigosComprados.containsKey(artigo.getCodigo());
     }
-
-
-
+    public void removeArtigosPorVender(Artigo artigo){
+        artigosPorVender.remove(artigo.getCodigo());
+    }
+    public void addArtigosPorVender(Artigo artigo){
+        artigosPorVender.put(artigo.getCodigo(),artigo.clone());
+    }
+    public boolean temArtigoPorVender(Artigo artigo){
+        return artigosPorVender.containsKey(artigo.getCodigo());
+    }
+    public void addArtigosVendidos(Artigo artigo){
+        artigosVendidos.put(artigo.getCodigo(),artigo.clone());
+    }
+    public void removeArtigosVendidos(Artigo artigo) {
+        artigosVendidos.remove(artigo.getCodigo());
+    }
+    public boolean existeArtigosVendidos(Artigo artigo){
+        return artigosVendidos.containsKey(artigo.getCodigo());
+    }
 }
