@@ -2,11 +2,9 @@ package src;
 
 import java.util.Objects;
 
-public class Fatura {
+public abstract class Fatura {
     private Encomenda encomenda;
     private double preco;
-    private Utilizador vendedor;
-    private Utilizador comprador;
 
     public Fatura(){
         this.encomenda = null;
@@ -16,8 +14,6 @@ public class Fatura {
     public Fatura(Fatura fatura){
         this.encomenda = fatura.encomenda;
         this.preco = fatura.preco;
-        this.comprador = fatura.comprador.clone();
-        this.vendedor = fatura.vendedor.clone();
     }
 
     public Encomenda getEncomenda() {
@@ -28,14 +24,6 @@ public class Fatura {
         return preco;
     }
 
-    public Utilizador getVendedor() {
-        return vendedor;
-    }
-
-    public Utilizador getComprador() {
-        return comprador;
-    }
-
     public void setEncomenda(Encomenda encomenda) {
         this.encomenda = encomenda;
     }
@@ -44,28 +32,16 @@ public class Fatura {
         this.preco = preco;
     }
 
-    public void setVendedor(Utilizador vendedor) {
-        this.vendedor = vendedor;
-    }
-
-    public void setComprador(Utilizador comprador) {
-        this.comprador = comprador;
-    }
-
     @Override
     public String toString(){
-        return "Encomenda"+encomenda.toString()+"\npreço "+preco +
-                "\n comprador : "+comprador.toString() +"\n vendedor :" + vendedor.toString();
+        return "Encomenda"+encomenda.toString()+"\npreço "+preco;
     }
-
 
     @Override
-    public Fatura clone(){
-        return new Fatura(this);
-    }
+    public abstract Fatura clone();
 
     @Override
     public int hashCode() {
-        return Objects.hash(encomenda,vendedor,comprador);
+        return Objects.hash(encomenda);
     }
 }
