@@ -14,7 +14,7 @@ public abstract class Artigo implements Serializable {
     private final String codigo;
     private double precoBase;
     private double correcaoPreco;
-    private int numeroUtilizador;
+    private String emailUtilizador;
 
     //Construtores
 
@@ -30,13 +30,13 @@ public abstract class Artigo implements Serializable {
         codigo = "A" + numeroArtigosF();
         precoBase = 0;
         correcaoPreco = 0;
-        numeroUtilizador = 0;
+        emailUtilizador = "";
     }
 
     /**----------------------------------------------
               Construtor para um novo src.Artigo
      ----------------------------------------------**/
-    public Artigo(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco,int numeroUtilizador){
+    public Artigo(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco,String emailUtilizador){
         this.avaliacao = avaliacao;
         incTotalArtigos();
         this.codigo ="A" + numeroArtigosF();
@@ -45,7 +45,7 @@ public abstract class Artigo implements Serializable {
         this.descricao = descricao;
         this.precoBase = precoBase;
         this.correcaoPreco = correcaoPreco;
-        this.numeroUtilizador = numeroUtilizador;
+        this.emailUtilizador = emailUtilizador;
     }
 
     /**----------------------------------------------
@@ -60,7 +60,7 @@ public abstract class Artigo implements Serializable {
         this.codigo = artigo.getCodigo();
         this.precoBase = artigo.getCorrecaoPreco();
         this.correcaoPreco = artigo.getCorrecaoPreco();
-        this.numeroUtilizador = artigo.getNumeroUtilizador();
+        this.emailUtilizador = artigo.getEmailUtilizador();
     }
 
 
@@ -73,8 +73,8 @@ public abstract class Artigo implements Serializable {
     public int getNumDonos() {
         return numDonos;
     }
-    public int getNumeroUtilizador() {
-        return numeroUtilizador;
+    public String getEmailUtilizador() {
+        return emailUtilizador;
     }
     public int getAvaliacao() {
         return avaliacao;
@@ -117,8 +117,8 @@ public abstract class Artigo implements Serializable {
     public void setCorrecaoPreco(double correcaoPreco) {
         this.correcaoPreco = correcaoPreco;
     }
-    public void setNumeroUtilizador(int numeroUtilizador) {
-        this.numeroUtilizador = numeroUtilizador;
+    public void setEmailUtilizador(String emailUtilizador) {
+        this.emailUtilizador = emailUtilizador;
     }
 
     //Equals
@@ -145,6 +145,7 @@ public abstract class Artigo implements Serializable {
                 "\n    Descricao -> " + descricao +
                 "\n    precoBase -> " + precoBase + "simbEur" +
                 "\n    correcaoPreco -> " + correcaoPreco +
+                "\n    Email do Dono -> " +emailUtilizador +
                 '\n';
     }
     //funcao auxiliar para o toString

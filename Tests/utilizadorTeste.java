@@ -43,7 +43,7 @@ public class utilizadorTeste {
     @Test
     public void testEncTotalDinheiro(){
         Utilizador utilizador = new Utilizador("email","Peixoto","Avenida das Cruzes Frades",309144557);
-        utilizador.incrementaDinheiroTotal(45);
-        assertTrue(utilizador.getDinheiroVendas() == 45);
+        utilizador.incrementaDinheiroTotal(69);
+        assertTrue(utilizador.getDinheiroVendas() == 69);
     }
 }
