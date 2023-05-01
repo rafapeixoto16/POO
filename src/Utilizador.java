@@ -177,8 +177,7 @@ public class Utilizador implements Serializable {
     }
 
     public void removeEncomendasUtilizador (Encomenda encomenda){
-        encomendas.remove(encomenda.getCodEnc());
-        //todo nao sei se esta a remover do index
+        encomendas.remove(Integer.valueOf(encomenda.getCodEnc()));
     }
     public void addCompradosUtilizadores(Artigo artigo){
         artigosComprados.put(artigo.getCodigo(),artigo.clone());

@@ -26,7 +26,7 @@ public class Encomenda implements Serializable {
     private String emailUtilizadorCompra;
     private final Map<Transportadora, List<Artigo> > encomenda;
 
-    private Encomenda() {
+    public Encomenda() {
         this.encomenda = new HashMap<>();
         this.dimensao = 0;
         incTotalEnc();
@@ -38,7 +38,7 @@ public class Encomenda implements Serializable {
         this.emailUtilizadorCompra = "";
     }
 
-    private Encomenda(double precoTotal, LocalDate dataLimite, boolean estado, LocalDate dataEncomenda, Transportadora transportadora, List<Artigo> artigos, String emailUtilizadorCompra) {
+    public Encomenda(double precoTotal, LocalDate dataLimite, boolean estado, LocalDate dataEncomenda, Transportadora transportadora, List<Artigo> artigos, String emailUtilizadorCompra) {
         this.encomenda = new HashMap<>();
         List<Artigo> artigos1 = new ArrayList<>();
 
@@ -57,7 +57,7 @@ public class Encomenda implements Serializable {
         this.precoTotal = precoTotal;
     }
 
-    private Encomenda(Encomenda encomenda) {
+    public Encomenda(Encomenda encomenda) {
         this.encomenda = new HashMap<>();
 
         for (Transportadora a : encomenda.encomenda.keySet()) {
@@ -165,7 +165,6 @@ public class Encomenda implements Serializable {
         encomenda.remove(transportadora);
         encomenda.put(transportadora,artigos1);
     }
-
     @Override
     public boolean equals(Object o){
         if (this == o) return true;
@@ -178,10 +177,4 @@ public class Encomenda implements Serializable {
                 this.codEnc == encomenda1.codEnc && this.dataLimite.equals(encomenda1.dataLimite) &&
                 this.emailUtilizadorCompra.equals(encomenda1.emailUtilizadorCompra);
     }
-
-
-
-
-
-
 }

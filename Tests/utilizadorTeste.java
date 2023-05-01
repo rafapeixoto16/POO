@@ -4,7 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import src.Encomenda;
+import src.Sapatilha;
+import src.TShirt;
 import src.Utilizador;
+import src.*;
+
+import java.time.LocalDate;
 
 public class utilizadorTeste {
     public utilizadorTeste(){}
@@ -44,5 +50,38 @@ public class utilizadorTeste {
         Utilizador utilizador = new Utilizador("email","Peixoto","Avenida das Cruzes Frades",309144557);
         utilizador.incrementaDinheiroTotal(69);
         assertTrue(utilizador.getDinheiroVendas() == 69);
+    }
+
+    @Test
+    public void  testAddListaUtilizador(){
+        Utilizador utilizador = new Utilizador("email","Peixoto","Avenida das Cruzes Frades",309144557);
+        TShirt tshirt = new TShirt(true,1,10,"adidas",50,0,0,"mail");
+        Sapatilha sapatilha1 = new Sapatilha(true,1,10,"airForce", 99.99,40,true, LocalDate.of(2023,1,1),"Branco","mail");
+        Sapatilha sapatilha2 = new Sapatilha(false, 3, 5,"StanSmith",80,39,true,LocalDate.now(),"Verde","email@");
+        utilizador.addArtigosPorVender(tshirt);
+        utilizador.addArtigosPorVender(sapatilha1);
+        utilizador.addArtigosVendidos(sapatilha2);
+        assertTrue(utilizador.temArtigoPorVender(tshirt));
+        utilizador.removeArtigosPorVender(tshirt);
+        assertFalse(utilizador.temArtigoPorVender(tshirt));
+        assertTrue(utilizador.existeArtigosVendidos(sapatilha2));
+    }
+
+    @Test
+    public void testEncomendasUtilizador(){
+        Utilizador utilizador = new Utilizador("email","Peixoto","Avenida das Cruzes Frades",309144557);
+        Encomenda encomenda = new Encomenda();
+        Encomenda encomenda2 = new Encomenda();
+        Encomenda encomenda3 = new Encomenda();
+        utilizador.adicionaEncomendasUtilizador(encomenda);
+        utilizador.adicionaEncomendasUtilizador(encomenda2);
+        utilizador.adicionaEncomendasUtilizador(encomenda3);
+        assertTrue(utilizador.encomendaUtilizador(encomenda));
+        utilizador.removeEncomendasUtilizador(encomenda);
+        assertFalse(utilizador.encomendaUtilizador(encomenda));
+        assertTrue(utilizador.encomendaUtilizador(encomenda2));
+        assertTrue(utilizador.encomendaUtilizador(encomenda3));
+        utilizador.removeEncomendasUtilizador(encomenda2);
+        assertFalse(utilizador.encomendaUtilizador(encomenda2));
     }
 }
