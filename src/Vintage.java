@@ -108,4 +108,16 @@ public class Vintage implements Serializable {
         this.userLigado = userLigado;
     }
 
+    public Sapatilha criaSapatilha(argumentos){
+        Sapatilha sapatilha
+    }
+
+    public Mala criaMala(argumentos){
+
+    }
+
+    public TShirt criaTShirt(argumentos){
+
+    }
+
 }
