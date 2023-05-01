@@ -26,8 +26,8 @@ public class TShirt extends Artigo {
         this.padrao = LISO;
         this.tamanho = S;
     }
-    public TShirt(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco,int tamanho,int padrao,String emailUtilizador) {
-        super(novo,numDonos,avaliacao, descricao,precoBase,correcaoPreco,emailUtilizador);
+    public TShirt(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,int tamanho,int padrao,String emailUtilizador) {
+        super(novo,numDonos,avaliacao, descricao,precoBase,emailUtilizador);
         this.padrao = padrao;
         this.tamanho = tamanho;
     }
@@ -57,6 +57,14 @@ public class TShirt extends Artigo {
     @Override
     public Artigo clone() {
         return new TShirt(this);
+    }
+
+    public double calulaPrecoFinal(){
+        double precoFinal = getPrecoBase();
+
+
+
+        return 1;
     }
 
     @Override

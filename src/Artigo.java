@@ -13,7 +13,6 @@ public abstract class Artigo implements Serializable {
     private String descricao;
     private final String codigo;
     private double precoBase;
-    private double correcaoPreco;
     private String emailUtilizador;
 
     //Construtores
@@ -29,14 +28,13 @@ public abstract class Artigo implements Serializable {
         incTotalArtigos();
         codigo = "A" + numeroArtigosF();
         precoBase = 0;
-        correcaoPreco = 0;
         emailUtilizador = "";
     }
 
     /**----------------------------------------------
               Construtor para um novo src.Artigo
      ----------------------------------------------**/
-    public Artigo(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco,String emailUtilizador){
+    public Artigo(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,String emailUtilizador){
         this.avaliacao = avaliacao;
         incTotalArtigos();
         this.codigo ="A" + numeroArtigosF();
@@ -44,7 +42,6 @@ public abstract class Artigo implements Serializable {
         this.numDonos = numDonos;
         this.descricao = descricao;
         this.precoBase = precoBase;
-        this.correcaoPreco = correcaoPreco;
         this.emailUtilizador = emailUtilizador;
     }
 
@@ -58,8 +55,7 @@ public abstract class Artigo implements Serializable {
         this.avaliacao = artigo.getAvaliacao();
         this.descricao = artigo.getDescricao();
         this.codigo = artigo.getCodigo();
-        this.precoBase = artigo.getCorrecaoPreco();
-        this.correcaoPreco = artigo.getCorrecaoPreco();
+        this.precoBase = artigo.getPrecoBase();
         this.emailUtilizador = artigo.getEmailUtilizador();
     }
 
@@ -92,9 +88,6 @@ public abstract class Artigo implements Serializable {
         return precoBase;
     }
 
-    public double getCorrecaoPreco() {
-        return correcaoPreco;
-    }
 
     /**----------------------------------------------
                         Setters
@@ -114,9 +107,6 @@ public abstract class Artigo implements Serializable {
     public void setPrecoBase(double precoBase) {
         this.precoBase = precoBase;
     }
-    public void setCorrecaoPreco(double correcaoPreco) {
-        this.correcaoPreco = correcaoPreco;
-    }
     public void setEmailUtilizador(String emailUtilizador) {
         this.emailUtilizador = emailUtilizador;
     }
@@ -135,6 +125,8 @@ public abstract class Artigo implements Serializable {
     @Override
     public abstract Artigo clone();
 
+    public abstract double calulaPrecoFinal();
+
     //toString
     @Override
     public String toString() {
@@ -144,7 +136,6 @@ public abstract class Artigo implements Serializable {
                 "\n    Avaliacao -> " + avaliacao + "%" +
                 "\n    Descricao -> " + descricao +
                 "\n    precoBase -> " + precoBase + "simbEur" +
-                "\n    correcaoPreco -> " + correcaoPreco +
                 "\n    Email do Dono -> " +emailUtilizador +
                 '\n';
     }

@@ -1,5 +1,5 @@
 package src;
 
 public interface Premium {
-    double precoPremium();
+    double calulaPrecoFinal();
 }
