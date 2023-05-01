@@ -109,7 +109,7 @@ public class Vintage implements Serializable {
     }
 
     public Sapatilha criaSapatilha(argumentos){
-        Sapatilha sapatilha
+
     }
 
     public Mala criaMala(argumentos){
@@ -119,5 +119,4 @@ public class Vintage implements Serializable {
     public TShirt criaTShirt(argumentos){
 
     }
-
 }
