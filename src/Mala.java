@@ -17,8 +17,8 @@ public class Mala extends Artigo {
         this.ano_colecao = LocalDate.now();
     }
 
-    public Mala(boolean novo, int numDonos, int avaliacao, String descricao, double precoBase, double correcaoPreco,int dim,String material,LocalDate ano_colecao,String emailUtilizador) {
-        super(novo, numDonos, avaliacao, descricao, precoBase, correcaoPreco,emailUtilizador);
+    public Mala(boolean novo, int numDonos, int avaliacao, String descricao, double precoBase,int dim,String material,LocalDate ano_colecao,String emailUtilizador) {
+        super(novo, numDonos, avaliacao, descricao, precoBase,emailUtilizador);
         this.dim = dim;
         this.material = material;
         this.ano_colecao = ano_colecao;
@@ -67,6 +67,14 @@ public class Mala extends Artigo {
         return new Mala(this);
     }
 
+
+    public double calculaPrecoFinal(){
+        double precoFinal = getPrecoBase();
+
+
+
+        return 1;
+    }
     @Override
     public String toString(){
         return super.toString() + "Estado da src.Mala"+

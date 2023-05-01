@@ -19,9 +19,9 @@ public class Sapatilha extends Artigo {
         cor="";
     }
 
-    public Sapatilha(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,double correcaoPreco, int tamanho,
+    public Sapatilha(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase, int tamanho,
     boolean atacadores,LocalDate data,String cor,String emailUtilizador ){
-        super(novo,numDonos , avaliacao,descricao, precoBase ,correcaoPreco,emailUtilizador);
+        super(novo,numDonos , avaliacao,descricao, precoBase,emailUtilizador);
         this.tamanho = tamanho;
         this.atacadores = atacadores;
         this.data = data;
@@ -71,6 +71,14 @@ public class Sapatilha extends Artigo {
         this.cor = cor;
     }
 
+
+    public double calculaPrecoFinal(){
+        double precoFinal = getPrecoBase();
+
+
+
+        return 1;
+    }
     //Equals
     @Override
     public boolean equals(Object o){

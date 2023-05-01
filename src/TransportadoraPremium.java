@@ -1,8 +1,8 @@
 package src;
 
 public class TransportadoraPremium extends Transportadora implements Premium {
-    public double precoPremium(){
+    @Override
+    public double calculaPrecoFinal() {
         return 0;
-        //todo funçao preço premium
     }
 }

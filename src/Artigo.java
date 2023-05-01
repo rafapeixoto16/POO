@@ -125,7 +125,7 @@ public abstract class Artigo implements Serializable {
     @Override
     public abstract Artigo clone();
 
-    public abstract double calulaPrecoFinal();
+    public abstract double calculaPrecoFinal();
 
     //toString
     @Override

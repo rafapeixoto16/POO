@@ -59,7 +59,7 @@ public class TShirt extends Artigo {
         return new TShirt(this);
     }
 
-    public double calulaPrecoFinal(){
+    public double calculaPrecoFinal(){
         double precoFinal = getPrecoBase();
 
 
