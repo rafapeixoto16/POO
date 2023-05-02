@@ -18,7 +18,7 @@ public class Main {
             System.out.println("O ficheiro nao existe \n");
         }
         else {
-            System.out.println("O ficheiro existe \n");
+            System.out.println("O ficheiro existe\n");
             vintage = ficheiro.carregar();
         }
 
@@ -28,5 +28,4 @@ public class Main {
 
         vintage.salvaFicheirosDados(ficheiro);
     }
-
 }
