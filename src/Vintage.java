@@ -1,10 +1,10 @@
 package src;
 
 import Exceptions.UtilizadorNaoExiste;
+import Serializacao.Serializacao;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Scanner;
 
 public class Vintage implements Serializable {
     private ListaArtigos listaArtigos;

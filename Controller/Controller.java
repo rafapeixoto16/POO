@@ -1,8 +1,6 @@
 package Controller;
 
-import Exceptions.UtilizadorJaExistente;
-import src.Serializacao;
-import src.Utilizador;
+import Serializacao.Serializacao;
 import src.Vintage;
 
 public class Controller {
