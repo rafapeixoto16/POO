@@ -1,10 +1,17 @@
 package src;
 
+import Exceptions.ArtigoNaoExiste;
+import Exceptions.TransportadoraNaoExiste;
 import Exceptions.UtilizadorNaoExiste;
 import Serializacao.Serializacao;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import static View.Input.getInt;
+import static View.Input.getString;
 
 public class Vintage implements Serializable {
     private ListaArtigos listaArtigos;
@@ -29,7 +36,7 @@ public class Vintage implements Serializable {
         this.listaArtigos = vintage.listaArtigos.clone();
         this.listaTransportadoras = vintage.listaTransportadoras.clone();
         this.listaEncomendas = vintage.listaEncomendas.clone();
-        this.listaFaturas = vintage.listaFaturas;//todo clone fatura
+        this.listaFaturas = vintage.listaFaturas.clone();
         this.userLigado = userLigado.clone();
     }
 
@@ -48,7 +55,7 @@ public class Vintage implements Serializable {
             try {
                 userLigado = listaUtilizadores.getUtilizadorLista(email);
             }
-            catch (UtilizadorNaoExiste | NullPointerException exception ) {}
+            catch (UtilizadorNaoExiste | NullPointerException ignored) {}
         }
     }
 
@@ -126,4 +133,38 @@ public class Vintage implements Serializable {
     }
 
 
+    public Encomenda criaEncomenda() {
+        Encomenda encomenda = new Encomenda();
+        String artigoString;
+        int codigoTransportadora;
+
+        do {
+            artigoString = getString();
+            if (!artigoString.equals("quit")) {
+                try {
+                    Artigo artigo = listaArtigos.getArtigoLista(artigoString);
+                    codigoTransportadora = getInt();
+                    try {
+                        Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
+                        encomenda.addEncomenda(transportadora,artigo);
+                    }
+                    catch (TransportadoraNaoExiste e){
+                        //todo nao me lembro
+                    }
+                } catch (ArtigoNaoExiste e) {
+                    //todo nao me lembro
+                }
+            }
+        }   while (!artigoString.equals("quit"));
+
+        return encomenda;
+    }
+
+    public Transportadora criaTransportadora(){
+        Transportadora transportadora = new Transportadora();
+
+        //todo acabar
+
+        return transportadora;
+    }
 }

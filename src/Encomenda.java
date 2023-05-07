@@ -177,4 +177,15 @@ public class Encomenda implements Serializable {
                 this.codEnc == encomenda1.codEnc && this.dataLimite.equals(encomenda1.dataLimite) &&
                 this.emailUtilizadorCompra.equals(encomenda1.emailUtilizadorCompra);
     }
+
+    public void addEncomenda(Transportadora transportadora, Artigo artigos) {
+        if(encomenda.containsKey(transportadora)){
+            encomenda.get(transportadora).add(artigos);
+        }
+        else {
+            List<Artigo> artigos1 = new ArrayList<>();
+            artigos1.add(artigos);
+            this.encomenda.put(transportadora.clone(), artigos1);
+        }
+    }
 }
