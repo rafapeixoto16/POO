@@ -1,6 +1,7 @@
 package src;
 
 import Exceptions.ArtigoNaoExiste;
+import Exceptions.TransportadoraJaExistente;
 import Exceptions.TransportadoraNaoExiste;
 import Exceptions.UtilizadorNaoExiste;
 import Serializacao.Serializacao;
@@ -10,8 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static View.Input.getInt;
-import static View.Input.getString;
+import static View.Input.*;
 
 public class Vintage implements Serializable {
     private ListaArtigos listaArtigos;
@@ -135,6 +135,7 @@ public class Vintage implements Serializable {
 
     public Encomenda criaEncomenda() {
         Encomenda encomenda = new Encomenda();
+        encomenda.setEmailUtilizadorCompra(userLigado.getEmail());
         String artigoString;
         int codigoTransportadora;
 
@@ -163,7 +164,12 @@ public class Vintage implements Serializable {
     public Transportadora criaTransportadora(){
         Transportadora transportadora = new Transportadora();
 
-        //todo acabar
+        double imposto = getImposto(); //todo de zero a 1???
+        transportadora.setImposto(imposto);
+
+        System.out.println("Nº de dias que a transportadora demora a entregar \n");
+        int dias = getInt();
+        transportadora.setDiasEntrega(dias);
 
         return transportadora;
     }

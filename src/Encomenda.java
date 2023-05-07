@@ -18,7 +18,6 @@ public class Encomenda implements Serializable {
     private final static double precoNovo = 0.5;
     private final static double precoVelho = 0.25;
     private final int codEnc;
-    private int dimensao;
     private double precoTotal;
     private LocalDate dataLimite;
     private boolean estado;
@@ -28,7 +27,6 @@ public class Encomenda implements Serializable {
 
     public Encomenda() {
         this.encomenda = new HashMap<>();
-        this.dimensao = 0;
         incTotalEnc();
         this.codEnc = numeroEnc();
         this.estado = false;
@@ -48,7 +46,6 @@ public class Encomenda implements Serializable {
 
         this.encomenda.put(transportadora, artigos1);
         this.emailUtilizadorCompra = emailUtilizadorCompra;
-        this.dimensao = encomenda.values().size();
         incTotalEnc();
         this.codEnc = numeroEnc();
         this.estado = estado;
@@ -68,7 +65,6 @@ public class Encomenda implements Serializable {
             this.encomenda.put(a.clone(), artigos1);
         }
 
-        this.dimensao = encomenda.dimensao;
         this.estado = encomenda.estado;
         this.codEnc = encomenda.codEnc;
         this.dataEncomenda = encomenda.dataEncomenda;
@@ -82,11 +78,6 @@ public class Encomenda implements Serializable {
     public static void setNumeroEncomendas(int numeroEncomendas) {
         Encomenda.numeroEncomendas = numeroEncomendas;
     }
-
-    public void setDimensao(int dimensao) {
-        this.dimensao = dimensao;
-    }
-
     public void setPrecoTotal(double precoTotal) {
         this.precoTotal = precoTotal;
     }
@@ -116,7 +107,7 @@ public class Encomenda implements Serializable {
     }
 
     public int getDimensao() {
-        return dimensao;
+        return encomenda.values().size();
     }
 
     public double getPrecoTotal() {

@@ -7,7 +7,7 @@ public class Transportadora implements Serializable {
     public static void incTotalTransp() {numeroTransportadoras++;}
     public static int numeroTransp() {return numeroTransportadoras;}
     private final int codTransportadora;
-    private int imposto;
+    private double imposto;
     private int diasEntrega;
     public Transportadora(){
         incTotalTransp();
@@ -25,7 +25,7 @@ public class Transportadora implements Serializable {
         this.codTransportadora = transportadora.codTransportadora;
         this.imposto = transportadora.imposto;
     }
-    public int getImposto() {
+    public double getImposto() {
         return imposto;
     }
 
@@ -33,10 +33,13 @@ public class Transportadora implements Serializable {
         return codTransportadora;
     }
 
-    public void setImposto(int imposto) {
+    public void setImposto(double imposto) {
         this.imposto = imposto;
     }
 
+    public void setDiasEntrega(int diasEntrega){
+        this.diasEntrega = diasEntrega;
+    }
     @Override
     public boolean equals(Object o){
         if(o == null)
