@@ -13,6 +13,11 @@ public class FaturaCliente extends Fatura {
         this.cliente = cliente.cliente.clone();
     }
 
+    public FaturaCliente(double preco,Encomenda encomenda,Utilizador utilizador){
+        super(preco,encomenda);
+        this.cliente = utilizador.clone();
+    }
+
     @Override
     public FaturaCliente clone(){
         return new FaturaCliente(this);

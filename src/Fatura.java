@@ -12,9 +12,15 @@ public abstract class Fatura {
     }
 
     public Fatura(Fatura fatura){
-        this.encomenda = fatura.encomenda;
+        this.encomenda = fatura.encomenda.clone();
         this.preco = fatura.preco;
     }
+
+    public Fatura(double preco,Encomenda encomenda){
+        this.encomenda = encomenda.clone();
+        this.preco = preco;
+    }
+
 
     public Encomenda getEncomenda() {
         return encomenda;
