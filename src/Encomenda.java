@@ -159,7 +159,7 @@ public class Encomenda implements Serializable {
 
         this.encomenda.put(transportadora.clone(), artigos1);
     }
-    public void removeArtigo(Transportadora transportadora,List<Artigo> artigos){//todo alterar talvez para um map e adicionar transportadora
+    public void removeArtigo(Transportadora transportadora,List<Artigo> artigos){
         List<Artigo> artigos1 = encomenda.get(transportadora);
         artigos1.removeAll(artigos);
         encomenda.remove(transportadora);

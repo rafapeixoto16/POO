@@ -40,14 +40,27 @@ public abstract class Fatura {
 
     @Override
     public String toString(){
-        return "Encomenda"+encomenda.toString()+"\npreço "+preco;
+        return "Encomenda"+encomenda.toString()+"\n preço: "+preco;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(o==this)
+            return true;
+
+        if(o==null || o.getClass() != this.getClass())
+            return false;
+
+        Fatura l = (Fatura) o;
+        return l.preco == this.preco && this.encomenda == l.encomenda;
+    }
+
 
     @Override
     public abstract Fatura clone();
 
     @Override
     public int hashCode() {
-        return Objects.hash(encomenda);
+        return Objects.hash(encomenda,preco);
     }
 }
