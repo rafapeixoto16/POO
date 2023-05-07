@@ -55,7 +55,6 @@ public abstract class Fatura {
         return l.preco == this.preco && this.encomenda == l.encomenda;
     }
 
-
     @Override
     public abstract Fatura clone();
 
