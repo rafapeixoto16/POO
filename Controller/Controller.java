@@ -1,7 +1,7 @@
 package Controller;
 
 import Serializacao.Serializacao;
-import src.Vintage;
+import model.Vintage;
 
 public class Controller {
     private static final String ficheiroDados = "ficheiro.dat";

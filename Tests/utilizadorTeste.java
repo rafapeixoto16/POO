@@ -4,11 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import src.Encomenda;
-import src.Sapatilha;
-import src.TShirt;
-import src.Utilizador;
-import src.*;
+import model.Encomenda;
+import model.Sapatilha;
+import model.TShirt;
+import model.Utilizador;
 
 import java.time.LocalDate;
 
