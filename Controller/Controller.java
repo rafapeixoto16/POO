@@ -19,14 +19,12 @@ public class Controller {
         this.vintage = new Vintage();
      }
      public void run(){
-         if(ficheiro.getFicheiro().exists())
+         if(this.ficheiro.getFicheiro().exists())
             this.vintage = ficheiro.carregar();
 
-         else {
-
-         }
-
          try {
+             out.print(" "+ Artigo.getNumeroArtigos()+"\n");
+             vintage.getListaArtigos().addArtigo(new Mala(true,1,10,"Cavalinho",70,4,"couro", LocalDate.of(2023,1,1),"mail"));
              out.print(" "+ Artigo.getNumeroArtigos()+"\n");
              out.print(" "+ Transportadora.numeroTransp());
              this.ficheiro.guardar(this.vintage);

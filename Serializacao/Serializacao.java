@@ -25,7 +25,7 @@ public class Serializacao {
     public Vintage carregar() {
         try (FileInputStream fileIn = new FileInputStream(ficheiro);
              ObjectInputStream in = new ObjectInputStream(fileIn)) {
-            Vintage retorno = (Vintage) in.readObject();
+             Vintage retorno = (Vintage) in.readObject();
              Artigo.setNumeroArtigos(in.readInt());
              Encomenda.setNumEncomenda(in.readInt());
              Transportadora.setNumeroTransportadoras(in.readInt());

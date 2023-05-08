@@ -227,6 +227,7 @@ public class Input {
         out.print("Opção: ");
         int op = Input.getInt();
         boolean ok = false;
+
         while (!ok) {
             op = Input.getInt();
             if (op == 1 || op == 2)
@@ -234,6 +235,7 @@ public class Input {
             else
                 out.print("O valor numero inserido tem de ser 1 (Atacadores) ou 2 (Atilhos) \n");
         }
+
         boolean at;
 
         at = op == 1;
@@ -284,12 +286,13 @@ public class Input {
     public static boolean getNovo() {
         out.print("Novo   <- 1\n");
         out.print("Usado  <- 0\n");
-        out.print("Estado da sapatilha: ");
+        out.print("Estado do artigo: ");
         int padrao = Input.getInt();
         boolean ok = false;
+
         while (!ok) {
             padrao = Input.getInt();
-            if (padrao == 1 || padrao == 2)
+            if (padrao == 1 || padrao == 0)
                 ok = true;
             else
                 out.print("O valor numero inserido tem de ser 1 (Novo) ou 0 (Usado) \n");

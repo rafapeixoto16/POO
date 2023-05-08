@@ -70,7 +70,7 @@ public class Mala extends Artigo {
 
     public double calculaPrecoFinal(){
         double precoFinal = getPrecoBase();
-        double desconto = precoFinal - ( precoFinal / dim ) * ( getAno_colecao().getDayOfYear() - LocalDate.now().getDayOfYear());
+        double desconto = precoFinal - ( dim / precoFinal ) * (getAno_colecao().getDayOfYear() - Vintage.dataAtual().getDayOfYear());
 
         if(desconto <= 0)
             precoFinal = precoFinal * 0.95;

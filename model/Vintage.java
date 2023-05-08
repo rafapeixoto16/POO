@@ -18,6 +18,9 @@ public class Vintage implements Serializable {
     private ListaEncomendas listaEncomendas;
     private ListaFaturas listaFaturas;
     private static LocalDate dataSistema;
+    public static void incDia(){dataSistema = dataSistema.plusDays(1);}
+    public static LocalDate dataAtual(){return dataSistema;}
+    public static void setNumeroArtigos(LocalDate data){ dataSistema = data;}
     private Utilizador userLigado;
 
     public Vintage(){
@@ -134,7 +137,7 @@ public class Vintage implements Serializable {
         retorno.setNumDonos(getNumDonos());
         retorno.setAvaliacao(getAvaliacao());
         retorno.setDescricao(getDescricao());
-        //TODO ACABAR
+        retorno.setPrecoBase(getPrecoBase());
 
         return retorno;
     }
