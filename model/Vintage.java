@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import static View.Input.*;
+import static java.lang.System.out;
 
 public class Vintage implements Serializable {
     private ListaArtigos listaArtigos;
@@ -16,7 +17,7 @@ public class Vintage implements Serializable {
     private ListaTransportadoras listaTransportadoras;
     private ListaEncomendas listaEncomendas;
     private ListaFaturas listaFaturas;
-    private LocalDate dataSistema;
+    private static LocalDate dataSistema;
     private Utilizador userLigado;
 
     public Vintage(){
@@ -112,23 +113,35 @@ public class Vintage implements Serializable {
         this.userLigado = userLigado;
     }
 
-    /*public Sapatilha criaSapatilha(argumentos){
-
+    public Sapatilha criaSapatilha(){
+        Sapatilha retorno = new Sapatilha();
+        retorno.setNovo(getNovo());
+        retorno.setNumDonos(getNumDonos());
+        retorno.setDescricao(getDescricao());
+        retorno.setPrecoBase(getPrecoBase());
+        retorno.setTamanho(getTamanhoSapatilha());
+        retorno.setAtacadores(getAtacadores());
+        retorno.setData(getData());
+        retorno.setCor(getCor());
+        retorno.setEmailUtilizador(userLigado.getEmail());
+        return retorno;
     }
 
-    public Mala criaMala(argumentos){
+    public Mala criaMala(){
+        Mala retorno = new Mala();
+        //boolean novo, int numDonos, int avaliacao, String descricao, double precoBase,int dim,String material,LocalDate ano_colecao,String emailUtilizador;
+        retorno.setNovo(getNovo());
+        retorno.setNumDonos(getNumDonos());
+        retorno.setAvaliacao(getAvaliacao());
+        retorno.setDescricao(getDescricao());
+        //TODO ACABAR
 
+        return retorno;
     }
-
+/*
     public TShirt criaTShirt(argumentos){
 
     }*/
-
-
-    public void salvaFicheirosDados(Serializacao ficheiro){
-        ficheiro.guardar(this);
-    }
-
 
     public Encomenda criaEncomenda() {
         Encomenda encomenda = new Encomenda();
@@ -147,10 +160,10 @@ public class Vintage implements Serializable {
                         encomenda.addEncomenda(transportadora,artigo);
                     }
                     catch (TransportadoraNaoExiste e){
-                        //todo nao me lembro
+                        out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
                     }
                 } catch (ArtigoNaoExiste e) {
-                    //todo nao me lembro
+                    out.print("Nao existe um artigo com codigo " + artigoString);
                 }
             }
         }   while (!artigoString.equals("quit"));
@@ -164,7 +177,7 @@ public class Vintage implements Serializable {
         double imposto = getImposto(); //todo de zero a 1???
         transportadora.setImposto(imposto);
 
-        System.out.println("Nº de dias que a transportadora demora a entregar \n");
+        out.println("Nº de dias que a transportadora demora a entregar \n");
         int dias = getInt();
         transportadora.setDiasEntrega(dias);
 

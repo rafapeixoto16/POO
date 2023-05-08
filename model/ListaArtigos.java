@@ -23,13 +23,10 @@ public class ListaArtigos implements Serializable {
         return listaArtigos;
     }
 
-    public void addArtigo(Artigo artigo) throws ArtigoJaExistente {
-        if(artigo == null){
+    public void addArtigo(Artigo artigo) {
+        if(artigo == null)
             throw new NullPointerException("O artigo nao pode ser um valor nulo");
-        }
-        if(listaArtigos.containsKey(artigo.getCodigo())){
-            throw new ArtigoJaExistente("O artigo ja existe");
-        }
+
         listaArtigos.put(artigo.getCodigo(),artigo.clone());
     }
     public boolean existeArtigo(String codigo){

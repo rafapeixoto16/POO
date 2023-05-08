@@ -13,7 +13,6 @@ import model.*;
 
 public class Serializacao {
     private final File ficheiro;
-
     public Serializacao(String ficheiro) {
         this.ficheiro = new File(ficheiro);
     }
@@ -26,11 +25,12 @@ public class Serializacao {
     public Vintage carregar() {
         try (FileInputStream fileIn = new FileInputStream(ficheiro);
              ObjectInputStream in = new ObjectInputStream(fileIn)) {
-             Vintage retorno = (Vintage) in.readObject();
+            Vintage retorno = (Vintage) in.readObject();
              Artigo.setNumeroArtigos(in.readInt());
              Encomenda.setNumEncomenda(in.readInt());
              Transportadora.setNumeroTransportadoras(in.readInt());
              return retorno;
+
         }catch(IOException | ClassNotFoundException ex) {
             throw new RuntimeException(String.format(
                     "Ocorreu um erro ao ler o ficheiro de  dados: %s",

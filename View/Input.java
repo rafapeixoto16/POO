@@ -81,6 +81,7 @@ public class Input {
         Scanner input = new Scanner(in);
         boolean ok = false;
         boolean b = false;
+
         while (!ok) {
             try {
                 b = input.nextBoolean();
@@ -225,9 +226,17 @@ public class Input {
         out.print("Atilhos = 2\n");
         out.print("Opção: ");
         int op = Input.getInt();
+        boolean ok = false;
+        while (!ok) {
+            op = Input.getInt();
+            if (op == 1 || op == 2)
+                ok = true;
+            else
+                out.print("O valor numero inserido tem de ser 1 (Atacadores) ou 2 (Atilhos) \n");
+        }
         boolean at;
-        if(op == 1) at = true;
-        else at = false;
+
+        at = op == 1;
         return at;
     }
 
@@ -272,6 +281,24 @@ public class Input {
         return imposto;
     }
 
+    public static boolean getNovo() {
+        out.print("Novo   <- 1\n");
+        out.print("Usado  <- 0\n");
+        out.print("Estado da sapatilha: ");
+        int padrao = Input.getInt();
+        boolean ok = false;
+        while (!ok) {
+            padrao = Input.getInt();
+            if (padrao == 1 || padrao == 2)
+                ok = true;
+            else
+                out.print("O valor numero inserido tem de ser 1 (Novo) ou 0 (Usado) \n");
+        }
+        boolean at;
+
+        at = padrao == 1;
+        return at;
+    }
     //diasEntrega?????????????????
 
 }
