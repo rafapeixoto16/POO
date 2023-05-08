@@ -63,5 +63,10 @@ public class Serializacao {
                     ex.getLocalizedMessage()), ex);
         }
     }
+
+    public boolean delete() {
+        return ficheiro.delete();
+    }
+
 }
 
