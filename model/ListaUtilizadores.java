@@ -33,6 +33,11 @@ public class ListaUtilizadores implements Serializable {
         }
         listaUtilizadores.put(utilizador.getEmail(),utilizador.clone());
     }
+
+    public Utilizador getUtilizador(String email){
+        return listaUtilizadores.get(email);
+    }
+
     public boolean existeUtilizador(String codigo){
         return listaUtilizadores.containsKey(codigo);
     }
@@ -53,7 +58,7 @@ public class ListaUtilizadores implements Serializable {
         else if (!existeUtilizador(codigo)) {
             throw new UtilizadorNaoExiste("O utilizador com email "+ codigo + " nao existe");
         }
-        return listaUtilizadores.get(codigo).clone();
+        return listaUtilizadores.get(codigo);
     }
 
     public List<Utilizador> getUtilizadoresList(){

@@ -28,6 +28,18 @@ public class Encomenda implements Serializable {
     private String emailUtilizadorCompra;
     private final Map<Transportadora, List<Artigo> > encomenda;
 
+
+    public List<Artigo> getArtigos (){
+        List<Artigo> retorno = new ArrayList<>();
+        for (List<Artigo> a : encomenda.values()){
+            for(Artigo b : a){
+                retorno.add(b.clone());
+            }
+        }
+
+        return retorno;
+    }
+
     public Encomenda() {
         this.encomenda = new HashMap<>();
         incTotalEnc();

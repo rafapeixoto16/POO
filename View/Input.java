@@ -211,8 +211,7 @@ public class Input {
     public static LocalDate getAno_colecao() { //rever
         out.print("Ano de colecao da mala: ");
         int ano = Input.getInt();
-        LocalDate data = LocalDate.of(ano,1,1);
-        return data;
+        return LocalDate.of(ano,1,1);
     }
 
     public static int getTamanhoSapatilha() {
@@ -271,7 +270,14 @@ public class Input {
         out.print("Riscas    <- 1\n");
         out.print("Liso      <- 0\n");
         out.print("Padrão da TShirt: ");
-        int padrao = Input.getInt();
+        boolean ok = false;
+        int padrao = 3;
+
+        while (!ok){
+            padrao = Input.getInt();
+            if(padrao == 1 || padrao == 0 || padrao ==2)
+                ok = true;
+        }
         return padrao;
     }
 

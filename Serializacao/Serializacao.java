@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
+
 import model.*;
 
 
@@ -29,6 +31,8 @@ public class Serializacao {
              Artigo.setNumeroArtigos(in.readInt());
              Encomenda.setNumEncomenda(in.readInt());
              Transportadora.setNumeroTransportadoras(in.readInt());
+             LocalDate localDate = (LocalDate) in.readObject();
+             Vintage.setDataAtual(localDate);
              return retorno;
 
         }catch(IOException | ClassNotFoundException ex) {
@@ -47,6 +51,7 @@ public class Serializacao {
                 out.writeInt(Artigo.getNumeroArtigos());
                 out.writeInt(Encomenda.getNumeroEncomendas());
                 out.writeInt(Transportadora.numeroTransp());
+                out.writeObject(Vintage.dataAtual());
             } catch (IOException ex) {
                 throw new RuntimeException(String.format(
                         "Ocorreu um erro ao guardar o ficheiro de dados: %s",

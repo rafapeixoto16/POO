@@ -1,12 +1,14 @@
 package model;
 
 import Exceptions.ArtigoNaoExiste;
+import Exceptions.EncomendaNaoExiste;
 import Exceptions.TransportadoraNaoExiste;
 import Exceptions.UtilizadorNaoExiste;
 import Serializacao.Serializacao;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import static View.Input.*;
 import static java.lang.System.out;
@@ -18,12 +20,22 @@ public class Vintage implements Serializable {
     private ListaEncomendas listaEncomendas;
     private ListaFaturas listaFaturas;
     private static LocalDate dataSistema;
-    public static void incDia(){dataSistema = dataSistema.plusDays(1);}
-    public static LocalDate dataAtual(){return dataSistema;}
-    public static void setNumeroArtigos(LocalDate data){ dataSistema = data;}
+
+    public static void incDia() {
+        dataSistema = dataSistema.plusDays(1);
+    }
+
+    public static LocalDate dataAtual() {
+        return dataSistema;
+    }
+
+    public static void setDataAtual(LocalDate data) {
+        dataSistema = data;
+    }
+
     private Utilizador userLigado;
 
-    public Vintage(){
+    public Vintage() {
         listaArtigos = new ListaArtigos();
         listaUtilizadores = new ListaUtilizadores();
         listaTransportadoras = new ListaTransportadoras();
@@ -32,7 +44,7 @@ public class Vintage implements Serializable {
         userLigado = new Utilizador();
     }
 
-    public Vintage(Vintage vintage){
+    public Vintage(Vintage vintage) {
         this.listaUtilizadores = vintage.listaUtilizadores.clone();
         this.listaArtigos = vintage.listaArtigos.clone();
         this.listaTransportadoras = vintage.listaTransportadoras.clone();
@@ -43,24 +55,24 @@ public class Vintage implements Serializable {
 
     //todo funçoes de jeito
 
-    public LocalDate avancoTemporal(int dias){
+    public LocalDate avancoTemporal(int dias) {
         return dataSistema.plusDays(dias);
     }
 
-    public LocalDate getDataSistema(){
+    public LocalDate getDataSistema() {
         return dataSistema;
     }
 
     public void login(String email) {
-        if(listaUtilizadores.existeUtilizador(email)){
+        if (listaUtilizadores.existeUtilizador(email)) {
             try {
                 userLigado = listaUtilizadores.getUtilizadorLista(email);
+            } catch (UtilizadorNaoExiste | NullPointerException ignored) {
             }
-            catch (UtilizadorNaoExiste | NullPointerException ignored) {}
         }
     }
 
-    public void logout(){
+    public void logout() {
         userLigado = null;
     }
 
@@ -109,15 +121,17 @@ public class Vintage implements Serializable {
     }
 
     public void setDataSistema(LocalDate dataSistema) {
-        this.dataSistema = dataSistema;
+        Vintage.dataSistema = dataSistema;
     }
 
     public void setUserLigado(Utilizador userLigado) {
         this.userLigado = userLigado;
     }
 
-    public Sapatilha criaSapatilha(){
+
+    public Sapatilha criaSapatilha() {
         Sapatilha retorno = new Sapatilha();
+
         retorno.setNovo(getNovo());
         retorno.setNumDonos(getNumDonos());
         retorno.setDescricao(getDescricao());
@@ -127,24 +141,67 @@ public class Vintage implements Serializable {
         retorno.setData(getData());
         retorno.setCor(getCor());
         retorno.setEmailUtilizador(userLigado.getEmail());
+
         return retorno;
     }
 
-    public Mala criaMala(){
+    public SapatilhaPremium criaSapatilhaPremium() {
+        SapatilhaPremium retorno = new SapatilhaPremium();
+        retorno.setNovo(getNovo());
+        retorno.setNumDonos(getNumDonos());
+        retorno.setDescricao(getDescricao());
+        retorno.setTamanho(getTamanhoSapatilha());
+        retorno.setAtacadores(getAtacadores());
+        retorno.setPrecoBase(getPrecoBase());
+        retorno.setData(getData());
+        retorno.setCor(getCor());
+        retorno.setEmailUtilizador(userLigado.getEmail());
+        return retorno;
+    }
+
+    public Mala criaMala() {
         Mala retorno = new Mala();
-        //boolean novo, int numDonos, int avaliacao, String descricao, double precoBase,int dim,String material,LocalDate ano_colecao,String emailUtilizador;
+
         retorno.setNovo(getNovo());
         retorno.setNumDonos(getNumDonos());
         retorno.setAvaliacao(getAvaliacao());
         retorno.setDescricao(getDescricao());
         retorno.setPrecoBase(getPrecoBase());
+        retorno.setMaterial(getMaterial());
+        retorno.setAno_colecao(getAno_colecao());//todo alterar o getano_colecao
+        retorno.setEmailUtilizador(userLigado.getEmail());
+        return retorno;
+    }
+
+    public MalaPremium criaMalaPremium() {
+        MalaPremium retorno = new MalaPremium();
+
+        retorno.setNovo(getNovo());
+        retorno.setNumDonos(getNumDonos());
+        retorno.setAvaliacao(getAvaliacao());
+        retorno.setDescricao(getDescricao());
+        retorno.setPrecoBase(getPrecoBase());
+        retorno.setMaterial(getMaterial());
+        retorno.setAno_colecao(getAno_colecao());//todo alterar o getano_colecao
+        retorno.setEmailUtilizador(userLigado.getEmail());
+        return retorno;
+    }
+
+    public TShirt criaTShirt() {
+        TShirt retorno = new TShirt();
+
+        retorno.setNovo(getNovo());
+        retorno.setNumDonos(getNumDonos());
+        retorno.setAvaliacao(getAvaliacao());
+        retorno.setDescricao(getDescricao());
+        retorno.setPrecoBase(getPrecoBase());
+        retorno.setTamanho(getTamanhoTShirt());
+        retorno.setPadrao(getPadrao());
+        retorno.setEmailUtilizador(userLigado.getEmail());
 
         return retorno;
     }
-/*
-    public TShirt criaTShirt(argumentos){
 
-    }*/
 
     public Encomenda criaEncomenda() {
         Encomenda encomenda = new Encomenda();
@@ -154,33 +211,53 @@ public class Vintage implements Serializable {
 
         do {
             artigoString = getString();
-            if (!artigoString.equals("quit")) {
+            if (!artigoString.equals("concluida")) {
                 try {
                     Artigo artigo = listaArtigos.getArtigoLista(artigoString);
                     codigoTransportadora = getInt();
                     try {
                         Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
-                        encomenda.addEncomenda(transportadora,artigo);
-                    }
-                    catch (TransportadoraNaoExiste e){
+                        encomenda.addEncomenda(transportadora, artigo);
+                    } catch (TransportadoraNaoExiste e) {
                         out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
                     }
                 } catch (ArtigoNaoExiste e) {
                     out.print("Nao existe um artigo com codigo " + artigoString);
                 }
             }
-        }   while (!artigoString.equals("quit"));
+        } while (!artigoString.equals("concluida"));
 
         return encomenda;
     }
 
-    public Transportadora criaTransportadora(){
+
+    public void cancelaEncomenda(int codigoEncomenda) throws EncomendaNaoExiste {
+        Encomenda encomendaACancelar = listaEncomendas.getEncomendaLista(codigoEncomenda);
+
+        if(!encomendaACancelar.getEstado()) {//todo nao e get estado pois a encomenda nao sabe quando ela muda de estado.
+            List<Artigo> artigos = encomendaACancelar.getArtigos();
+            for (Artigo a : artigos) {
+                Utilizador dono = listaUtilizadores.getUtilizador(a.getEmailUtilizador()); //todo esta a retornar o que esta na lista e nao um clone
+                dono.removeArtigosVendidos(a);
+                dono.addArtigosPorVender(a);
+            }
+
+            userLigado.removeEncomendasUtilizador(encomendaACancelar);
+
+            listaEncomendas.removeEncomenda(codigoEncomenda);
+        }
+        else
+            out.println("Essa encomenda ja foi entregue.");
+    }
+
+    public Transportadora criaTransportadora() {
         Transportadora transportadora = new Transportadora();
 
         double imposto = getImposto(); //todo de zero a 1???
         transportadora.setImposto(imposto);
 
-        out.println("Nº de dias que a transportadora demora a entregar \n");
+        out.println("Nº de dias que a transportadora demora a entregar");
+
         int dias = getInt();
         transportadora.setDiasEntrega(dias);
 
