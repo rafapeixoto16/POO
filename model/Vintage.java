@@ -245,6 +245,7 @@ public class Vintage implements Serializable {
             userLigado.removeEncomendasUtilizador(encomendaACancelar);
 
             listaEncomendas.removeEncomenda(codigoEncomenda);
+            //todo remover faturas
         }
         else
             out.println("Essa encomenda ja foi entregue.");
