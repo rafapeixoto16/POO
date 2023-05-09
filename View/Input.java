@@ -156,9 +156,9 @@ public class Input {
         return morada;
     }
 
-    public static String getNIF() {
+    public static int getNIF() {
         out.print("NIF: ");
-        String nif = Input.getString();
+        Integer nif = Input.getInt();
         return nif;
     }
 
@@ -284,8 +284,19 @@ public class Input {
     //get para o codTransportadora????????
 
     public static int getImposto() {
-        out.print("Imposto: ");
-        int imposto = Input.getInt();
+        out.print("Imposto (de 0 a 100): ");
+        boolean ok = false;
+
+        int imposto = -1;
+
+        while (!ok){
+            imposto = Input.getInt();
+            if(imposto >= 0 &&  imposto <=100)
+                ok = true;
+            else
+                out.println("O imposto tem de ser uma valor de 0 a 100");
+        }
+
         return imposto;
     }
 

@@ -63,13 +63,17 @@ public class Vintage implements Serializable {
         return dataSistema;
     }
 
-    public void login(String email) {
+    public boolean login(String email) {
         if (listaUtilizadores.existeUtilizador(email)) {
             try {
                 userLigado = listaUtilizadores.getUtilizadorLista(email);
-            } catch (UtilizadorNaoExiste | NullPointerException ignored) {
+                return true;
+            } catch (UtilizadorNaoExiste | NullPointerException e) {
+                out.println("Esse mail nao existe");
+                return false;
             }
         }
+        return false;
     }
 
     public void logout() {
@@ -211,7 +215,7 @@ public class Vintage implements Serializable {
 
         do {
             artigoString = getString();
-            if (!artigoString.equals("concluida")) {
+            if (!artigoString.equals("concluida")) { //todo alterar aqui
                 try {
                     Artigo artigo = listaArtigos.getArtigoLista(artigoString);
                     codigoTransportadora = getInt();
@@ -226,6 +230,8 @@ public class Vintage implements Serializable {
                 }
             }
         } while (!artigoString.equals("concluida"));
+
+        encomenda.setPrecoTotal(encomenda.calculaPrecoEncomenda(encomenda));
 
         return encomenda;
     }
@@ -254,7 +260,7 @@ public class Vintage implements Serializable {
     public Transportadora criaTransportadora() {
         Transportadora transportadora = new Transportadora();
 
-        double imposto = getImposto(); //todo de zero a 1???
+        double imposto = (double) getImposto() / 100;
         transportadora.setImposto(imposto);
 
         out.println("Nº de dias que a transportadora demora a entregar");
@@ -264,4 +270,16 @@ public class Vintage implements Serializable {
 
         return transportadora;
     }
+
+    public Utilizador criaUtilizador(){
+        Utilizador retorno = new Utilizador();
+
+        retorno.setEmail(getEmail());
+        retorno.setNome(getName());
+        retorno.setMorada(getMorada());
+        retorno.setNumeroFiscal(getNIF());
+
+        return retorno;
+    }
+
 }

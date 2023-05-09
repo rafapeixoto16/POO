@@ -2,10 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Encomenda implements Serializable {
     private static int numeroEncomendas = 0;
@@ -51,7 +48,27 @@ public class Encomenda implements Serializable {
         this.emailUtilizadorCompra = "";
     }
 
-    public Encomenda(double precoTotal, LocalDate dataLimite, boolean estado, LocalDate dataEncomenda, Transportadora transportadora, List<Artigo> artigos, String emailUtilizadorCompra) {
+    public List<Artigo> getLista(Transportadora transportadora){
+        List<Artigo> artigos = new ArrayList<>();
+
+        for (Artigo a : this.encomenda.get(transportadora)){
+            artigos.add(a.clone());
+        }
+
+        return artigos;
+    }
+
+
+
+    public List<Transportadora> retornaKeys(Encomenda encomenda){
+        List<Transportadora> retorno = new ArrayList<>();
+        for (Transportadora a : encomenda.encomenda.keySet()){
+            retorno.add(a.clone());
+        }
+        return retorno;
+    }
+
+    public Encomenda(LocalDate dataLimite, boolean estado, LocalDate dataEncomenda, Transportadora transportadora, List<Artigo> artigos, String emailUtilizadorCompra) {
         this.encomenda = new HashMap<>();
         List<Artigo> artigos1 = new ArrayList<>();
 
@@ -66,7 +83,7 @@ public class Encomenda implements Serializable {
         this.estado = estado;
         this.dataEncomenda = dataEncomenda;
         this.dataLimite = dataLimite;
-        this.precoTotal = precoTotal;
+        this.precoTotal = 0;
     }
 
     public Encomenda(Encomenda encomenda) {
@@ -194,4 +211,18 @@ public class Encomenda implements Serializable {
             this.encomenda.put(transportadora.clone(), artigos1);
         }
     }
+
+    public double calculaPrecoEncomenda (Encomenda encomenda){
+        double retorno = 0;
+        List<Transportadora> itens = encomenda.encomenda.keySet().stream().toList();
+
+        for (Transportadora a : itens){
+            List<Artigo> artigos = encomenda.getLista(a);
+            for (Artigo b : artigos)
+                retorno += b.calculaPrecoFinal() * a.getImposto() + b.calculaPrecoFinal();
+        }
+        return retorno;
+    }
+
+
 }
