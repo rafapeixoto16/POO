@@ -4,7 +4,6 @@ import Exceptions.ArtigoNaoExiste;
 import Exceptions.EncomendaNaoExiste;
 import Exceptions.TransportadoraNaoExiste;
 import Exceptions.UtilizadorNaoExiste;
-import Serializacao.Serializacao;
 
 import java.io.Serializable;
 import java.time.LocalDate;
