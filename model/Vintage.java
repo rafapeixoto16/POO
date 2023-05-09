@@ -7,6 +7,7 @@ import Exceptions.UtilizadorNaoExiste;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static View.Input.*;
@@ -211,12 +212,13 @@ public class Vintage implements Serializable {
         encomenda.setEmailUtilizadorCompra(userLigado.getEmail());
         String artigoString;
         int codigoTransportadora;
-
+        List<String> usarios = new ArrayList<>();
         do {
             artigoString = getString();
             if (!artigoString.equals("concluida")) { //todo alterar aqui
                 try {
                     Artigo artigo = listaArtigos.getArtigoLista(artigoString);
+                    usarios.add(artigo.getEmailUtilizador());
                     codigoTransportadora = getInt();
                     try {
                         Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
@@ -231,6 +233,18 @@ public class Vintage implements Serializable {
         } while (!artigoString.equals("concluida"));
 
         encomenda.setPrecoTotal(encomenda.calculaPrecoEncomenda(encomenda));
+
+        FaturaCliente faturaCliente = new FaturaCliente();
+        faturaCliente.setEncomenda(encomenda);
+        faturaCliente.setCliente(userLigado);
+
+        for (String a : usarios)
+        {
+            FaturaVendedor faturaVendedor = new FaturaVendedor();
+            faturaVendedor.setEncomenda(encomenda);
+            listaFaturas.addFaturaVendedor(a,faturaVendedor);
+        }
+
 
         return encomenda;
     }

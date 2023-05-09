@@ -175,7 +175,7 @@ public class Encomenda implements Serializable {
 
     @Override
     public String toString(){
-        return "Encomenda :"+getCodEnc()+ "\n" + "dimensao"+getDimensao()+ "";
+        return "Encomenda :"+getCodEnc()+ "\n" + "dimensao"+getDimensao()+ " ";
     }
     public void addEncomenda(Transportadora transportadora, List<Artigo> artigos) {
         List<Artigo> artigos1 = new ArrayList<>();
@@ -237,6 +237,8 @@ public class Encomenda implements Serializable {
 
         return retorno;
     }
+
+
 
 
 }

@@ -56,4 +56,6 @@ public class FaturaCliente extends Fatura {
         return "Clientes: " + cliente.toString() + "\n"
                 +"Encomenda: "+super.toString();
     }
+
+    //todo funçao calcula preço preço
 }
