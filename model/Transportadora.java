@@ -30,6 +30,10 @@ public class Transportadora implements Serializable {
         return imposto;
     }
 
+    public int getDiasEntrega() {
+        return diasEntrega;
+    }
+
     public int getCodTransportadora() {
         return codTransportadora;
     }

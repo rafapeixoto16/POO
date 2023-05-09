@@ -2,7 +2,9 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Encomenda implements Serializable {
     private static int numeroEncomendas = 0;
@@ -221,6 +223,18 @@ public class Encomenda implements Serializable {
             for (Artigo b : artigos)
                 retorno += b.calculaPrecoFinal() * a.getImposto() + b.calculaPrecoFinal();
         }
+        return retorno;
+    }
+
+    public boolean validoCancelamentoEncomenda(Encomenda encomenda){
+        List<Transportadora> encomendaList = encomenda.encomenda.keySet().stream().toList();
+        boolean retorno = true;
+
+        for (Transportadora a : encomendaList){
+            if(ChronoUnit.DAYS.between(Vintage.dataAtual(),encomenda.dataEncomenda) >a.getDiasEntrega())
+                return false;
+        }
+
         return retorno;
     }
 
