@@ -13,9 +13,6 @@ public class IO {
             "Inserir Email",
     };
 
-    public static final String[] opcoesMenuSigIn = {//TODO acho que não é preciso
-
-    };
 
     public static final String[] opcoesMenuUtilizador = {
             "Artigos",
@@ -23,16 +20,17 @@ public class IO {
             "Transportadoras",
             "Faturas",
             "Estatisticas",
+            "Tempo"
     };
 
 
     public static final String[] opcoesMenuArtigos = {
-            "Adicionar Artigo",
+            "Criar Artigo",
             "Remover Artigo",
             "Listar Artigos",
     };
 
-    public static final String[] opcoesMenuAddArtigo = {
+    public static final String[] opcoesMenuCriarArtigo = {
             "Adicionar Sapatilha",
             "Adicionar T-Shirt",
             "Adicionar Mala",
@@ -48,9 +46,6 @@ public class IO {
             "Mala Premium",
     };
 
-    public static final String[] opcoesMenuRmEncomendas = {
-            "Código do Artigo para ser removido",
-    };
 
     public static final String[] opcoesMenuEncomendas = {
             "Criar Encomenda",
@@ -58,15 +53,24 @@ public class IO {
             "Listar Encomendas",
     };
 
+    public static final String[] opcoesMenuRmEncomendas = {
+            "Código do Artigo para ser removido",
+    };
     public static final String[] opcoesMenuCriarEncomenda = {
             "Adicionar Artigo à Encomenda (código)",
             "Concluir Encomenda",
     };
 
-    public static final String[] opcoesMenuTransportadoras = { //TODO
+    public static final String[] opcoesMenuTransportadoras = {
+            "Criar Transportadora",
+            "Alterar Imposto de Transportadorta",
 
     };
 
+    public static final String[] opcoesMenuCriarTransportadora = {
+            "Transportadora Normal",
+            "Transportadora Premium",
+    };
 
     public static final String[] opcoesMenuFaturas = { //TODO
 
@@ -74,8 +78,20 @@ public class IO {
 
 
     public static final String[] opcoesMenuEstatisticas = { //TODO
+            "Vendedor que mais faturou",
+            "Transportadora com maior volume de faturação",
+            "", //listar as encomendas emitidas por um vendedor
+            "Maiores Compradores",
+            "Maiores Vendedores",
+            "Faturação da Vintage",
+    };
+
+
+    public static final String[] opcoesMenuTempo = { //TODO
 
     };
+
+
 
     public int menu(String titulo, String[] opcoes) {
 

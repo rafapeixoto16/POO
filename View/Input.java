@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 import static java.lang.System.in;
 import static java.lang.System.out;
 public class Input {
@@ -18,7 +19,7 @@ public class Input {
                 txt = input.nextLine();
                 ok = true;
             } catch (InputMismatchException e) {
-                IO.error(e.getMessage()); //falata criar o metodo (noutra classe) para dar print ao erro
+                IO.error(e.getMessage());
                 out.print("Novo Valor(String): ");
                 input.nextLine();
             }
