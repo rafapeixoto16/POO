@@ -213,4 +213,8 @@ public class Utilizador implements Serializable {
         removeArtigosVendidos(artigo);
         addArtigosPorVender(artigo);
     }
+
+    public double calculaDinheiroVendas () {
+        return artigosVendidos.values().stream().mapToDouble(Artigo :: calculaPrecoFinal).sum();
+    }
 }

@@ -149,15 +149,8 @@ public class ListaFaturas implements Serializable {
 
     @Override
     public String toString(){
-        return "Vendedores: "+listaFaturasVenderores.toString()+"\n"
-                +"Clientes: "+listaFaturasClientes.toString();
+        return "Vendedores: "+ listaFaturasVenderores.toString()+"\n"
+                +"Clientes: "+ listaFaturasClientes.toString();
     }
-
-
-    public List<FaturaCliente> ordenaFaturas (ListaFaturas faturas){
-
-    }
-
-
 
 }

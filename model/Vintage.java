@@ -305,6 +305,18 @@ public class Vintage implements Serializable {
         }
     }
 
+    public void removeArtigo (String codigoArtigo){
+        try {
+            listaArtigos.removeArtigo(codigoArtigo);
+            listaUtilizadores.getUtilizadores().get(userLigado.getEmail()).
+                    removeArtigosPorVender(listaArtigos.getArtigoLista(codigoArtigo));
+            listaArtigos.removeArtigo (codigoArtigo) ;
+        }
+        catch (ArtigoNaoExiste e){
+            out.println("O artigo com codigo " + codigoArtigo + " nao existe.");
+        }
+    }
 
 
+    //todo fazer funçao toString do item por vender.
 }

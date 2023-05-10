@@ -4,6 +4,6 @@ import java.util.Comparator;
 
 public class OrdenaUtilizadoresVendas implements Comparator<Utilizador>{
     public int compare(Utilizador a, Utilizador b){
-        return (int) (a.getDinheiroVendas() - b.getDinheiroVendas());
+        return (int) (a.calculaDinheiroVendas() - b.calculaDinheiroVendas());
     }
 }
