@@ -266,7 +266,7 @@ public class Vintage implements Serializable {
             userLigado.removeEncomendasUtilizador(encomendaACancelar);
             listaEncomendas.removeEncomenda(codigoEncomenda);
 
-
+            //todo testar se ta a funcionar
             listaFaturas.removeFaturaCliente(encomendaACancelar.getCodEnc());
             listaFaturas.removeFaturaVendedor(encomendaACancelar.getCodEnc());
         }
