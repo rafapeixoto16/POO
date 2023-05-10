@@ -141,6 +141,9 @@ public class Input {
 
     public static String getEmail() {
         out.print("Email: ");
+
+
+
         String email = Input.getString();
         return email;
     }

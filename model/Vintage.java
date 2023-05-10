@@ -1,9 +1,6 @@
 package model;
 
-import Exceptions.ArtigoNaoExiste;
-import Exceptions.EncomendaNaoExiste;
-import Exceptions.TransportadoraNaoExiste;
-import Exceptions.UtilizadorNaoExiste;
+import Exceptions.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -290,13 +287,22 @@ public class Vintage implements Serializable {
 
     public void criaUtilizador(){
         Utilizador retorno = new Utilizador();
+        boolean ok = false;
 
-        retorno.setEmail(getEmail());
-        retorno.setNome(getName());
-        retorno.setMorada(getMorada());
-        retorno.setNumeroFiscal(getNIF());
-
-        out.println(" Conta criada com sucesso. ");
+        while(!ok){
+            try {
+                retorno.setEmail(getEmail());
+                retorno.setNome(getName());
+                retorno.setMorada(getMorada());
+                retorno.setNumeroFiscal(getNIF());
+                out.println(" Conta criada com sucesso. ");
+                listaUtilizadores.addUtilizador(retorno);
+                ok = true;
+            }
+            catch (UtilizadorJaExistente e){
+                out.println("Email ja usado");
+            }
+        }
     }
 
 
