@@ -53,7 +53,7 @@ public class Vintage implements Serializable {
         this.userLigado = userLigado.clone();
     }
 
-    //todo funçoes de jeito
+
 
     public LocalDate avancoTemporal(int dias) {
         return dataSistema.plusDays(dias);
@@ -213,6 +213,7 @@ public class Vintage implements Serializable {
         String artigoString;
         int codigoTransportadora;
         List<String> usarios = new ArrayList<>();
+
         do {
             artigoString = getString();
             if (!artigoString.equals("concluida")) { //todo alterar aqui
@@ -230,7 +231,7 @@ public class Vintage implements Serializable {
                     out.print("Nao existe um artigo com codigo " + artigoString);
                 }
             }
-        } while (!artigoString.equals("concluida"));
+        } while (!artigoString.equals("concluida"));//todo alterar aqui
 
         encomenda.setPrecoTotal(encomenda.calculaPrecoEncomenda(encomenda));
 
@@ -242,7 +243,8 @@ public class Vintage implements Serializable {
         {
             FaturaVendedor faturaVendedor = new FaturaVendedor();
             faturaVendedor.setEncomenda(encomenda);
-            listaFaturas.addFaturaVendedor(a,faturaVendedor);
+            faturaVendedor.setVendedor(listaUtilizadores.getUtilizador(a));
+            listaFaturas.addFaturaVendedor(encomenda.getCodEnc(),faturaVendedor);
         }
 
 
@@ -253,10 +255,10 @@ public class Vintage implements Serializable {
     public void cancelaEncomenda(int codigoEncomenda) throws EncomendaNaoExiste {
         Encomenda encomendaACancelar = listaEncomendas.getEncomendaLista(codigoEncomenda);
 
-        if(!encomendaACancelar.getEstado()) {//todo nao e get estado pois a encomenda nao sabe quando ela muda de estado.
+        if(encomendaACancelar.validoCancelamentoEncomenda()) {
             List<Artigo> artigos = encomendaACancelar.getArtigos();
             for (Artigo a : artigos) {
-                Utilizador dono = listaUtilizadores.getUtilizador(a.getEmailUtilizador()); //todo esta a retornar o que esta na lista e nao um clone
+                Utilizador dono = listaUtilizadores.getUtilizador(a.getEmailUtilizador());
                 dono.removeArtigosVendidos(a);
                 dono.addArtigosPorVender(a);
             }
@@ -264,10 +266,10 @@ public class Vintage implements Serializable {
             userLigado.removeEncomendasUtilizador(encomendaACancelar);
 
             listaEncomendas.removeEncomenda(codigoEncomenda);
-            //todo remover faturas
+
         }
         else
-            out.println("Essa encomenda ja foi entregue.");
+            out.println("Essa encomenda ja foi / começou a ser entregue.");
     }
 
     public Transportadora criaTransportadora() {

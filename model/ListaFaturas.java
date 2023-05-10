@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.util.*;
 
 public class ListaFaturas implements Serializable {
-    private final Map<String, List<FaturaVendedor>> listaFaturasVenderores;
-    private final Map<String, List<FaturaCliente>> listaFaturasClientes;
+    private final Map<Integer, List<FaturaVendedor>> listaFaturasVenderores;
+    private final Map<Integer, List<FaturaCliente>> listaFaturasClientes;
 
     public ListaFaturas() {
         this.listaFaturasVenderores = new HashMap<>();
         this.listaFaturasClientes = new HashMap<>();
     }
 
-    public ListaFaturas(Map<String, List<FaturaVendedor>> listaFaturasVenderores, Map<String, List<FaturaCliente>> listaFaturasClientes) {
+    public ListaFaturas(Map<Integer, List<FaturaVendedor>> listaFaturasVenderores, Map<Integer, List<FaturaCliente>> listaFaturasClientes) {
         this.listaFaturasVenderores = new HashMap<>();
-        for (String i : listaFaturasVenderores.keySet()) {
+        for (Integer i : listaFaturasVenderores.keySet()) {
             List<FaturaVendedor> lista = new ArrayList<>();
             for (FaturaVendedor e : listaFaturasVenderores.get(i)) {
                 lista.add(e.clone());
@@ -23,7 +23,7 @@ public class ListaFaturas implements Serializable {
         }
 
         this.listaFaturasClientes = new HashMap<>();
-        for (String i : listaFaturasClientes.keySet()) {
+        for (Integer i : listaFaturasClientes.keySet()) {
             List<FaturaCliente> lista2 = new ArrayList<>();
             for (FaturaCliente e : listaFaturasClientes.get(i)) {
                 lista2.add(e.clone());
@@ -34,7 +34,7 @@ public class ListaFaturas implements Serializable {
 
     public ListaFaturas(ListaFaturas listaFaturas) {
         this.listaFaturasVenderores = new HashMap<>();
-        for (String i : listaFaturas.listaFaturasVenderores.keySet()) {
+        for (Integer i : listaFaturas.listaFaturasVenderores.keySet()) {
             List<FaturaVendedor> lista = new ArrayList<>();
             for (FaturaVendedor e : listaFaturas.listaFaturasVenderores.get(i)) {
                 lista.add(e.clone());
@@ -43,7 +43,7 @@ public class ListaFaturas implements Serializable {
         }
 
         this.listaFaturasClientes = new HashMap<>();
-        for (String i : listaFaturas.listaFaturasClientes.keySet()) {
+        for (Integer i : listaFaturas.listaFaturasClientes.keySet()) {
             List<FaturaCliente> lista2 = new ArrayList<>();
             for (FaturaCliente e : listaFaturas.listaFaturasClientes.get(i)) {
                 lista2.add(e.clone());
@@ -74,77 +74,77 @@ public class ListaFaturas implements Serializable {
         return listaFaturas.listaFaturasClientes.equals(this.listaFaturasClientes) && this.listaFaturasVenderores.equals(listaFaturas.listaFaturasVenderores);
     }
 
-    public void removeFaturaCliente(String email, List<FaturaCliente> lista) {
-        listaFaturasClientes.get(email).removeAll(lista);
+    public void removeFaturaCliente(Integer idEncomenda, List<FaturaCliente> lista) {
+        listaFaturasClientes.get(idEncomenda).removeAll(lista);
     }
 
-    public void removeFaturaCliente(String email, FaturaCliente faturaCliente) {
-        listaFaturasClientes.get(email).remove(faturaCliente);
+    public void removeFaturaCliente(Integer idEncomenda, FaturaCliente faturaCliente) {
+        listaFaturasClientes.get(idEncomenda).remove(faturaCliente);
     }
 
-    public void addFaturaCliente(String email, List<FaturaCliente> lista) {
-        if (listaFaturasClientes.containsKey(email)) {
+    public void addFaturaCliente(Integer idEncomenda, List<FaturaCliente> lista) {
+        if (listaFaturasClientes.containsKey(idEncomenda)) {
             for (FaturaCliente a : lista)
-                listaFaturasClientes.get(email).add(a.clone());
+                listaFaturasClientes.get(idEncomenda).add(a.clone());
         } else {
             List<FaturaCliente> lista2 = new ArrayList<>();
             for (FaturaCliente a : lista)
-                listaFaturasClientes.get(email).add(a.clone());
+                listaFaturasClientes.get(idEncomenda).add(a.clone());
 
-            listaFaturasClientes.put(email,lista2);
+            listaFaturasClientes.put(idEncomenda,lista2);
         }
 
     }
-    public void addFaturaCliente(String email,FaturaCliente faturaCliente)
+    public void addFaturaCliente(Integer idEncomenda,FaturaCliente faturaCliente)
     {
-        if (listaFaturasClientes.containsKey(email)) {
-            listaFaturasClientes.get(email).add(faturaCliente.clone());
+        if (listaFaturasClientes.containsKey(idEncomenda)) {
+            listaFaturasClientes.get(idEncomenda).add(faturaCliente.clone());
         }
         else {
             List<FaturaCliente> lista2 = new ArrayList<>();
             lista2.add(faturaCliente);
-            listaFaturasClientes.put(email,lista2);
+            listaFaturasClientes.put(idEncomenda,lista2);
         }
     }
 
-    public boolean existeFaturaCliente(String email,FaturaCliente cliente){
-        return listaFaturasClientes.get(email).contains(cliente);
+    public boolean existeFaturaCliente(Integer idEncomenda,FaturaCliente cliente){
+        return listaFaturasClientes.get(idEncomenda).contains(cliente);
     }
 
-    public void removeFaturaVendedor(String email,FaturaVendedor faturaVendedor) {
-        listaFaturasVenderores.get(email).remove(faturaVendedor);
+    public void removeFaturaVendedor(Integer idEncomenda,FaturaVendedor faturaVendedor) {
+        listaFaturasVenderores.get(idEncomenda).remove(faturaVendedor);
     }
 
-    public void removeFaturaVendedor(String email,List<FaturaVendedor> lista){
-        listaFaturasVenderores.get(email).removeAll(lista);
+    public void removeFaturaVendedor(Integer idEncomenda,List<FaturaVendedor> lista){
+        listaFaturasVenderores.get(idEncomenda).removeAll(lista);
     }
 
-    public void addFaturaVendedor(String email, List<FaturaVendedor> lista) {
-        if (listaFaturasVenderores.containsKey(email)) {
+    public void addFaturaVendedor(Integer idEncomenda, List<FaturaVendedor> lista) {
+        if (listaFaturasVenderores.containsKey(idEncomenda)) {
             for (FaturaVendedor a : lista)
-                listaFaturasVenderores.get(email).add(a.clone());
+                listaFaturasVenderores.get(idEncomenda).add(a.clone());
         } else {
             List<FaturaVendedor> lista2 = new ArrayList<>();
             for (FaturaVendedor a : lista)
-                listaFaturasVenderores.get(email).add(a.clone());
+                listaFaturasVenderores.get(idEncomenda).add(a.clone());
 
-            listaFaturasVenderores.put(email,lista2);
+            listaFaturasVenderores.put(idEncomenda,lista2);
         }
     }
 
-    public void addFaturaVendedor(String email,FaturaVendedor faturaVendedor){
-        if (listaFaturasVenderores.containsKey(email)) {
-            listaFaturasVenderores.get(email).add(faturaVendedor.clone());
+    public void addFaturaVendedor(Integer idEncomenda, FaturaVendedor faturaVendedor){
+        if (listaFaturasVenderores.containsKey(idEncomenda)) {
+            listaFaturasVenderores.get(idEncomenda).add(faturaVendedor.clone());
         }
         else {
             List<FaturaVendedor> lista2 = new ArrayList<>();
             lista2.add(faturaVendedor);
-            listaFaturasVenderores.put(email,lista2);
+            listaFaturasVenderores.put(idEncomenda,lista2);
         }
     }
 
-    public boolean existeFaturaVendedor(String email,FaturaVendedor faturaVendedor){
-        return listaFaturasVenderores.get(email).contains(faturaVendedor);
+    public boolean existeFaturaVendedor(Integer idEncomenda,FaturaVendedor faturaVendedor){
+        return listaFaturasVenderores.get(idEncomenda).contains(faturaVendedor);
     }
 
     @Override

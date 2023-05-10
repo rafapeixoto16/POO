@@ -226,12 +226,12 @@ public class Encomenda implements Serializable {
         return retorno;
     }
 
-    public boolean validoCancelamentoEncomenda(Encomenda encomenda){
-        List<Transportadora> encomendaList = encomenda.encomenda.keySet().stream().toList();
+    public boolean validoCancelamentoEncomenda(){
+        List<Transportadora> encomendaList = this.encomenda.keySet().stream().toList();
         boolean retorno = true;
 
         for (Transportadora a : encomendaList){
-            if(ChronoUnit.DAYS.between(Vintage.dataAtual(),encomenda.dataEncomenda) >a.getDiasEntrega())
+            if(ChronoUnit.DAYS.between(Vintage.dataAtual(),this.dataEncomenda) > a.getDiasEntrega())
                 return false;
         }
 

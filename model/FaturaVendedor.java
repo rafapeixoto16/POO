@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class FaturaVendedor extends Fatura{
@@ -54,6 +55,17 @@ public class FaturaVendedor extends Fatura{
     public String toString(){
         return "Vendedor: "+vendedor.toString()+"\n"
                 +"Encomenda :" + super.toString()+"\n";
+    }
+    public double calculaPrecoEncomendaVendedor(Encomenda encomenda){
+        double retorno = 0;
+        List<Artigo> artigos = encomenda.getArtigos();
+
+        for (Artigo a : artigos){
+            if (a.getEmailUtilizador().equals(vendedor.getEmail()))
+                retorno += a.calculaPrecoFinal();
+        }
+
+        return retorno;
     }
 
 }
