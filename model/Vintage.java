@@ -300,7 +300,7 @@ public class Vintage implements Serializable {
                 ok = true;
             }
             catch (UtilizadorJaExistente e){
-                out.println("Email ja usado");
+                out.println("O Email" + retorno.getEmail() + " ja tem uma conta de associado");
             }
         }
     }
