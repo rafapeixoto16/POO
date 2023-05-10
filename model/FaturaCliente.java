@@ -60,14 +60,8 @@ public class FaturaCliente extends Fatura {
 
 
     public double calculaPrecoEncomendaCliente(Encomenda encomenda){
-        double retorno = 0;
         List<Artigo> artigos = encomenda.getArtigos();
 
-        if(encomenda.getEmailUtilizadorCompra().equals(cliente.getEmail()) ){
-            for (Artigo a: artigos)
-                retorno += a.calculaPrecoFinal();
-        }
-
-        return retorno;
+        return artigos.stream().mapToDouble(Artigo::calculaPrecoFinal).sum();
     }
 }

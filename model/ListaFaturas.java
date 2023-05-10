@@ -154,6 +154,10 @@ public class ListaFaturas implements Serializable {
     }
 
 
+    public List<FaturaCliente> ordenaFaturas (ListaFaturas faturas){
+
+    }
+
 
 
 }

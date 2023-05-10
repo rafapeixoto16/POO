@@ -288,7 +288,7 @@ public class Vintage implements Serializable {
         return transportadora;
     }
 
-    public Utilizador criaUtilizador(){
+    public void criaUtilizador(){
         Utilizador retorno = new Utilizador();
 
         retorno.setEmail(getEmail());
@@ -296,7 +296,7 @@ public class Vintage implements Serializable {
         retorno.setMorada(getMorada());
         retorno.setNumeroFiscal(getNIF());
 
-        return retorno;
+        out.println(" Conta criada com sucesso. ");
     }
 
 
