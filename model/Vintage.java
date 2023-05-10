@@ -212,14 +212,14 @@ public class Vintage implements Serializable {
         encomenda.setEmailUtilizadorCompra(userLigado.getEmail());
         String artigoString;
         int codigoTransportadora;
-        List<String> usarios = new ArrayList<>();
+        List<String> usuarios = new ArrayList<>();
 
         do {
             artigoString = getString();
             if (!artigoString.equals("concluida")) { //todo alterar aqui
                 try {
                     Artigo artigo = listaArtigos.getArtigoLista(artigoString);
-                    usarios.add(artigo.getEmailUtilizador());
+                    usuarios.add(artigo.getEmailUtilizador());
                     codigoTransportadora = getInt();
                     try {
                         Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
@@ -239,7 +239,7 @@ public class Vintage implements Serializable {
         faturaCliente.setEncomenda(encomenda);
         faturaCliente.setCliente(userLigado);
 
-        for (String a : usarios)
+        for (String a : usuarios)
         {
             FaturaVendedor faturaVendedor = new FaturaVendedor();
             faturaVendedor.setEncomenda(encomenda);
@@ -264,9 +264,12 @@ public class Vintage implements Serializable {
             }
 
             userLigado.removeEncomendasUtilizador(encomendaACancelar);
-
             listaEncomendas.removeEncomenda(codigoEncomenda);
 
+            //todo falta cancelar faturas
+
+            listaFaturas.removeFaturaCliente(encomendaACancelar.getCodEnc());
+            listaFaturas.removeFaturaVendedor(encomendaACancelar.getCodEnc());
         }
         else
             out.println("Essa encomenda ja foi / começou a ser entregue.");
@@ -296,5 +299,7 @@ public class Vintage implements Serializable {
 
         return retorno;
     }
+
+
 
 }

@@ -78,8 +78,8 @@ public class ListaFaturas implements Serializable {
         listaFaturasClientes.get(idEncomenda).removeAll(lista);
     }
 
-    public void removeFaturaCliente(Integer idEncomenda, FaturaCliente faturaCliente) {
-        listaFaturasClientes.get(idEncomenda).remove(faturaCliente);
+    public void removeFaturaCliente(Integer idEncomenda) {
+        listaFaturasClientes.remove(idEncomenda);
     }
 
     public void addFaturaCliente(Integer idEncomenda, List<FaturaCliente> lista) {
@@ -111,8 +111,8 @@ public class ListaFaturas implements Serializable {
         return listaFaturasClientes.get(idEncomenda).contains(cliente);
     }
 
-    public void removeFaturaVendedor(Integer idEncomenda,FaturaVendedor faturaVendedor) {
-        listaFaturasVenderores.get(idEncomenda).remove(faturaVendedor);
+    public void removeFaturaVendedor(Integer idEncomenda) {
+        listaFaturasVenderores.remove(idEncomenda);
     }
 
     public void removeFaturaVendedor(Integer idEncomenda,List<FaturaVendedor> lista){
