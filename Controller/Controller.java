@@ -22,6 +22,7 @@ public class Controller {
      public Controller() {
         this.ficheiro = new Serializacao(ficheiroDados);
         this.vintage = new Vintage();
+        this.m = new IO();
      }
      public void inicializador(){
          if(this.ficheiro.getFicheiro().exists())
@@ -241,11 +242,11 @@ public class Controller {
 
         switch (opcao){
             case 1:
-                vintage.verFaturasCompras(); //TODO
+                //vintage.verFaturasCompras(); //TODO
                 this.faturas();
                 break;
             case 2:
-                vintage.verFaturasVendas(); //TODO
+                //vintage.verFaturasVendas(); //TODO
                 this.faturas();
                 break;
             case 0:
