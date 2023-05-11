@@ -175,8 +175,16 @@ public class Encomenda implements Serializable {
 
     @Override
     public String toString(){
-        return "Encomenda :"+getCodEnc()+ "\n" + "dimensao"+getDimensao()+ " ";
+        StringBuilder retorno = new StringBuilder();
+
+        for (List<Artigo> a : encomenda.values()){
+            for (Artigo b : a){
+                retorno.append(b.toString());
+            }
+        }
+        return retorno.toString();
     }
+
     public void addEncomenda(Transportadora transportadora, List<Artigo> artigos) {
         List<Artigo> artigos1 = new ArrayList<>();
         for (Artigo a : artigos)

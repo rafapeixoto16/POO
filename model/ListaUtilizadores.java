@@ -88,4 +88,6 @@ public class ListaUtilizadores implements Serializable {
         ListaUtilizadores listaUtilizadores1 = (ListaUtilizadores) o;
             return this.getUtilizadoresList().equals(listaUtilizadores1.getUtilizadoresList());
     }
+
+
 }

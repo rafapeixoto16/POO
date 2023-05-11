@@ -227,5 +227,8 @@ public class Utilizador implements Serializable {
 
         return sb.toString();
     }
+    public List<Integer> retornaCodigoEncomendaUser(){
+        return new ArrayList<>(encomendas);
+    }
 }
 

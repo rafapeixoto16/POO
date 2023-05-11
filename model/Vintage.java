@@ -364,4 +364,31 @@ public class Vintage implements Serializable {
         }
     }
 
+    public void alterarImposto(){
+        int idTransp = getCodigoTransportadora();
+        try {
+            Transportadora l = listaTransportadoras.getTransportadoraLista(idTransp);
+            l.setImposto(getImposto());
+        }
+        catch (TransportadoraNaoExiste e){
+            e.printStackTrace();
+            out.println("A transportadora com id " + idTransp + " nao existe");
+        }
+    }
+
+    public String listarEncomendaUser(){
+        List<Integer> codArtigos = userLigado.retornaCodigoEncomendaUser();
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int a : codArtigos){
+            try{
+                Encomenda encomenda = listaEncomendas.getEncomendaLista(a);
+                sb.append(encomenda.toString());
+            }
+            catch (EncomendaNaoExiste ignored){}
+        }
+
+        return sb.toString();
+    }
 }
