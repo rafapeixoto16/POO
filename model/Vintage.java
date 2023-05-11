@@ -394,5 +394,17 @@ public class Vintage implements Serializable {
 
     //todo lista faturas venda e faturas compras
 
+    public String listaFaturasCompra(){
+        StringBuilder sb = new StringBuilder();
+        List<Integer> codEncomendas = userLigado.retornaCodigoEncomendaUser();
+
+        for (int i :codEncomendas){
+            sb.append();
+        }
+
+
+        return sb.toString();
+    }
+
 
 }
