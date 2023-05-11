@@ -52,8 +52,9 @@ public class Vintage implements Serializable {
 
 
 
-    public LocalDate avancoTemporal(int dias) {
-        return dataSistema.plusDays(dias);
+    public void avancoTemporal() {
+        int dias = getDias();
+         dataSistema = dataSistema.plusDays(dias);
     }
 
     public LocalDate getDataSistema() {
@@ -388,7 +389,10 @@ public class Vintage implements Serializable {
             }
             catch (EncomendaNaoExiste ignored){}
         }
-
         return sb.toString();
     }
+
+    //todo lista faturas venda e faturas compras
+
+
 }
