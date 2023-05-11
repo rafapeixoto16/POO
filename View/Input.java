@@ -336,6 +336,13 @@ public class Input {
         return codigo;
     }
 
+    public static int getCodigoTransportadora() {
+        out.print("Código da Trasnportadora: ");
+        int codigo = Input.getInt();
+        return codigo;
+    }
+
+
     public static int getDias() {
         boolean ok = false;
         int i = 0;
