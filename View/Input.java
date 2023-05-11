@@ -332,7 +332,7 @@ public class Input {
 
     public static int getCodEncomenda() {
         out.print("Código da Encomenda: ");
-        Integer codigo = Input.getInt();
+        int codigo = Input.getInt();
         return codigo;
     }
 
