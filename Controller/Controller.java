@@ -65,8 +65,9 @@ public class Controller {
          this.run();
     }
 
-    public void encerrar(){ // TODO
-
+    public void encerrar(){
+         ficheiro.guardar(vintage);
+         System.exit(0);
     }
 
     public void menuUtilizador(){
@@ -189,7 +190,7 @@ public class Controller {
                 this.encomendas();
                 break;
             case 3:
-                vintage.listarEncomendas(); //TODO na vintage
+                vintage.listarEncomendaUser();
                 this.encomendas();
                 break;
             case 0:
@@ -208,7 +209,7 @@ public class Controller {
                 this.criarTransportadora();
                 break;
             case 2:
-                vintage.alteraImposto(); //TODO funcao para alterar o imposto da transportaora
+                vintage.alterarImposto();
                 this.transportadoras();
                 break;
             case 0:
@@ -236,11 +237,55 @@ public class Controller {
     }
 
     public void faturas(){
+        int opcao = this.m.menu("Faturas", IO.opcoesMenuFaturas);
 
+        switch (opcao){
+            case 1:
+                vintage.verFaturasCompras(); //TODO
+                this.faturas();
+                break;
+            case 2:
+                vintage.verFaturasVendas(); //TODO
+                this.faturas();
+                break;
+            case 0:
+                this.menuUtilizador();
+                break;
+        }
     }
 
     public void estatisticas(){
+        int opcao = this.m.menu("Estatisticas", IO.opcoesMenuEstatisticas);
 
+        switch (opcao){
+            case 1:
+                //"Vendedor que mais faturou"
+                this.estatisticas();
+                break;
+            case 2:
+                //"Transportadora com maior volume de faturação",
+                this.estatisticas();
+                break;
+            case 3:
+                //"Listar as encomendas emitidas por um vendedor"
+                this.estatisticas();
+                break;
+            case 4:
+                //"Maiores Compradores"
+                this.estatisticas();
+                break;
+            case 5:
+                //"Maiores Vendedores"
+                this.estatisticas();
+                break;
+            case 6:
+                //"Faturação da Vintage"
+                this.estatisticas();
+                break;
+            case 0:
+                this.menuUtilizador();
+                break;
+        }
     }
 
     public void tempo(){

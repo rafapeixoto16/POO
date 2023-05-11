@@ -20,7 +20,7 @@ public class IO {
             "Transportadoras",
             "Faturas",
             "Estatisticas",
-            "Tempo"
+            "Tempo",
     };
 
 
@@ -64,16 +64,16 @@ public class IO {
             "Transportadora Premium",
     };
 
-    public static final String[] opcoesMenuFaturas = { //TODO
+    public static final String[] opcoesMenuFaturas = {
             "Ver Faturas de Compras",
-            "Ver Faturas de Vendas"
+            "Ver Faturas de Vendas",
     };
 
 
-    public static final String[] opcoesMenuEstatisticas = { //TODO
+    public static final String[] opcoesMenuEstatisticas = {
             "Vendedor que mais faturou",
             "Transportadora com maior volume de faturação",
-            "", //listar as encomendas emitidas por um vendedor
+            "Listar as encomendas emitidas por um vendedor",
             "Maiores Compradores",
             "Maiores Vendedores",
             "Faturação da Vintage",
