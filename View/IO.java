@@ -80,11 +80,6 @@ public class IO {
     };
 
 
-    public static final String[] opcoesMenuTempo = { //TODO
-
-    };
-
-
 
     public int menu(String titulo, String[] opcoes) {
 
