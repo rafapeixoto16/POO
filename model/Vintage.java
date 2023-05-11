@@ -54,7 +54,7 @@ public class Vintage implements Serializable {
 
     public void avancoTemporal() {
         int dias = getDias();
-         dataSistema = dataSistema.plusDays(dias);
+         dataSistema = dataSistema.plusDays(dias);//todo string para
     }
 
     public LocalDate getDataSistema() {
@@ -394,12 +394,14 @@ public class Vintage implements Serializable {
 
     //todo lista faturas venda e faturas compras
 
-    public String listaFaturasCompra(){
+    public String listaFaturasComprado(){
         StringBuilder sb = new StringBuilder();
         List<Integer> codEncomendas = userLigado.retornaCodigoEncomendaUser();
 
         for (int i :codEncomendas){
-            sb.append();
+            for (FaturaCliente a : listaFaturas.getFaturaCliente(i)) {
+                sb.append(a.toString());
+            }
         }
 
 
