@@ -199,6 +199,12 @@ public class Input {
         return pb;
     }
 
+    public static String getCodigo() {
+        out.print("Código do Artigo: ");
+        String codigo = Input.getString();
+        return codigo;
+    }
+
     public static int getDim() {
         out.print("Dimensao da Mala: ");
         int dim = Input.getInt();

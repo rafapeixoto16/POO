@@ -53,18 +53,18 @@ public class IO {
             "Listar Encomendas",
     };
 
-    public static final String[] opcoesMenuRmEncomendas = {
-            "Código do Artigo para ser removido",
-    };
     public static final String[] opcoesMenuCriarEncomenda = {
             "Adicionar Artigo à Encomenda (código)",
             "Concluir Encomenda",
+            //"Cancelar Encomenda"
+    };
+    public static final String[] opcoesMenuRmEncomendas = {
+            "Código da Encomenda para ser removida",
     };
 
     public static final String[] opcoesMenuTransportadoras = {
             "Criar Transportadora",
             "Alterar Imposto de Transportadorta",
-
     };
 
     public static final String[] opcoesMenuCriarTransportadora = {
