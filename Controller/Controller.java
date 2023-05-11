@@ -110,7 +110,7 @@ public class Controller {
                 this.artigos();
                 break;
             case 3:
-                vintage.listarArtigos(); //TODO na vintage
+                vintage.getUserLigado().listaArtigosPorVender();
                 this.artigos();
                 break;
             case 0:
@@ -180,10 +180,13 @@ public class Controller {
 
         switch (opcao){
             case 1:
-                this.criarEncomenda();
+                vintage.criaEncomenda();
+                this.encomendas();
                 break;
             case 2:
-                this.removerEncomenda();
+                int codigo = Input.getCodEncomenda();
+                vintage.cancelaEncomenda(codigo);
+                this.encomendas();
                 break;
             case 3:
                 vintage.listarEncomendas(); //TODO na vintage
@@ -195,43 +198,41 @@ public class Controller {
         }
     }
 
-    public void criarEncomenda(){ //rever toda esta parte da criacao de encomendas com o Peixoto
-        int opcao = this.m.menu("Criar Encomenda", IO.opcoesMenuCriarEncomenda);
 
-        switch (opcao){
-            case 1:
-                //vintage.f(); TODO funcao que adiciona artigo á Encomenda
-                this.criarEncomenda();
-                break;
-            case 2:
-                vintage.concluirEncomenda();//TODO na vintage
-                this.encomendas();
-                break;
-            case 0:
-                this.criarEncomenda(); //OU não é possivel voltar atras
-                                        //OU é adicionada ao menu uma opcao para cancelar a encomenda
-                                        // OU quando volta cancela a encomenda
-                break;
-        }
-    }
-
-
-    public void removerEncomenda(){
-        int opcao = this.m.menu("Remover Encomenda", IO.opcoesMenuRmEncomendas);
-
-        switch (opcao){
-            case 1:
-                vintage.removeEncomenda(); //removeEncomenda != cancelaEncomenda??
-                this.encomendas();
-                break;
-            case 0:
-                this.encomendas();
-                break;
-        }
-    }
 
     public void transportadoras(){
+        int opcao = this.m.menu("Transportadoras", IO.opcoesMenuTransportadoras);
 
+        switch (opcao){
+            case 1:
+                this.criarTransportadora();
+                break;
+            case 2:
+                vintage.alteraImposto(); //TODO funcao para alterar o imposto da transportaora
+                this.transportadoras();
+                break;
+            case 0:
+                this.menuUtilizador();
+                break;
+        }
+    }
+
+    public void criarTransportadora(){
+        int opcao = this.m.menu("Criar Transportadora", IO.opcoesMenuCriarTransportadora);
+
+        switch (opcao){
+            case 1:
+                vintage.criaTransportadora();
+                this.transportadoras();
+                break;
+            case 2:
+                vintage.criaTransportadoraPremium();
+                this.transportadoras();
+                break;
+            case 0:
+                this.transportadoras();
+                break;
+        }
     }
 
     public void faturas(){
