@@ -272,8 +272,9 @@ public class Vintage implements Serializable {
             else
                 out.println("Essa encomenda ja foi / começou a ser entregue.");
         }
-        catch (EncomendaNaoExiste e)
+        catch (EncomendaNaoExiste e) {
             out.println("");
+        }
     }
 
     public Transportadora criaTransportadora() {
