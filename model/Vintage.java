@@ -252,7 +252,9 @@ public class Vintage implements Serializable {
     public void cancelaEncomenda(int codigoEncomenda) throws EncomendaNaoExiste {
         Encomenda encomendaACancelar = listaEncomendas.getEncomendaLista(codigoEncomenda);
 
-        if(encomendaACancelar.validoCancelamentoEncomenda()) {
+
+        try{
+            if(encomendaACancelar.validoCancelamentoEncomenda()) {
             List<Artigo> artigos = encomendaACancelar.getArtigos();
             for (Artigo a : artigos) {
                 Utilizador dono = listaUtilizadores.getUtilizador(a.getEmailUtilizador());
@@ -266,9 +268,12 @@ public class Vintage implements Serializable {
             //todo testar se ta a funcionar
             listaFaturas.removeFaturaCliente(encomendaACancelar.getCodEnc());
             listaFaturas.removeFaturaVendedor(encomendaACancelar.getCodEnc());
+             }
+            else
+                out.println("Essa encomenda ja foi / começou a ser entregue.");
         }
-        else
-            out.println("Essa encomenda ja foi / começou a ser entregue.");
+        catch (EncomendaNaoExiste e)
+            out.println("");
     }
 
     public Transportadora criaTransportadora() {
@@ -319,4 +324,5 @@ public class Vintage implements Serializable {
 
 
     //todo fazer funçao toString do item por vender.
+
 }

@@ -217,4 +217,15 @@ public class Utilizador implements Serializable {
     public double calculaDinheiroVendas () {
         return artigosVendidos.values().stream().mapToDouble(Artigo :: calculaPrecoFinal).sum();
     }
+
+    public String listaArtigosPorVender(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Artigo a : artigosPorVender.values()){
+            sb.append(a.toString());
+        }
+
+        return sb.toString();
+    }
 }
+
