@@ -330,5 +330,18 @@ public class Input {
         return at;
     }
     //diasEntrega?????????????????
+    public static int getDias() {
+        boolean ok = false;
+        int i = 0;
+        while (!ok) {
+            i = getInt();
+            if(i>=0)
+                ok = true;
+            else
+                out.println("Nao existem dias de entrega menor que 0");
+        }
+        return i;
+    }
+
 
 }

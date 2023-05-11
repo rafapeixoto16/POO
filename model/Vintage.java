@@ -130,7 +130,7 @@ public class Vintage implements Serializable {
     }
 
 
-    public Sapatilha criaSapatilha() {
+    public void criaSapatilha() {
         Sapatilha retorno = new Sapatilha();
 
         retorno.setNovo(getNovo());
@@ -143,11 +143,13 @@ public class Vintage implements Serializable {
         retorno.setCor(getCor());
         retorno.setEmailUtilizador(userLigado.getEmail());
 
-        return retorno;
+        listaArtigos.addArtigo(retorno);
+        out.println("Sapatilha adicionada com sucesso");
     }
 
-    public SapatilhaPremium criaSapatilhaPremium() {
+    public void criaSapatilhaPremium() {
         SapatilhaPremium retorno = new SapatilhaPremium();
+
         retorno.setNovo(getNovo());
         retorno.setNumDonos(getNumDonos());
         retorno.setDescricao(getDescricao());
@@ -157,10 +159,12 @@ public class Vintage implements Serializable {
         retorno.setData(getData());
         retorno.setCor(getCor());
         retorno.setEmailUtilizador(userLigado.getEmail());
-        return retorno;
+
+        listaArtigos.addArtigo(retorno);
+        out.println("Sapatilha premium adicionada com sucesso");
     }
 
-    public Mala criaMala() {
+    public void criaMala() {
         Mala retorno = new Mala();
 
         retorno.setNovo(getNovo());
@@ -171,10 +175,12 @@ public class Vintage implements Serializable {
         retorno.setMaterial(getMaterial());
         retorno.setAno_colecao(getAno_colecao());//todo alterar o getano_colecao
         retorno.setEmailUtilizador(userLigado.getEmail());
-        return retorno;
+
+        listaArtigos.addArtigo(retorno);
+        out.println("Mala adicionada com sucesso");
     }
 
-    public MalaPremium criaMalaPremium() {
+    public void criaMalaPremium() {
         MalaPremium retorno = new MalaPremium();
 
         retorno.setNovo(getNovo());
@@ -185,10 +191,12 @@ public class Vintage implements Serializable {
         retorno.setMaterial(getMaterial());
         retorno.setAno_colecao(getAno_colecao());//todo alterar o getano_colecao
         retorno.setEmailUtilizador(userLigado.getEmail());
-        return retorno;
+
+        listaArtigos.addArtigo(retorno);
+        out.println("Mala premium adicionada com sucesso");
     }
 
-    public TShirt criaTShirt() {
+    public void criaTShirt() {
         TShirt retorno = new TShirt();
 
         retorno.setNovo(getNovo());
@@ -200,95 +208,128 @@ public class Vintage implements Serializable {
         retorno.setPadrao(getPadrao());
         retorno.setEmailUtilizador(userLigado.getEmail());
 
-        return retorno;
+        listaArtigos.addArtigo(retorno);
+        out.println("Tshirt adicionada com sucesso");
     }
 
 
-    public Encomenda criaEncomenda() {
-        Encomenda encomenda = new Encomenda();
-        encomenda.setEmailUtilizadorCompra(userLigado.getEmail());
-        String artigoString;
-        int codigoTransportadora;
-        List<String> usuarios = new ArrayList<>();
+    public void criaEncomenda() {
+        try {
+            Encomenda encomenda = new Encomenda();
+            encomenda.setEmailUtilizadorCompra(userLigado.getEmail());
+            String artigoString;
+            int codigoTransportadora;
+            List<String> usuarios = new ArrayList<>();
 
-        do {
-            artigoString = getString();
-            if (!artigoString.equals("concluida")) { //todo alterar aqui
-                try {
-                    Artigo artigo = listaArtigos.getArtigoLista(artigoString);
-                    usuarios.add(artigo.getEmailUtilizador());
-                    codigoTransportadora = getInt();
+            do {
+                artigoString = getString();
+                if (!artigoString.equals("concluida")) { //todo alterar aqui
                     try {
-                        Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
-                        encomenda.addEncomenda(transportadora, artigo);
-                    } catch (TransportadoraNaoExiste e) {
-                        out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
+                        Artigo artigo = listaArtigos.getArtigoLista(artigoString);
+                        usuarios.add(artigo.getEmailUtilizador());
+                        codigoTransportadora = getInt();
+                        try {
+                            Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
+                            encomenda.addEncomenda(transportadora, artigo);
+                        } catch (TransportadoraNaoExiste e) {
+                            out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
+                        }
+                    } catch (ArtigoNaoExiste e) {
+                        out.print("Nao existe um artigo com codigo " + artigoString);
                     }
-                } catch (ArtigoNaoExiste e) {
-                    out.print("Nao existe um artigo com codigo " + artigoString);
                 }
+            } while (!artigoString.equals("concluida"));//todo alterar aqui
+            out.println("Encomenda criada com sucesso.");
+            encomenda.setPrecoTotal(encomenda.calculaPrecoEncomenda(encomenda));
+
+            FaturaCliente faturaCliente = new FaturaCliente();
+            faturaCliente.setEncomenda(encomenda);
+            faturaCliente.setCliente(userLigado);
+
+            for (String a : usuarios) {
+                FaturaVendedor faturaVendedor = new FaturaVendedor();
+                faturaVendedor.setEncomenda(encomenda);
+                faturaVendedor.setVendedor(listaUtilizadores.getUtilizador(a));
+                listaFaturas.addFaturaVendedor(encomenda.getCodEnc(), faturaVendedor);
             }
-        } while (!artigoString.equals("concluida"));//todo alterar aqui
 
-        encomenda.setPrecoTotal(encomenda.calculaPrecoEncomenda(encomenda));
-
-        FaturaCliente faturaCliente = new FaturaCliente();
-        faturaCliente.setEncomenda(encomenda);
-        faturaCliente.setCliente(userLigado);
-
-        for (String a : usuarios)
-        {
-            FaturaVendedor faturaVendedor = new FaturaVendedor();
-            faturaVendedor.setEncomenda(encomenda);
-            faturaVendedor.setVendedor(listaUtilizadores.getUtilizador(a));
-            listaFaturas.addFaturaVendedor(encomenda.getCodEnc(),faturaVendedor);
+            listaEncomendas.addEncomenda(encomenda);
         }
-
-
-        return encomenda;
+        catch (EncomendaJaExistente e){
+            e.printStackTrace();
+            out.println("Essa encomenda ja existe");
+        }
     }
 
 
-    public void cancelaEncomenda(int codigoEncomenda) throws EncomendaNaoExiste {
-        Encomenda encomendaACancelar = listaEncomendas.getEncomendaLista(codigoEncomenda);
-
-
+    public void cancelaEncomenda(int codigoEncomenda) {
         try{
+            Encomenda encomendaACancelar = listaEncomendas.getEncomendaLista(codigoEncomenda);
             if(encomendaACancelar.validoCancelamentoEncomenda()) {
-            List<Artigo> artigos = encomendaACancelar.getArtigos();
-            for (Artigo a : artigos) {
-                Utilizador dono = listaUtilizadores.getUtilizador(a.getEmailUtilizador());
-                dono.removeArtigosVendidos(a);
-                dono.addArtigosPorVender(a);
+                List<Artigo> artigos = encomendaACancelar.getArtigos();
+                for (Artigo a : artigos) {
+                    Utilizador dono = listaUtilizadores.getUtilizador(a.getEmailUtilizador());
+                    dono.removeArtigosVendidos(a);
+                    dono.addArtigosPorVender(a);
+                }
+
+                userLigado.removeEncomendasUtilizador(encomendaACancelar);
+                listaEncomendas.removeEncomenda(codigoEncomenda);
+
+                //todo testar se ta a funcionar
+                listaFaturas.removeFaturaCliente(encomendaACancelar.getCodEnc());
+                listaFaturas.removeFaturaVendedor(encomendaACancelar.getCodEnc());
+                out.println("Encomenda cancelada com sucesso");
             }
-
-            userLigado.removeEncomendasUtilizador(encomendaACancelar);
-            listaEncomendas.removeEncomenda(codigoEncomenda);
-
-            //todo testar se ta a funcionar
-            listaFaturas.removeFaturaCliente(encomendaACancelar.getCodEnc());
-            listaFaturas.removeFaturaVendedor(encomendaACancelar.getCodEnc());
-             }
             else
                 out.println("Essa encomenda ja foi / começou a ser entregue.");
         }
         catch (EncomendaNaoExiste e) {
-            out.println("");
+            out.println("A encomenda com codigo "+codigoEncomenda +"não existe.");
         }
     }
 
-    public Transportadora criaTransportadora() {
-        Transportadora transportadora = new Transportadora();
+    public void criaTransportadora() {
+        try{
+            Transportadora transportadora = new Transportadora();
 
-        double imposto = (double) getImposto() / 100;
-        transportadora.setImposto(imposto);
+            double imposto = (double) getImposto() / 100;
+            transportadora.setImposto(imposto);
 
-        out.println("Nº de dias que a transportadora demora a entregar");
+            out.println("Nº de dias que a transportadora demora a entregar");
 
-        int dias = getInt();
-        transportadora.setDiasEntrega(dias);
+            int dias = getDias();
+            transportadora.setDiasEntrega(dias);
 
-        return transportadora;
+            listaTransportadoras.addTransportadora(transportadora);
+            out.println("Transportadora criada com sucesso");
+        }
+        catch (TransportadoraJaExistente e){
+            e.printStackTrace();
+            out.println("Transportadora ja existente.");
+        }
+    }
+
+    public void criaTransportadoraPremium() {
+        try{
+            TransportadoraPremium transportadora = new TransportadoraPremium();
+
+            double imposto = (double) getImposto() / 100;
+            transportadora.setImposto(imposto);
+
+
+            out.println("Nº de dias que a transportadora demora a entregar");
+
+            int dias = getDias();
+            transportadora.setDiasEntrega(dias);
+
+            listaTransportadoras.addTransportadora(transportadora);
+            out.println("Transportadora criada com sucesso");
+        }
+        catch (TransportadoraJaExistente e){
+            e.printStackTrace();
+            out.println("Transportadora ja existente.");
+        }
     }
 
     public void criaUtilizador(){
@@ -322,8 +363,5 @@ public class Vintage implements Serializable {
             out.println("O artigo com codigo " + codigoArtigo + " nao existe.");
         }
     }
-
-
-    //todo fazer funçao toString do item por vender.
 
 }
