@@ -153,4 +153,8 @@ public class ListaFaturas implements Serializable {
                 +"Clientes: "+ listaFaturasClientes.toString();
     }
 
+    public List<FaturaCliente> getFaturaCliente(int codigo){
+        return listaFaturasClientes.get(codigo).stream().map(FaturaCliente::clone).toList();
+    }
+
 }
