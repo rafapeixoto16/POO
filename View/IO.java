@@ -21,6 +21,7 @@ public class IO {
             "Faturas",
             "Estatisticas",
             "Tempo",
+            "Informações do Utilizador"
     };
 
 
@@ -85,6 +86,14 @@ public class IO {
 
         Menu menu = new Menu(titulo, opcoes);
         menu.executa();
+        out.println("\n");
+        return menu.getOpcao();
+    }
+
+    public int menu2(String titulo, String[] opcoes) {
+
+        Menu menu = new Menu(titulo, opcoes);
+        menu.executa2();
         out.println("\n");
         return menu.getOpcao();
     }

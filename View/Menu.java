@@ -24,6 +24,12 @@ public class Menu {
             this.op = lerOpcao();
         } while (this.op == -1);
     }
+    public void executa2() {
+        do {
+            showMenu2();
+            this.op = lerOpcao();
+        } while (this.op == -1);
+    }
 
     /** Apresentar o menu */
     private void showMenu() {
@@ -34,6 +40,15 @@ public class Menu {
             System.out.println(this.opcoes.get(i));
         }
         System.out.println("0 - Voltar");
+    }
+
+    private void showMenu2() {
+        System.out.println("\n----- "+titulo+ " ----- ");
+        for (int i=0; i<this.opcoes.size(); i++) {
+            System.out.print(i+1);
+            System.out.print(" - ");
+            System.out.println(this.opcoes.get(i));
+        }
     }
 
     /** Ler uma opção válida */

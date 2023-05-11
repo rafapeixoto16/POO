@@ -33,7 +33,7 @@ public class Controller {
      }
 
      public void run(){
-         int opcao = this.m.menu("Menu Principal", IO.opcoesMenuPrincipal);
+         int opcao = this.m.menu2("Menu Principal", IO.opcoesMenuPrincipal);
          switch (opcao){
              case 1:
                  this.logIn();
@@ -92,6 +92,10 @@ public class Controller {
                 break;
             case 6:
                 this.tempo();
+                break;
+            case 7:
+                out.print(vintage.getUserLigado().toString());
+                this.menuUtilizador();
                 break;
             case 0:
                 this.run();
@@ -293,4 +297,5 @@ public class Controller {
         vintage.avancoTemporal();
         this.menuUtilizador();
     }
+
 }
