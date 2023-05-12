@@ -308,26 +308,29 @@ public class Vintage implements Serializable {
     public void cancelaEncomenda(int codigoEncomenda) {
         try{
             Encomenda encomendaACancelar = listaEncomendas.getEncomendaLista(codigoEncomenda);
-            if(encomendaACancelar.validoCancelamentoEncomenda()) {
-                List<Artigo> artigos = encomendaACancelar.getArtigos();
+            if(userLigado.encomendaUtilizador(encomendaACancelar)) {
+                if (encomendaACancelar.validoCancelamentoEncomenda()) {
+                    List<Artigo> artigos = encomendaACancelar.getArtigos();
 
-                for (Artigo a : artigos) {
-                    Utilizador dono = listaUtilizadores.getUtilizador(a.getEmailUtilizador());
-                    dono.removeArtigosVendidos(a);
-                    dono.addArtigosPorVender(a);
-                }
+                    for (Artigo a : artigos) {
+                        Utilizador dono = listaUtilizadores.getUtilizador(a.getEmailUtilizador());
+                        dono.cancelaVenda(a);
+                    }
 
-                userLigado.removeEncomendasUtilizador(encomendaACancelar);
-                listaEncomendas.removeEncomenda(codigoEncomenda);
+                    userLigado.removeEncomendasUtilizador(encomendaACancelar);
+                    listaEncomendas.removeEncomenda(codigoEncomenda);
 
-                listaFaturas.removeFaturaCliente(encomendaACancelar.getCodEnc());
+                    listaFaturas.removeFaturaCliente(encomendaACancelar.getCodEnc());
 
-                //todo altera ir
-                listaFaturas.removeFaturaVendedor(encomendaACancelar.getCodEnc());
-                out.println("Encomenda cancelada com sucesso");
+                    //todo altera ir
+                    listaFaturas.removeFaturaVendedor(encomendaACancelar.getCodEnc());
+                    out.println("Encomenda cancelada com sucesso");
+                } else
+                    out.println("Essa encomenda ja foi / começou a ser entregue.");
             }
             else
-                out.println("Essa encomenda ja foi / começou a ser entregue.");
+                out.println("A encomenda com codigo "+codigoEncomenda+" nao lhe pertence.");
+
         }
         catch (EncomendaNaoExiste e) {
             out.println("A encomenda com codigo "+codigoEncomenda +"não existe.");

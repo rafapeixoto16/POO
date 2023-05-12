@@ -131,23 +131,18 @@ public abstract class Artigo implements Serializable {
 
     //toString
     @Override
-    public String toString() {
-        return "\nEstado do Artigo:" +
+    public String toString(){
+        return  "\nEstado do Artigo:" +
                 "\n    Codigo -> " + codigo +
                 "\n    Estado -> " + (novo ? "novo" : "usado") +
                 "\n    Numero de Donos -> " + numDonos +
-                "\n    Avaliacao -> " + 0 + "%" +
+                "\n    Avaliacao -> " + avaliacao + "%" +
                 "\n    Descricao -> " + descricao +
                 "\n    precoBase -> " + precoBase + " € " +
-                "\n    Email do Dono -> " +emailUtilizador +
+                "\n    Email do Dono -> " + emailUtilizador +
                 '\n';
     }
-    //funcao auxiliar para o toString
-    private String auxNovo(boolean novo) {
-        if (novo) return "Novo"; else return "Usado";
-    }
 
-    //Hash
     @Override
     public int hashCode(){
         return Objects.hash(codigo);
