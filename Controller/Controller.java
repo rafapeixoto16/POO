@@ -134,7 +134,7 @@ public class Controller {
                 break;
             case 2:
                 vintage.criaTShirt();
-                this.criarArtigo();
+                this.artigos();
                 break;
             case 3:
                 this.adicionarMala();
