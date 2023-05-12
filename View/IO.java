@@ -9,10 +9,6 @@ public class IO {
             "Encerrar Programa (grava automáticamente)",
     };
 
-    public static final String[] opcoesMenuLogIn = {
-            "Inserir Email",
-    };
-
 
     public static final String[] opcoesMenuUtilizador = {
             "Artigos",

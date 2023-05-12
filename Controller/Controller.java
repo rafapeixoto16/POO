@@ -38,7 +38,10 @@ public class Controller {
          int opcao = this.m.menu2("Menu Principal", IO.opcoesMenuPrincipal);
          switch (opcao){
              case 1:
-                 this.logIn();
+                 if (this.vintage.login())
+                     this.menuUtilizador();
+                 else
+                     this.run();
                  break;
              case 2:
                  this.sigIn();
@@ -48,23 +51,6 @@ public class Controller {
                  break;
          }
      }
-    public void logIn(){
-         int opcao = this.m.menu("Log In", IO.opcoesMenuLogIn);
-
-         switch (opcao){
-             case 1:
-                 if (this.vintage.login())
-                    this.menuUtilizador();
-
-                 else
-                     this.logIn();
-
-                 break;
-             case 0:
-                 this.run();
-                 break;
-         }
-    }
 
     public void sigIn(){
          vintage.criaUtilizador();
