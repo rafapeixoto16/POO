@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.*;
 
 public class ListaFaturas implements Serializable {
+    //este string é o user
     private final Map<Integer, List<FaturaVendedor>> listaFaturasVenderores;
+    // este integer é o codigo encomenda
     private final Map<Integer, List<FaturaCliente>> listaFaturasClientes;
 
     public ListaFaturas() {

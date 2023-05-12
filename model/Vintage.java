@@ -141,6 +141,7 @@ public class Vintage implements Serializable {
         retorno.setNumDonos(getNumDonos());
         retorno.setDescricao(getDescricao());
         retorno.setPrecoBase(getPrecoBase());
+        retorno.setAvaliacao(getAvaliacao());
         retorno.setTamanho(getTamanhoSapatilha());
         retorno.setAtacadores(getAtacadores());
         retorno.setData(getData());
@@ -159,6 +160,7 @@ public class Vintage implements Serializable {
         retorno.setNumDonos(getNumDonos());
         retorno.setDescricao(getDescricao());
         retorno.setTamanho(getTamanhoSapatilha());
+        retorno.setAvaliacao(getAvaliacao());
         retorno.setAtacadores(getAtacadores());
         retorno.setPrecoBase(getPrecoBase());
         retorno.setData(getData());
@@ -400,8 +402,6 @@ public class Vintage implements Serializable {
         return sb.toString();
     }
 
-    //todo lista faturas venda e faturas compras
-
     public String listaFaturasComprado(){
         StringBuilder sb = new StringBuilder();
         List<Integer> codEncomendas = userLigado.retornaCodigoEncomendaUser();
@@ -416,5 +416,6 @@ public class Vintage implements Serializable {
         return sb.toString();
     }
 
+    public String listaFaturasVendas(){}
 
 }
