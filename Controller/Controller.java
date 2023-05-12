@@ -38,6 +38,7 @@ public class Controller {
          switch (opcao){
              case 1:
                  this.logIn();
+                 ficheiro.guardar(vintage);
                  break;
              case 2:
                  this.sigIn();
