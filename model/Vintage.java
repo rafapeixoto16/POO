@@ -345,9 +345,9 @@ public class Vintage implements Serializable {
                 retorno.setNome(getName());
                 retorno.setMorada(getMorada());
                 retorno.setNumeroFiscal(getNIF());
-                out.println(" Conta criada com sucesso. ");
                 listaUtilizadores.addUtilizador(retorno);
                 ok = true;
+                out.println(" Conta criada com sucesso. ");
             }
             catch (UtilizadorJaExistente e){
                 out.println("O Email" + retorno.getEmail() + " ja tem uma conta de associado");

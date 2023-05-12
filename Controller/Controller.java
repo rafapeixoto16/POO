@@ -44,8 +44,7 @@ public class Controller {
                  ficheiro.guardar(vintage);
                  break;
              case 0:
-                 this.encerrar();
-                 break;
+                 ficheiro.guardar(vintage);
          }
      }
     public void logIn(){
@@ -69,11 +68,6 @@ public class Controller {
     public void sigIn(){
          vintage.criaUtilizador();
          this.run();
-    }
-
-    public void encerrar(){
-         this.ficheiro.guardar(this.vintage);
-         System.exit(0);
     }
 
     public void menuUtilizador(){
