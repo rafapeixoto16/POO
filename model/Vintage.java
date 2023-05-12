@@ -235,11 +235,17 @@ public class Vintage implements Serializable {
             List<String> usuarios = new ArrayList<>();
 
             do {
-                artigoString = getString();
-                if (!artigoString.equals("concluida")) { //todo alterar aqui
+                out.println("Insira o codigo do artigo que deseja adicionar a sua encomenda");
+                out.println("Para concluir a encomenda digite : concluida");
+                artigoString = getCodigo();
+                if (!artigoString.equals("concluida")) {
                     try {
                         Artigo artigo = listaArtigos.getArtigoLista(artigoString);
                         usuarios.add(artigo.getEmailUtilizador());
+
+                        out.println(listaTransportadoras.getTransportadorasList().stream().map(Transportadora :: toString));
+
+                        out.println("Insira o codigo da transportadora");
                         codigoTransportadora = getInt();
                         try {
                             Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
@@ -248,10 +254,10 @@ public class Vintage implements Serializable {
                             out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
                         }
                     } catch (ArtigoNaoExiste e) {
-                        out.print("Nao existe um artigo com codigo " + artigoString);
+                        out.println("Nao existe um artigo com codigo " + artigoString);
                     }
                 }
-            } while (!artigoString.equals("concluida"));//todo alterar aqui
+            } while (!artigoString.equals("concluida"));
             out.println("Encomenda criada com sucesso.");
             encomenda.setPrecoTotal(encomenda.calculaPrecoEncomenda(encomenda));
 
@@ -366,7 +372,6 @@ public class Vintage implements Serializable {
     }
 
 
-    //todo esta mal so pode remover artigo dele proprio user ligado
     public void removeArtigo (String codigoArtigo){
         try {
             Artigo artigoPorRemover = listaArtigos.getArtigoLista(codigoArtigo);
