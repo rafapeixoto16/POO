@@ -234,37 +234,58 @@ public class Vintage implements Serializable {
             int codigoTransportadora;
             List<String> usuarios = new ArrayList<>();
 
+            out.println(listaArtigos.toString());
+
             do {
                 out.println("Insira o codigo do artigo que deseja adicionar a sua encomenda");
                 out.println("Para concluir a encomenda digite : concluida");
                 artigoString = getCodigo();
-                if (!artigoString.equals("concluida")) {
+                if (!artigoString.equals("concluida")){
                     try {
                         Artigo artigo = listaArtigos.getArtigoLista(artigoString);
-                        usuarios.add(artigo.getEmailUtilizador());
 
-                        out.println(listaTransportadoras.getTransportadorasList().stream().map(Transportadora :: toString));
+                        if(!artigo.getEmailUtilizador().equals(userLigado.getEmail())) {
+                            usuarios.add(artigo.getEmailUtilizador());
 
-                        out.println("Insira o codigo da transportadora");
-                        codigoTransportadora = getInt();
-                        try {
-                            Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
-                            encomenda.addEncomenda(transportadora, artigo);
-                        } catch (TransportadoraNaoExiste e) {
-                            out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
+                            if(!listaTransportadoras.getTransportadorasList().isEmpty())
+                                out.println(listaTransportadoras.getTransportadorasList().stream().map(Transportadora::toString));
+
+                            else
+                                out.println("De momento nao existem transportadoras");
+
+                            out.println("Insira o codigo da transportadora");
+                            codigoTransportadora = getInt();
+
+                            try {
+                                Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
+                                encomenda.addEncomenda(transportadora, artigo);
+
+                            } catch (TransportadoraNaoExiste e) {
+                                out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
+                            }
                         }
+                        else
+                            out.println("O artigo é seu.");
+
                     } catch (ArtigoNaoExiste e) {
+                        e.printStackTrace();
                         out.println("Nao existe um artigo com codigo " + artigoString);
                     }
                 }
-            } while (!artigoString.equals("concluida"));
+            }while (!artigoString.equals("concluida"));
+
             out.println("Encomenda criada com sucesso.");
+
+            addDinheiroGanho(encomenda.calculaPercentagemVintage());
+
             encomenda.setPrecoTotal(encomenda.calculaPrecoEncomenda());
 
             FaturaCliente faturaCliente = new FaturaCliente();
             faturaCliente.setPreco(encomenda.getPrecoTotal());
             faturaCliente.setEncomenda(encomenda);
             faturaCliente.setCliente(userLigado);
+
+            listaFaturas.addFaturaCliente(encomenda.getCodEnc(),faturaCliente);
 
             for (String a : usuarios) {
                 FaturaVendedor faturaVendedor = new FaturaVendedor();

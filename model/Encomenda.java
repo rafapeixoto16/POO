@@ -247,6 +247,21 @@ public class Encomenda implements Serializable {
     }
 
 
+    public double calculaPercentagemVintage(){
+        double retorno = 0;
+        for (Transportadora a : this.encomenda.keySet()){
+            for (Artigo b : this.encomenda.get(a)){
+                if(b.isNovo())
+                    retorno+=0.5;
+                else
+                    retorno+=0.25;
+            }
+        }
+
+        return retorno;
+    }
+
+
 
 
 }
