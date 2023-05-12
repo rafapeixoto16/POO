@@ -416,6 +416,8 @@ public class Vintage implements Serializable {
         return sb.toString();
     }
 
-    public String listaFaturasVendas(){}
+    public String listaFaturasVendas(){
+        return "";
+    }
 
 }
