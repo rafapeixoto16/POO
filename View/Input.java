@@ -230,9 +230,9 @@ public class Input {
 
     public static boolean getAtacadores() {
         out.print("Atacadores <- 1\n");
-        out.print("Atilhos <- 0\n");
+        out.print("Atilhos    <- 0\n");
         out.print("Opção: ");
-        int op = Input.getInt();
+        int op = -1;
         boolean ok = false;
 
         while (!ok) {
@@ -312,7 +312,7 @@ public class Input {
         out.print("Novo   <- 1\n");
         out.print("Usado  <- 0\n");
         out.print("Estado do artigo: ");
-        int padrao = Input.getInt();
+        int padrao = -1;
         boolean ok = false;
 
         while (!ok) {
