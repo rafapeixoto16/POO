@@ -249,7 +249,6 @@ public class Vintage implements Serializable {
                 if (!artigoString.equals("concluida")){
                     try {
                         Artigo artigo = listaArtigos.getArtigoLista(artigoString);
-
                         if(!artigo.getEmailUtilizador().equals(userLigado.getEmail())) {
                             usuarios.add(artigo.getEmailUtilizador());
 
@@ -262,6 +261,7 @@ public class Vintage implements Serializable {
                                 try {
                                     Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
                                     encomenda.addEncomenda(transportadora, artigo);
+                                    listaUtilizadores.getUtilizadores().get(artigo.getEmailUtilizador()).addArtigosVendidos(artigo);
                                 }
                                 catch (TransportadoraNaoExiste e) {
                                     out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
