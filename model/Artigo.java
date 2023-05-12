@@ -132,7 +132,8 @@ public abstract class Artigo implements Serializable {
     //toString
     @Override
     public String toString() {
-        return "Estado do src.Artigo:" +
+        return "\nEstado do Artigo:" +
+                "\n    Codigo -> " + codigo +
                 "\n    Estado -> " + (novo ? "novo" : "usado") +
                 "\n    Numero de Donos -> " + numDonos +
                 "\n    Avaliacao -> " + 0 + "%" +
