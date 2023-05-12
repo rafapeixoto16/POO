@@ -10,11 +10,13 @@ import model.ListaUtilizadores;
 
 import View.IO;
 
+import java.io.Serial;
 import java.time.LocalDate;
 
 import static java.lang.System.out;
 
 public class Controller {
+
     private static final String ficheiroDados = "ficheiro.dat";
     private Vintage vintage;
     private IO m;
@@ -200,7 +202,7 @@ public class Controller {
                 this.criarTransportadora();
                 break;
             case 2:
-                vintage.listarEncomendaUser();
+                vintage.listaTransportadoras();
                 this.transportadoras();
                 break;
             case 3:
@@ -275,7 +277,7 @@ public class Controller {
                 break;
             case 6:
                 //TODO "Faturação da Vintage"
-                this.estatisticas();
+                out.println(Vintage.getDinheiroGanho());
                 break;
             case 0:
                 this.menuUtilizador();

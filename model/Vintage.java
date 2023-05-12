@@ -2,6 +2,7 @@ package model;
 
 import Exceptions.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -133,7 +134,7 @@ public class Vintage implements Serializable {
         this.userLigado = userLigado;
     }
 
-
+    //todo lIstar transportadoras.
     public void criaSapatilha() {
         Sapatilha retorno = new Sapatilha();
 
@@ -228,7 +229,7 @@ public class Vintage implements Serializable {
 
     public void criaEncomenda() {
         try{
-            if(!listaTransportadoras.getTransportadorasList().isEmpty()){
+            if(listaTransportadoras.getTransportadorasList().isEmpty()){
                 out.println("Nao existem transportadoras");
                 return;
             }
@@ -253,7 +254,7 @@ public class Vintage implements Serializable {
                             usuarios.add(artigo.getEmailUtilizador());
 
                             if(!listaTransportadoras.getTransportadorasList().isEmpty()) {
-                                out.println(listaTransportadoras.getTransportadorasList().stream().map(Transportadora::toString));
+                                listaTransportadoras();
 
                                 out.println("Insira o codigo da transportadora");
                                 codigoTransportadora = getInt();
@@ -283,6 +284,7 @@ public class Vintage implements Serializable {
 
             addDinheiroGanho(encomenda.calculaPercentagemVintage());
 
+            userLigado.adicionaEncomendasUtilizador(encomenda);//todo verificar se esta a adicionar
             encomenda.setPrecoTotal(encomenda.calculaPrecoEncomenda());
 
             FaturaCliente faturaCliente = new FaturaCliente();
@@ -296,6 +298,7 @@ public class Vintage implements Serializable {
                 FaturaVendedor faturaVendedor = new FaturaVendedor();
                 faturaVendedor.setEncomenda(encomenda);
                 faturaVendedor.setVendedor(listaUtilizadores.getUtilizador(a));
+                faturaVendedor.setPreco(encomenda.calculaPrecoEncomenda());
                 listaFaturas.addFaturaVendedor(encomenda.getCodEnc(), faturaVendedor);
             }
 
@@ -438,7 +441,9 @@ public class Vintage implements Serializable {
                 Encomenda encomenda = listaEncomendas.getEncomendaLista(a);
                 sb.append(encomenda.toString());
             }
-            catch (EncomendaNaoExiste ignored){}
+            catch (EncomendaNaoExiste e){
+                out.println("Ups ocurreu um erro...");
+            }
         }
         out.println(sb);
     }
@@ -461,6 +466,16 @@ public class Vintage implements Serializable {
         List<FaturaVendedor> lista = listaFaturas.getFaturasVendedorUserLigado(userLigado.getEmail());
         for(FaturaVendedor a : lista)
         {
+            sb.append(a.toString());
+        }
+
+        out.println(sb);
+    }
+
+    public void listaTransportadoras(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Transportadora a : listaTransportadoras.getTransportadorasList()){
             sb.append(a.toString());
         }
 

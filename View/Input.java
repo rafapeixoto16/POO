@@ -159,10 +159,18 @@ public class Input {
         String morada = Input.getString();
         return morada;
     }
-
     public static int getNIF() {
         out.print("NIF: ");
-        Integer nif = Input.getInt();
+        int nif = -1;
+        boolean ok = false;
+
+        while (!ok) {
+            nif = Input.getInt();
+            if (nif > 99999999 && nif <= 999999999)
+                ok = true;
+            else
+                IO.error("O nif tem de ter 9 algorismos.\n");
+        }
         return nif;
     }
 

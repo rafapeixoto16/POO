@@ -59,6 +59,14 @@ public class Transportadora implements Serializable {
     }
 
     @Override
+    public String toString(){
+        return "Transportadora: \n" +
+                " Codigo  : " + getCodTransportadora()+"\n" +
+                " Imposto : " + getImposto() + "\n"+
+                " Duraçao entrega :"+ getDiasEntrega()+"\n";
+    }
+
+    @Override
     public Transportadora clone(){
         return new Transportadora(this);
     }

@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class FaturaCliente extends Fatura {
+public class FaturaCliente extends Fatura implements Serializable {
     private Utilizador cliente;
 
     public FaturaCliente (){
