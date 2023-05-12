@@ -264,27 +264,27 @@ public class Controller {
 
         switch (opcao){
             case 1:
-                //"Vendedor que mais faturou"
+                //TODO "Vendedor que mais faturou"
                 this.estatisticas();
                 break;
             case 2:
-                //"Transportadora com maior volume de faturação",
+                //TODO "Transportadora com maior volume de faturação",
                 this.estatisticas();
                 break;
             case 3:
-                //"Listar as encomendas emitidas por um vendedor"
+                //TODO "Listar as encomendas emitidas por um vendedor"
                 this.estatisticas();
                 break;
             case 4:
-                //"Maiores Compradores"
+                //TODO "Maiores Compradores"
                 this.estatisticas();
                 break;
             case 5:
-                //"Maiores Vendedores"
+                //TODO "Maiores Vendedores"
                 this.estatisticas();
                 break;
             case 6:
-                //"Faturação da Vintage"
+                //TODO "Faturação da Vintage"
                 this.estatisticas();
                 break;
             case 0:

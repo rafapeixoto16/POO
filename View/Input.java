@@ -229,18 +229,18 @@ public class Input {
     }
 
     public static boolean getAtacadores() {
-        out.print("Atacadores = 1\n");
-        out.print("Atilhos = 2\n");
+        out.print("Atacadores <- 1\n");
+        out.print("Atilhos <- 0\n");
         out.print("Opção: ");
         int op = Input.getInt();
         boolean ok = false;
 
         while (!ok) {
             op = Input.getInt();
-            if (op == 1 || op == 2)
+            if (op == 1 || op == 0)
                 ok = true;
             else
-                out.print("O valor numero inserido tem de ser 1 (Atacadores) ou 2 (Atilhos) \n");
+                out.print("O valor numero inserido tem de ser 1 (Atacadores) ou 0 (Atilhos) \n");
         }
 
         boolean at;
