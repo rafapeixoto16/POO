@@ -134,7 +134,6 @@ public class Vintage implements Serializable {
         this.userLigado = userLigado;
     }
 
-    //todo lIstar transportadoras.
     public void criaSapatilha() {
         Sapatilha retorno = new Sapatilha();
 
@@ -480,5 +479,9 @@ public class Vintage implements Serializable {
         }
 
         out.println(sb);
+    }
+
+    public void calculaVendas(){
+
     }
 }
