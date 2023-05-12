@@ -172,21 +172,6 @@ public class Input {
         return numDonos;
     }
 
-    public static int getAvaliacao() {
-        int avaliacao;
-        boolean ok = false;
-        do {
-            out.print("Avaliação do Artigo (valor inteiro entre 0 e 100): ");
-            avaliacao = Input.getInt();
-
-            if (avaliacao>=0 && avaliacao <=100)
-                ok = true;
-            else
-                IO.error("Valor para Avaliação Inválido");
-        }while (!ok);
-        return avaliacao;
-    }
-
     public static String getDescricao() {
         out.print("Descricao do Artigo: ");
         String descricao = Input.getString();
@@ -218,6 +203,7 @@ public class Input {
     }
 
     //Para classe Mala
+
     public static LocalDate getAno_colecao() {
         out.print("Ano de colecao da mala: ");
         int ano = Input.getInt();
@@ -228,12 +214,11 @@ public class Input {
             if (ano >= 1900 && ano <= Vintage.dataAtual().getYear())
                 ok = true;
             else
-                out.println("O ano do artigo tem ser superior ou igual a 1900");
+                IO.error("O ano do artigo tem ser superior ou igual a 1900");
         }
 
         return LocalDate.of(ano,1,1);
     }
-
     public static int getTamanhoSapatilha() {
         out.print("Tamanho da Sapatilha: ");
         int tamanho = Input.getInt();
@@ -252,7 +237,7 @@ public class Input {
             if (op == 1 || op == 0)
                 ok = true;
             else
-                out.print("O valor numero inserido tem de ser 1 (Atacadores) ou 0 (Atilhos) \n");
+                IO.error("O valor numero inserido tem de ser 1 (Atacadores) ou 0 (Atilhos)");
         }
 
         boolean at;
@@ -262,17 +247,32 @@ public class Input {
     }
 
     //Para classe Spatilha
+
     public static LocalDate getData() { //rever
         out.print("Ano de colecao da Sapatilha: ");
         int ano = Input.getInt();
         LocalDate data = LocalDate.of(ano,1,1);
         return data;
     }
-
     public static String getCor() {
         out.print("Cor da Spatilha: ");
         String cor = Input.getString();
         return cor;
+    }
+
+    public static int getAvaliacao() {
+        int avaliacao;
+        boolean ok = false;
+        do {
+            out.print("Avaliação do Artigo (valor inteiro entre 0 e 100): ");
+            avaliacao = Input.getInt();
+
+            if (avaliacao>=0 && avaliacao <=100)
+                ok = true;
+            else
+                IO.error("Valor para Avaliação Inválido");
+        }while (!ok);
+        return avaliacao;
     }
 
     public static int getTamanhoTShirt() {
@@ -289,7 +289,7 @@ public class Input {
             if (tam == 0 || tam == 1 || tam == 2 || tam == 3)
                 ok = true;
             else
-                out.print("O valor inserido não é válido \n");
+                IO.error("O valor inserido não é válido");
         }
         return tam;
     }
@@ -304,15 +304,14 @@ public class Input {
 
         while (!ok){
             padrao = Input.getInt();
-            if(padrao == 1 || padrao == 0 || padrao ==2)
+            if(padrao == 0 || padrao == 1 || padrao == 2)
                 ok = true;
             else
-                out.print("O valor inserido não é válido \n");
+                IO.error("O valor inserido não é válido");
         }
         return padrao;
     }
 
-    //get para o codTransportadora????????
 
     public static int getImposto() {
         out.print("Imposto (de 0 a 100): ");
@@ -325,7 +324,7 @@ public class Input {
             if(imposto >= 0 &&  imposto <=100)
                 ok = true;
             else
-                out.println("O imposto tem de ser uma valor de 0 a 100");
+                IO.error("O imposto tem de ser uma valor de 0 a 100");
         }
 
         return imposto;
@@ -343,7 +342,7 @@ public class Input {
             if (padrao == 1 || padrao == 0)
                 ok = true;
             else
-                out.print("O valor numero inserido tem de ser 1 (Novo) ou 0 (Usado) \n");
+                IO.error("O valor numero inserido tem de ser 1 (Novo) ou 0 (Usado)");
         }
         boolean at;
 
@@ -372,7 +371,7 @@ public class Input {
             if(i>=0)
                 ok = true;
             else
-                out.println("Nao existem dias de entrega menor que 0");
+                IO.error("Nao existem dias de entrega menor que 0");
         }
         return i;
     }
