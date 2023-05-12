@@ -227,7 +227,12 @@ public class Vintage implements Serializable {
 
 
     public void criaEncomenda() {
-        try {
+        try{
+            if(!listaTransportadoras.getTransportadorasList().isEmpty()){
+                out.println("Nao existem transportadoras");
+                return;
+            }
+
             Encomenda encomenda = new Encomenda();
             encomenda.setEmailUtilizadorCompra(userLigado.getEmail());
             String artigoString;
@@ -248,8 +253,6 @@ public class Vintage implements Serializable {
                         if(!artigo.getEmailUtilizador().equals(userLigado.getEmail())) {
                             usuarios.add(artigo.getEmailUtilizador());
 
-
-
                             if(!listaTransportadoras.getTransportadorasList().isEmpty()) {
                                 out.println(listaTransportadoras.getTransportadorasList().stream().map(Transportadora::toString));
 
@@ -259,20 +262,18 @@ public class Vintage implements Serializable {
                                 try {
                                     Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
                                     encomenda.addEncomenda(transportadora, artigo);
-
-                                } catch (TransportadoraNaoExiste e) {
+                                }
+                                catch (TransportadoraNaoExiste e) {
                                     out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
                                 }
 
                             }else
                                 out.println("De momento nao existem transportadoras");
-
                         }
                         else
                             out.println("O artigo é seu.");
 
                     } catch (ArtigoNaoExiste e) {
-                        e.printStackTrace();
                         out.println("Nao existe um artigo com codigo " + artigoString);
                     }
                 }
@@ -301,17 +302,15 @@ public class Vintage implements Serializable {
             listaEncomendas.addEncomenda(encomenda);
         }
         catch (EncomendaJaExistente e){
-            e.printStackTrace();
             out.println("Essa encomenda ja existe");
         }
     }
-
-
     public void cancelaEncomenda(int codigoEncomenda) {
         try{
             Encomenda encomendaACancelar = listaEncomendas.getEncomendaLista(codigoEncomenda);
             if(encomendaACancelar.validoCancelamentoEncomenda()) {
                 List<Artigo> artigos = encomendaACancelar.getArtigos();
+
                 for (Artigo a : artigos) {
                     Utilizador dono = listaUtilizadores.getUtilizador(a.getEmailUtilizador());
                     dono.removeArtigosVendidos(a);
