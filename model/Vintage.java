@@ -17,19 +17,19 @@ public class Vintage implements Serializable {
     private ListaEncomendas listaEncomendas;
     private ListaFaturas listaFaturas;
     private static LocalDate dataSistema;
-
+    private static double dinheiroGanho;
+    public static void addDinheiroGanho(double dinheiroGanho2){dinheiroGanho += dinheiroGanho2;}
+    public static double getDinheiroGanho(){return dinheiroGanho;}
+    public static void setDinheiroGanho(double dinheiroGanho1){dinheiroGanho = dinheiroGanho1;}
     public static void incDia() {
         dataSistema = dataSistema.plusDays(1);
     }
-
     public static LocalDate dataAtual() {
         return dataSistema;
     }
-
     public static void setDataAtual(LocalDate data) {
         dataSistema = data;
     }
-
     private Utilizador userLigado;
 
     public Vintage() {
@@ -259,9 +259,10 @@ public class Vintage implements Serializable {
                 }
             } while (!artigoString.equals("concluida"));
             out.println("Encomenda criada com sucesso.");
-            encomenda.setPrecoTotal(encomenda.calculaPrecoEncomenda(encomenda));
+            encomenda.setPrecoTotal(encomenda.calculaPrecoEncomenda());
 
             FaturaCliente faturaCliente = new FaturaCliente();
+            faturaCliente.setPreco(encomenda.getPrecoTotal());
             faturaCliente.setEncomenda(encomenda);
             faturaCliente.setCliente(userLigado);
 
@@ -437,5 +438,9 @@ public class Vintage implements Serializable {
         }
 
         return sb.toString();
+    }
+
+    public double LucroVintage(){
+        double retorno = 0;
     }
 }

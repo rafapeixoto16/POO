@@ -222,12 +222,12 @@ public class Encomenda implements Serializable {
         }
     }
 
-    public double calculaPrecoEncomenda (Encomenda encomenda){
+    public double calculaPrecoEncomenda (){
         double retorno = 0;
-        List<Transportadora> itens = encomenda.encomenda.keySet().stream().toList();
+        List<Transportadora> itens = this.encomenda.keySet().stream().toList();
 
         for (Transportadora a : itens){
-            List<Artigo> artigos = encomenda.getLista(a);
+            List<Artigo> artigos = this.getLista(a);
             for (Artigo b : artigos)
                 retorno += b.calculaPrecoFinal() * a.getImposto() + b.calculaPrecoFinal();
         }

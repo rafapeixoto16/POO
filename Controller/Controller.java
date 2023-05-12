@@ -29,6 +29,7 @@ public class Controller {
             this.vintage = ficheiro.carregar();
          else{
              Vintage.setDataAtual(LocalDate.now());
+             Vintage.setDinheiroGanho(0);
          }
          this.run();
      }

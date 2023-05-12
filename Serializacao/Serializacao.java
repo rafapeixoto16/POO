@@ -33,6 +33,7 @@ public class Serializacao {
              Transportadora.setNumeroTransportadoras(in.readInt());
              LocalDate localDate = (LocalDate) in.readObject();
              Vintage.setDataAtual(localDate);
+             Vintage.setDinheiroGanho(in.readDouble());
              return retorno;
 
         }catch(IOException | ClassNotFoundException ex) {
@@ -52,6 +53,7 @@ public class Serializacao {
                 out.writeInt(Encomenda.getNumeroEncomendas());
                 out.writeInt(Transportadora.numeroTransp());
                 out.writeObject(Vintage.dataAtual());
+                out.writeDouble(Vintage.getDinheiroGanho());
             } catch (IOException ex) {
                 throw new RuntimeException(String.format(
                         "Ocorreu um erro ao guardar o ficheiro de dados: %s",
