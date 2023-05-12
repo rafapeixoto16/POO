@@ -179,6 +179,7 @@ public class Vintage implements Serializable {
         retorno.setNumDonos(getNumDonos());
         retorno.setAvaliacao(getAvaliacao());
         retorno.setDescricao(getDescricao());
+        retorno.setDim(getDim());
         retorno.setPrecoBase(getPrecoBase());
         retorno.setMaterial(getMaterial());
         retorno.setAno_colecao(getAno_colecao());//todo alterar o getano_colecao
@@ -196,6 +197,7 @@ public class Vintage implements Serializable {
         retorno.setNumDonos(getNumDonos());
         retorno.setAvaliacao(getAvaliacao());
         retorno.setDescricao(getDescricao());
+        retorno.setDim(getDim());
         retorno.setPrecoBase(getPrecoBase());
         retorno.setMaterial(getMaterial());
         retorno.setAno_colecao(getAno_colecao());//todo alterar o getano_colecao
@@ -413,8 +415,6 @@ public class Vintage implements Serializable {
                 sb.append(a.toString());
             }
         }
-
-
         return sb.toString();
     }
 
