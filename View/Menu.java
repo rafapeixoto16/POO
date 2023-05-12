@@ -27,7 +27,7 @@ public class Menu {
     public void executa2() {
         do {
             showMenu2();
-            this.op = lerOpcao();
+            this.op = lerOpcao2();
         } while (this.op == -1);
     }
 
@@ -64,6 +64,25 @@ public class Menu {
             op = -1;
         }
         if (op<0 || op>this.opcoes.size()) {
+            System.out.println("Opção Inválida!!!");
+            op = -1;
+        }
+        //is.close();
+        return op;
+    }
+
+    private int lerOpcao2() {
+        int op;
+        Scanner is = new Scanner(System.in);
+
+        System.out.print("Escolha uma opção: ");
+        try {
+            op = is.nextInt();
+        }
+        catch (InputMismatchException e) { // Não foi inscrito um int
+            op = -1;
+        }
+        if (op<=0 || op>this.opcoes.size()) {
             System.out.println("Opção Inválida!!!");
             op = -1;
         }

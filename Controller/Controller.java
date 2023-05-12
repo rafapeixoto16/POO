@@ -38,14 +38,13 @@ public class Controller {
          switch (opcao){
              case 1:
                  this.logIn();
-                 ficheiro.guardar(vintage);
                  break;
              case 2:
                  this.sigIn();
+                 break;
+             case 3:
                  ficheiro.guardar(vintage);
                  break;
-             case 0:
-                 ficheiro.guardar(vintage);
          }
      }
     public void logIn(){
@@ -134,7 +133,7 @@ public class Controller {
                 break;
             case 2:
                 vintage.criaTShirt();
-                this.criarArtigo();
+                this.artigos();
                 break;
             case 3:
                 this.adicionarMala();
@@ -246,11 +245,11 @@ public class Controller {
 
         switch (opcao){
             case 1:
-                //vintage.verFaturasCompras(); //TODO
+                vintage.listaFaturasComprado();
                 this.faturas();
                 break;
             case 2:
-                //vintage.verFaturasVendas(); //TODO
+                vintage.listaFaturasVendas();
                 this.faturas();
                 break;
             case 0:

@@ -101,10 +101,10 @@ public class Sapatilha extends Artigo {
 
     @Override
     public String toString() {
-        return super.toString()+
+        return super.toString()+ "Estado da Sapatilha" +
                 "\n    Tamanho -> " + tamanho +
                 "\n    Tipo -> " + auxAtacadores(atacadores) +
-                "\n    Data de Lançamento -> " + data +
+                "\n    Ano de Lançamento -> " + data.getYear() +
                 "\n    Cor -> " + cor +
                 '\n';
     }

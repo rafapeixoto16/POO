@@ -220,7 +220,6 @@ public class Input {
     //Para classe Mala
     public static LocalDate getAno_colecao() {
         out.print("Ano de colecao da mala: ");
-        //todo alteral
         int ano = Input.getInt();
         boolean ok = false;
 
@@ -282,8 +281,17 @@ public class Input {
         out.print("M  <- 1\n");
         out.print("S  <- 0\n");
         out.print("Tamanho da TShirt: ");
-        int tamanho = Input.getInt();
-        return tamanho;
+        boolean ok = false;
+        int tam = -1;
+
+        while (!ok) {
+            tam = Input.getInt();
+            if (tam == 0 || tam == 1 || tam == 2 || tam == 3)
+                ok = true;
+            else
+                out.print("O valor inserido não é válido \n");
+        }
+        return tam;
     }
 
     public static int getPadrao() {
@@ -298,6 +306,8 @@ public class Input {
             padrao = Input.getInt();
             if(padrao == 1 || padrao == 0 || padrao ==2)
                 ok = true;
+            else
+                out.print("O valor inserido não é válido \n");
         }
         return padrao;
     }
