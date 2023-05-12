@@ -137,7 +137,7 @@ public abstract class Artigo implements Serializable {
                 "\n    Numero de Donos -> " + numDonos +
                 "\n    Avaliacao -> " + avaliacao + "%" +
                 "\n    Descricao -> " + descricao +
-                "\n    precoBase -> " + precoBase + "simbEur" +
+                "\n    precoBase -> " + precoBase + " € " +
                 "\n    Email do Dono -> " +emailUtilizador +
                 '\n';
     }

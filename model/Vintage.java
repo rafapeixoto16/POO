@@ -51,8 +51,9 @@ public class Vintage implements Serializable {
     }
 
     public void avancoTemporal() {
+        out.println("Insira quantos dias quer avançar");
         int dias = getDias();
-         dataSistema = dataSistema.plusDays(dias);//todo string para
+        dataSistema = dataSistema.plusDays(dias);
     }
 
     public LocalDate getDataSistema() {
@@ -147,6 +148,7 @@ public class Vintage implements Serializable {
         retorno.setEmailUtilizador(userLigado.getEmail());
 
         listaArtigos.addArtigo(retorno);
+        userLigado.addArtigosPorVender(retorno);
         out.println("Sapatilha adicionada com sucesso");
     }
 
@@ -164,6 +166,7 @@ public class Vintage implements Serializable {
         retorno.setEmailUtilizador(userLigado.getEmail());
 
         listaArtigos.addArtigo(retorno);
+        userLigado.addArtigosPorVender(retorno);
         out.println("Sapatilha premium adicionada com sucesso");
     }
 
@@ -180,6 +183,7 @@ public class Vintage implements Serializable {
         retorno.setEmailUtilizador(userLigado.getEmail());
 
         listaArtigos.addArtigo(retorno);
+        userLigado.addArtigosPorVender(retorno);
         out.println("Mala adicionada com sucesso");
     }
 
@@ -196,6 +200,7 @@ public class Vintage implements Serializable {
         retorno.setEmailUtilizador(userLigado.getEmail());
 
         listaArtigos.addArtigo(retorno);
+        userLigado.addArtigosPorVender(retorno);
         out.println("Mala premium adicionada com sucesso");
     }
 
@@ -212,6 +217,7 @@ public class Vintage implements Serializable {
         retorno.setEmailUtilizador(userLigado.getEmail());
 
         listaArtigos.addArtigo(retorno);
+        userLigado.addArtigosPorVender(retorno);
         out.println("Tshirt adicionada com sucesso");
     }
 
