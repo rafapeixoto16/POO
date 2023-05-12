@@ -206,7 +206,7 @@ public class Input {
 
     public static LocalDate getAno_colecao() {
         out.print("Ano de colecao da mala: ");
-        int ano = Input.getInt();
+        int ano = -1;
         boolean ok = false;
 
         while (!ok) {
@@ -247,12 +247,20 @@ public class Input {
     }
 
     //Para classe Spatilha
-
-    public static LocalDate getData() { //rever
+    public static LocalDate getData() {
         out.print("Ano de colecao da Sapatilha: ");
-        int ano = Input.getInt();
-        LocalDate data = LocalDate.of(ano,1,1);
-        return data;
+        int ano = -1;
+        boolean ok = false;
+
+        while (!ok) {
+            ano = Input.getInt();
+            if (ano >= 1900 && ano <= Vintage.dataAtual().getYear())
+                ok = true;
+            else
+                IO.error("O ano do artigo tem ser superior ou igual a 1900");
+        }
+
+        return LocalDate.of(ano,1,1);
     }
     public static String getCor() {
         out.print("Cor da Spatilha: ");

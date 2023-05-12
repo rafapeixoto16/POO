@@ -214,6 +214,10 @@ public class Controller {
                 this.criarTransportadora();
                 break;
             case 2:
+                vintage.listarEncomendaUser();
+                this.transportadoras();
+                break;
+            case 3:
                 vintage.alterarImposto();
                 this.transportadoras();
                 break;

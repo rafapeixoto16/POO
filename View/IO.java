@@ -57,6 +57,7 @@ public class IO {
 
     public static final String[] opcoesMenuTransportadoras = {
             "Criar Transportadora",
+            "Listar Transportadoras",
             "Alterar Imposto de Transportadorta",
     };
 
