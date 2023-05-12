@@ -229,9 +229,8 @@ public class Input {
             if (ano >= 1900 && ano <= Vintage.dataAtual().getYear())
                 ok = true;
             else
-                out.println("O ano do artigo tem ser superior ou igual a 1900.");
+                out.println("O ano do artigo tem ser superior ou igual a 1900");
         }
-
 
         return LocalDate.of(ano,1,1);
     }
