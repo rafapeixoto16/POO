@@ -135,7 +135,7 @@ public abstract class Artigo implements Serializable {
         return "Estado do src.Artigo:" +
                 "\n    Estado -> " + (novo ? "novo" : "usado") +
                 "\n    Numero de Donos -> " + numDonos +
-                "\n    Avaliacao -> " + avaliacao + "%" +
+                "\n    Avaliacao -> " + 0 + "%" +
                 "\n    Descricao -> " + descricao +
                 "\n    precoBase -> " + precoBase + " € " +
                 "\n    Email do Dono -> " +emailUtilizador +

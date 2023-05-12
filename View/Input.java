@@ -1,5 +1,7 @@
 package View;
 
+import model.Vintage;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -174,10 +176,10 @@ public class Input {
         int avaliacao;
         boolean ok = false;
         do {
-            out.print("Avaliação do Artigo (valor inteiro entre 0 e 10): ");
+            out.print("Avaliação do Artigo (valor inteiro entre 0 e 100): ");
             avaliacao = Input.getInt();
 
-            if (avaliacao>=0 && avaliacao <=10)
+            if (avaliacao>=0 && avaliacao <=100)
                 ok = true;
             else
                 IO.error("Valor para Avaliação Inválido");
@@ -216,9 +218,21 @@ public class Input {
     }
 
     //Para classe Mala
-    public static LocalDate getAno_colecao() { //rever
+    public static LocalDate getAno_colecao() {
         out.print("Ano de colecao da mala: ");
+        //todo alteral
         int ano = Input.getInt();
+        boolean ok = false;
+
+        while (!ok) {
+            ano = Input.getInt();
+            if (ano >= 1900 && ano <= Vintage.dataAtual().getYear())
+                ok = true;
+            else
+                out.println("O ano do artigo tem ser superior ou igual a 1900.");
+        }
+
+
         return LocalDate.of(ano,1,1);
     }
 
