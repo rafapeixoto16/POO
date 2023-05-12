@@ -27,8 +27,9 @@ public class Controller {
      public void inicializador(){
          if(this.ficheiro.getFicheiro().exists())
             this.vintage = ficheiro.carregar();
-         else
+         else{
              Vintage.setDataAtual(LocalDate.now());
+         }
          this.run();
      }
 
@@ -40,6 +41,7 @@ public class Controller {
                  break;
              case 2:
                  this.sigIn();
+                 ficheiro.guardar(vintage);
                  break;
              case 0:
                  this.encerrar();
@@ -51,9 +53,12 @@ public class Controller {
 
          switch (opcao){
              case 1:
-                 String mail = Input.getEmail();
-                 vintage.login(mail);
-                 this.menuUtilizador();
+                 if (this.vintage.login())
+                    this.menuUtilizador();
+
+                 else
+                     this.logIn();
+
                  break;
              case 0:
                  this.run();
@@ -67,7 +72,7 @@ public class Controller {
     }
 
     public void encerrar(){
-         ficheiro.guardar(vintage);
+         this.ficheiro.guardar(this.vintage);
          System.exit(0);
     }
 

@@ -50,8 +50,6 @@ public class Vintage implements Serializable {
         this.userLigado = userLigado.clone();
     }
 
-
-
     public void avancoTemporal() {
         int dias = getDias();
          dataSistema = dataSistema.plusDays(dias);//todo string para
@@ -61,16 +59,20 @@ public class Vintage implements Serializable {
         return dataSistema;
     }
 
-    public boolean login(String email) {
-        if (listaUtilizadores.existeUtilizador(email)) {
+    public boolean login() {
+        String email = getEmail();
+
+        if (listaUtilizadores.existeUtilizador(email))
+        {
             try {
                 userLigado = listaUtilizadores.getUtilizadorLista(email);
                 return true;
             } catch (UtilizadorNaoExiste | NullPointerException e) {
-                out.println("Esse mail nao existe");
+                out.println("O email: " + email + " nao tem uma conta registada.");
                 return false;
             }
         }
+        out.println("O email: " + email + " nao tem uma conta registada.");
         return false;
     }
 
