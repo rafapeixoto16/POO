@@ -369,10 +369,14 @@ public class Vintage implements Serializable {
     //todo esta mal so pode remover artigo dele proprio user ligado
     public void removeArtigo (String codigoArtigo){
         try {
-            listaArtigos.removeArtigo(codigoArtigo);
-            listaUtilizadores.getUtilizadores().get(userLigado.getEmail()).
-                    removeArtigosPorVender(listaArtigos.getArtigoLista(codigoArtigo));
-            listaArtigos.removeArtigo (codigoArtigo) ;
+            Artigo artigoPorRemover = listaArtigos.getArtigoLista(codigoArtigo);
+            if(userLigado.temArtigoPorVender(artigoPorRemover)) {
+                listaArtigos . removeArtigo (codigoArtigo) ;
+                userLigado . removeArtigosPorVender (artigoPorRemover) ;
+            }
+            else{
+                out.println("Voce nao possui esse artigo");
+            }
         }
         catch (ArtigoNaoExiste e){
             out.println("O artigo com codigo " + codigoArtigo + " nao existe.");
