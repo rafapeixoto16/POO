@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.*;
 
 public class ListaFaturas implements Serializable {
-    //este string é o user
     private final Map<Integer, List<FaturaVendedor>> listaFaturasVenderores;
+
     // este integer é o codigo encomenda
     private final Map<Integer, List<FaturaCliente>> listaFaturasClientes;
 
@@ -155,8 +155,35 @@ public class ListaFaturas implements Serializable {
                 +"Clientes: "+ listaFaturasClientes.toString();
     }
 
-    public List<FaturaCliente> getFaturaCliente(int codigo){
+    public List<FaturaCliente> getFaturasClienteUserLigado(int codigo){
         return listaFaturasClientes.get(codigo).stream().map(FaturaCliente::clone).toList();
+    }
+
+    public List<FaturaVendedor> getFaturasVendedorUserLigado(String email){
+        List<FaturaVendedor> faturaVendedors = new ArrayList<>();
+
+        for (Integer a :listaFaturasVenderores.keySet()){
+            for (FaturaVendedor b :listaFaturasVenderores.get(a)){
+                if(b.getVendedor().getEmail().equals(email))
+                    faturaVendedors.add(b);
+            }
+        }
+        return faturaVendedors;
+    }
+
+    public Map<String,Double> getAllFaturasVendedorOrdenar(){
+        Map<String,Double> retorno = new HashMap<>();
+
+        for (Integer a : listaFaturasVenderores.keySet()) {
+            for (FaturaVendedor b : listaFaturasVenderores.get(a)){
+                if(retorno.containsKey(b.getVendedor().getEmail()))
+                    retorno.put(b.getVendedor().getEmail(),(retorno.get(b.getVendedor().getEmail()) + b.getPreco()));
+
+                else
+                    retorno.put(b.getVendedor().getEmail(),b.getPreco());
+            }
+        }
+        return retorno;
     }
 
 }
