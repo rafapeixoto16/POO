@@ -287,8 +287,9 @@ public class Vintage implements Serializable {
                 userLigado.removeEncomendasUtilizador(encomendaACancelar);
                 listaEncomendas.removeEncomenda(codigoEncomenda);
 
-                //todo testar se ta a funcionar
                 listaFaturas.removeFaturaCliente(encomendaACancelar.getCodEnc());
+
+                //todo altera ir
                 listaFaturas.removeFaturaVendedor(encomendaACancelar.getCodEnc());
                 out.println("Encomenda cancelada com sucesso");
             }
@@ -328,7 +329,6 @@ public class Vintage implements Serializable {
             double imposto = (double) getImposto() / 100;
             transportadora.setImposto(imposto);
 
-
             out.println("Nº de dias que a transportadora demora a entregar");
 
             int dias = getDias();
@@ -363,6 +363,8 @@ public class Vintage implements Serializable {
         }
     }
 
+
+    //todo esta mal so pode remover artigo dele proprio user ligado
     public void removeArtigo (String codigoArtigo){
         try {
             listaArtigos.removeArtigo(codigoArtigo);
@@ -407,7 +409,7 @@ public class Vintage implements Serializable {
         List<Integer> codEncomendas = userLigado.retornaCodigoEncomendaUser();
 
         for (int i :codEncomendas){
-            for (FaturaCliente a : listaFaturas.getFaturaCliente(i)) {
+            for (FaturaCliente a : listaFaturas.getFaturasClienteUserLigado(i)) {
                 sb.append(a.toString());
             }
         }
@@ -417,7 +419,14 @@ public class Vintage implements Serializable {
     }
 
     public String listaFaturasVendas(){
-        return "";
-    }
+        StringBuilder sb = new StringBuilder();
 
+        List<FaturaVendedor> lista = listaFaturas.getFaturasVendedorUserLigado(userLigado.getEmail());
+        for(FaturaVendedor a : lista)
+        {
+            sb.append(a.toString());
+        }
+
+        return sb.toString();
+    }
 }
