@@ -440,7 +440,4 @@ public class Vintage implements Serializable {
         return sb.toString();
     }
 
-    public double LucroVintage(){
-        double retorno = 0;
-    }
 }
