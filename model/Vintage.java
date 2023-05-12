@@ -240,6 +240,7 @@ public class Vintage implements Serializable {
                 out.println("Insira o codigo do artigo que deseja adicionar a sua encomenda");
                 out.println("Para concluir a encomenda digite : concluida");
                 artigoString = getCodigo();
+
                 if (!artigoString.equals("concluida")){
                     try {
                         Artigo artigo = listaArtigos.getArtigoLista(artigoString);
@@ -247,22 +248,25 @@ public class Vintage implements Serializable {
                         if(!artigo.getEmailUtilizador().equals(userLigado.getEmail())) {
                             usuarios.add(artigo.getEmailUtilizador());
 
-                            if(!listaTransportadoras.getTransportadorasList().isEmpty())
+
+
+                            if(!listaTransportadoras.getTransportadorasList().isEmpty()) {
                                 out.println(listaTransportadoras.getTransportadorasList().stream().map(Transportadora::toString));
 
-                            else
+                                out.println("Insira o codigo da transportadora");
+                                codigoTransportadora = getInt();
+
+                                try {
+                                    Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
+                                    encomenda.addEncomenda(transportadora, artigo);
+
+                                } catch (TransportadoraNaoExiste e) {
+                                    out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
+                                }
+
+                            }else
                                 out.println("De momento nao existem transportadoras");
 
-                            out.println("Insira o codigo da transportadora");
-                            codigoTransportadora = getInt();
-
-                            try {
-                                Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
-                                encomenda.addEncomenda(transportadora, artigo);
-
-                            } catch (TransportadoraNaoExiste e) {
-                                out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
-                            }
                         }
                         else
                             out.println("O artigo é seu.");
@@ -422,7 +426,7 @@ public class Vintage implements Serializable {
         }
     }
 
-    public String listarEncomendaUser(){
+    public void listarEncomendaUser(){
         List<Integer> codArtigos = userLigado.retornaCodigoEncomendaUser();
 
         StringBuilder sb = new StringBuilder();
@@ -434,10 +438,10 @@ public class Vintage implements Serializable {
             }
             catch (EncomendaNaoExiste ignored){}
         }
-        return sb.toString();
+        out.println(sb);
     }
 
-    public String listaFaturasComprado(){
+    public void listaFaturasComprado(){
         StringBuilder sb = new StringBuilder();
         List<Integer> codEncomendas = userLigado.retornaCodigoEncomendaUser();
 
@@ -446,10 +450,10 @@ public class Vintage implements Serializable {
                 sb.append(a.toString());
             }
         }
-        return sb.toString();
+        out.println(sb);
     }
 
-    public String listaFaturasVendas(){
+    public void listaFaturasVendas(){
         StringBuilder sb = new StringBuilder();
 
         List<FaturaVendedor> lista = listaFaturas.getFaturasVendedorUserLigado(userLigado.getEmail());
@@ -458,7 +462,6 @@ public class Vintage implements Serializable {
             sb.append(a.toString());
         }
 
-        return sb.toString();
+        out.println(sb);
     }
-
 }
