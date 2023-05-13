@@ -54,9 +54,9 @@ public class utilizadorTeste {
     @Test
     public void  testAddListaUtilizador(){
         Utilizador utilizador = new Utilizador("email","Peixoto","Avenida das Cruzes Frades",309144557);
-        TShirt tshirt = new TShirt(true,1,10,"adidas",50,0,0,"mail");
-        Sapatilha sapatilha1 = new Sapatilha(true,1,10,"airForce", 99.99,40,true, LocalDate.of(2023,1,1),"Branco","mail");
-        Sapatilha sapatilha2 = new Sapatilha(false, 3, 5,"StanSmith",80,39,true,LocalDate.now(),"Verde","email@");
+        TShirt tshirt = new TShirt(true,1,10,"adidas",50,0,0,"mail",1);
+        Sapatilha sapatilha1 = new Sapatilha(true,1,10,"airForce", 99.99,40,true, LocalDate.of(2023,1,1),"Branco","mail",1);
+        Sapatilha sapatilha2 = new Sapatilha(false, 3, 5,"StanSmith",80,39,true,LocalDate.now(),"Verde","email@",1);
         utilizador.addArtigosPorVender(tshirt);
         utilizador.addArtigosPorVender(sapatilha1);
         utilizador.addArtigosVendidos(sapatilha2);

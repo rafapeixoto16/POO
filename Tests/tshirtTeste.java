@@ -22,13 +22,13 @@ public class tshirtTeste {
     public void testConstructor(){
         TShirt tshirt = new TShirt();
         assertTrue(tshirt!=null);
-        tshirt = new TShirt(true,1,10,"adidas",50,0,0,"mail");
+        tshirt = new TShirt(true,1,10,"adidas",50,0,0,"mail",1);
         assertTrue(tshirt!=null);
     }
 
     @Test
     public void testGets(){
-        TShirt tshirt = new TShirt(true,1,10,"adidas",50,0,0,"mail");
+        TShirt tshirt = new TShirt(true,1,10,"adidas",50,0,0,"mail",1);
         assertTrue(tshirt.isNovo() == true);
         assertTrue(tshirt.getNumDonos() == 1);
         assertTrue(tshirt.getAvaliacao() == 10);
@@ -41,8 +41,8 @@ public class tshirtTeste {
 
     @Test
     public void testEquals(){
-        TShirt tshirt1 = new TShirt(true,1,10,"adidas",50,0,0,"mail");
-        TShirt tshirt2 = new TShirt(true,1,10,"nike",50,0,0,"mail2");
+        TShirt tshirt1 = new TShirt(true,1,10,"adidas",50,0,0,"mail",1);
+        TShirt tshirt2 = new TShirt(true,1,10,"nike",50,0,0,"mail2",1);
         assertFalse(tshirt1.equals(tshirt2));
     }
 }

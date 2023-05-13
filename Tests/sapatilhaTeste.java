@@ -25,13 +25,13 @@ public class sapatilhaTeste {
     public void testConstructor(){
         Sapatilha sapatilha = new Sapatilha();
         assertTrue(sapatilha!=null);
-        sapatilha = new Sapatilha(true,1,10,"airForce", 99.99, 40,true,LocalDate.of(2023,1,1),"Branco","mail");
+        sapatilha = new Sapatilha(true,1,10,"airForce", 99.99, 40,true,LocalDate.of(2023,1,1),"Branco","mail",1);
         assertTrue(sapatilha!=null);
     }
 
     @Test
     public void testGets(){
-        Sapatilha sapatilha = new Sapatilha(true,1,10,"airForce", 99.99,40,true,LocalDate.of(2023,1,1),"Branco","mail");
+        Sapatilha sapatilha = new Sapatilha(true,1,10,"airForce", 99.99,40,true,LocalDate.of(2023,1,1),"Branco","mail",1);
         assertTrue(sapatilha.isNovo() == true);
         assertTrue(sapatilha.getNumDonos() == 1);
         assertTrue(sapatilha.getAvaliacao() == 10);
@@ -45,8 +45,8 @@ public class sapatilhaTeste {
 
     @Test
     public void testEquals(){
-        Sapatilha sapatilha1 = new Sapatilha(true,1,10,"airForce", 99.99,40,true,LocalDate.of(2023,1,1),"Branco","mail");
-        Sapatilha sapatilha2 = new Sapatilha(false, 3, 5,"StanSmith",80,39,true,LocalDate.now(),"Verde","email@");
+        Sapatilha sapatilha1 = new Sapatilha(true,1,10,"airForce", 99.99,40,true,LocalDate.of(2023,1,1),"Branco","mail",1);
+        Sapatilha sapatilha2 = new Sapatilha(false, 3, 5,"StanSmith",80,39,true,LocalDate.now(),"Verde","email@",1);
         assertFalse(sapatilha1.equals(sapatilha2));
         assertTrue(sapatilha1.equals(sapatilha1));
     }

@@ -25,13 +25,13 @@ public class malaTeste {
     public void testConstructor(){
         Mala mala = new Mala();
         assertTrue(mala!=null);
-        mala = new Mala(true,1,10,"Cavalinho",70,4,"couro", LocalDate.of(2023,1,1),"mail");
+        mala = new Mala(true,1,10,"Cavalinho",70,4,"couro", LocalDate.of(2023,1,1),"mail",1);
         assertTrue(mala!=null);
     }
 
     @Test
     public void testGets(){
-        Mala mala = new Mala(true,1,10,"Cavalinho",70,4,"couro", LocalDate.of(2023,1,1),"mail");
+        Mala mala = new Mala(true,1,10,"Cavalinho",70,4,"couro", LocalDate.of(2023,1,1),"mail",1);
         assertTrue(mala.isNovo() == true);
         assertTrue(mala.getNumDonos() == 1);
         assertTrue(mala.getAvaliacao() == 10);
@@ -45,8 +45,8 @@ public class malaTeste {
 
     @Test
     public void testEquals(){
-        Mala mala1 = new Mala(true,1,10,"Cavalinho",70,4,"couro", LocalDate.of(2023,1,1),"mail");
-        Mala mala2 = new Mala(true,1,10,"Cavalinho",70,4,"couro", LocalDate.of(2023,1,1),"mail");
+        Mala mala1 = new Mala(true,1,10,"Cavalinho",70,4,"couro", LocalDate.of(2023,1,1),"mail",1);
+        Mala mala2 = new Mala(true,1,10,"Cavalinho",70,4,"couro", LocalDate.of(2023,1,1),"mail",1);
         assertFalse(mala1.equals(mala2));
         assertTrue(mala1.equals(mala1));
     }
