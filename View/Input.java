@@ -120,10 +120,10 @@ public class Input {
         return option;
     }
 
-    public static LocalDate getDate(String text) {
-        out.println(text);
+    public static LocalDate getDate() {
         LocalDate date = null;
         boolean valid = false;
+
         String format = "dd-mm-aaaa";
         DateTimeFormatter f = DateTimeFormatter.ofPattern(format);
 
@@ -390,6 +390,23 @@ public class Input {
                 IO.error("Nao existem dias de entrega menor que 0");
         }
         return i;
+    }
+
+    public static int getFormulaTransportacao() {
+        //todo anao print formulas;
+
+        out.print("Formula escolhida: ");
+        int f = -1;
+        boolean ok = false;
+
+        while (!ok) {
+            f = Input.getInt();
+            if (f >=1 && f <=3)
+                ok = true;
+            else
+                IO.error("Nao existe uma formula com esse valor\n");
+        }
+        return f;
     }
 
 

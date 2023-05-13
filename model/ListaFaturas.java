@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
 
 import static java.lang.System.out;
@@ -151,6 +152,14 @@ public class ListaFaturas implements Serializable {
         return listaFaturasVenderores.get(idEncomenda).contains(faturaVendedor);
     }
 
+    public Map<Integer, List<FaturaCliente>> getListaFaturasClientes() {
+        return listaFaturasClientes;
+    }
+
+    public Map<Integer, List<FaturaVendedor>> getListaFaturasVenderores() {
+        return listaFaturasVenderores;
+    }
+
     @Override
     public String toString(){
         return "Vendedores: "+ listaFaturasVenderores.toString()+"\n"
@@ -208,7 +217,9 @@ public class ListaFaturas implements Serializable {
         List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
         listaOrdenada.sort(Map.Entry.comparingByValue());
 
-        for (Map.Entry<String,Double> entrada:listaOrdenada)
-            out.println("Email cliente: "+ entrada.getKey() + " dinheiro gasto: " + entrada.getValue());
+        Map.Entry<String,Double> entrada = listaOrdenada.get(0);
+        out.println("Cliente que mais gastou desde sempre : \n");
+        out.println("Email cliente: "+ entrada.getKey() + " dinheiro gasto: " + entrada.getValue());
     }
+
 }

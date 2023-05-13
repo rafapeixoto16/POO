@@ -256,7 +256,11 @@ public class Controller {
 
         switch (opcao){
             case 1:
-                //TODO "Vendedor que mais faturou"
+                //todo fazer um submenu o para cliente e para o vendedor e depois de escolher um pergunta desde sempre ou num intervalo de tempo
+                LocalDate date1 = Input.getDate();
+                LocalDate date2 = Input.getDate();
+
+
                 this.estatisticas();
                 break;
             case 2:
@@ -268,15 +272,12 @@ public class Controller {
                 this.estatisticas();
                 break;
             case 4:
-                //TODO "Maiores Compradores"
-                this.estatisticas();
+                this.vintage.getListaFaturas().getAllFaturasClienteOrdenar();
                 break;
             case 5:
-                //TODO "Maiores Vendedores"
-                this.estatisticas();
+                this.vintage.getListaFaturas().getAllFaturasVendedorOrdenar();
                 break;
             case 6:
-                //TODO "Faturação da Vintage"
                 out.println(Vintage.getDinheiroGanho());
                 break;
             case 0:

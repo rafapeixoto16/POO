@@ -228,9 +228,11 @@ public class Encomenda implements Serializable {
 
         for (Transportadora a : itens){
             List<Artigo> artigos = this.getLista(a);
-            double valorTranps = calculaTransp();
+            retorno += a.custoExpedicao(artigos);
+
             for (Artigo b : artigos)
-                retorno +=  + b.calculaPrecoFinal();
+                retorno +=b.calculaPrecoFinal();
+
         }
         return retorno;
     }

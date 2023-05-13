@@ -6,9 +6,7 @@ import View.IO;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static View.Input.*;
 import static java.lang.System.out;
@@ -201,7 +199,7 @@ public class Vintage implements Serializable {
         retorno.setEmailUtilizador(userLigado.getEmail());
 
         out.println();
-        listaTransportadoras();//todo so transportadora premium
+        listaTransportadorasPremium();
 
         boolean ok = false;
         int codTransp = -1;
@@ -247,7 +245,7 @@ public class Vintage implements Serializable {
         retorno.setDim(getDim());
         retorno.setPrecoBase(getPrecoBase());
         retorno.setMaterial(getMaterial());
-        retorno.setAno_colecao(getAno_colecao());//todo alterar o getano_colecao
+        retorno.setAno_colecao(getAno_colecao());
         retorno.setEmailUtilizador(userLigado.getEmail());
 
         out.println();
@@ -291,7 +289,7 @@ public class Vintage implements Serializable {
         retorno.setDim(getDim());
         retorno.setPrecoBase(getPrecoBase());
         retorno.setMaterial(getMaterial());
-        retorno.setAno_colecao(getAno_colecao());//todo alterar o getano_colecao
+        retorno.setAno_colecao(getAno_colecao());
         retorno.setEmailUtilizador(userLigado.getEmail());
 
         out.println();
@@ -640,6 +638,35 @@ public class Vintage implements Serializable {
 
         return retorno;
     }
+
+    public void getAllFaturasClienteOrdenar(LocalDate inicio,LocalDate fim) {
+        Map<String,Double> retorno = new HashMap<>();
+
+        for (Integer a : listaFaturas.getListaFaturasClientes().keySet()) {//todo alterar
+            try {
+                if(listaEncomendas.getEncomendaLista(a).getDataEncomenda().isBefore(fim) && listaEncomendas.getEncomendaLista(a).getDataEncomenda().isAfter(inicio)) {
+                    for (FaturaCliente b : listaFaturas.getListaFaturasClientes().get(a)) {
+
+                        if (retorno.containsKey(b.getCliente().getEmail()))
+                            retorno.put(b.getCliente().getEmail(), (retorno.get(b.getCliente().getEmail()) + b.getPreco()));
+                        else
+                            retorno.put(b.getCliente().getEmail(), b.getPreco());
+                    }
+                }
+            }catch (EncomendaNaoExiste ignored){
+
+            }
+        }
+
+        List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
+        listaOrdenada.sort(Map.Entry.comparingByValue());
+
+        Map.Entry<String,Double> entrada = listaOrdenada.get(0);
+        out.println("Cliente que mais gastou : \n");
+        out.println("Inicio "+ inicio + "\nFim "+ fim + "\n Email cliente: "+ entrada.getKey() + " dinheiro gasto: " + entrada.getValue());
+    }
+
+
     public void calculaVendas(){
 
     }
