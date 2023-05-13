@@ -25,8 +25,11 @@ public class transpTest {
 
     @Test
     public void testConstructor() throws TransportadoraJaExistente {
+        Transportadora transportadora = new Transportadora();
         Transportadora transportadoraPremi= new TransportadoraPremium();
         Vintage ola = new Vintage();
+        ola.getListaTransportadoras().addTransportadora(transportadora
+        );
         ola.getListaTransportadoras().addTransportadora(transportadoraPremi);
         assertTrue(ola.existeTranspPremium());
     }

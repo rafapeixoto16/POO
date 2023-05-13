@@ -180,7 +180,7 @@ public class Vintage implements Serializable {
     }
 
     public void criaSapatilhaPremium() {
-        if((existeTranspPremium())){
+        if(!(existeTranspPremium())){
             IO.error("Nao existem transportadoras premium disponiveis para adicionar artigos.");
             return;
         }
@@ -275,7 +275,7 @@ public class Vintage implements Serializable {
     }
 
     public void criaMalaPremium() {
-        if(existeTranspPremium()){
+        if(!existeTranspPremium()){
             IO.error("Nao existem transportadoras premium disponiveis para adicionar artigos.");
             return;
         }
