@@ -77,6 +77,11 @@ public class IO {
             "Faturação da Vintage",
     };
 
+    public static final String[] opcoesMenuDesdeSemprePeriodo = {
+            "Desde sempre",
+            "Indicar Período de Tempo"
+    };
+
 
 
     public int menu(String titulo, String[] opcoes) {

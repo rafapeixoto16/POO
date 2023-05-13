@@ -256,12 +256,7 @@ public class Controller {
 
         switch (opcao){
             case 1:
-                //todo fazer um submenu o para cliente e para o vendedor e depois de escolher um pergunta desde sempre ou num intervalo de tempo
-                LocalDate date1 = Input.getDate();
-                LocalDate date2 = Input.getDate();
-
-
-                this.estatisticas();
+                this.pTempo();
                 break;
             case 2:
                 //TODO "Transportadora com maior volume de faturação",
@@ -282,6 +277,26 @@ public class Controller {
                 break;
             case 0:
                 this.menuUtilizador();
+                break;
+        }
+    }
+
+    public void pTempo(){
+        int opcao = this.m.menu("Período", IO.opcoesMenuDesdeSemprePeriodo);
+
+        switch (opcao){
+            case 1:
+                //vintage;TODO VENDEDOR QUE MAIS FATUROU DESDE SEMPRE
+                this.estatisticas();
+                break;
+            case 2:
+                LocalDate data1 = Input.getDate();
+                LocalDate data2 = Input.getDate();
+                //vintage.TODO VENDEDOR QUE MAIS FATUROU NUM PERIODO DE TEMPO
+                this.estatisticas();
+                break;
+            case 0:
+                this.estatisticas();
                 break;
         }
     }
