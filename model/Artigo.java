@@ -16,7 +16,7 @@ public abstract class Artigo implements Serializable {
     private final String codigo;
     private double precoBase;
     private String emailUtilizador;
-    private Transportadora transportadora;
+    private int codTransportadora;
 
     //Construtores
 
@@ -32,12 +32,13 @@ public abstract class Artigo implements Serializable {
         codigo = "A" + numeroArtigosF();
         precoBase = 0;
         emailUtilizador = "";
+        codTransportadora = 0;
     }
 
     /**----------------------------------------------
               Construtor para um novo src.Artigo
      ----------------------------------------------**/
-    public Artigo(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,String emailUtilizador){
+    public Artigo(boolean novo,int numDonos ,int avaliacao, String descricao, double precoBase ,String emailUtilizador,int codTransportadora){
         this.avaliacao = avaliacao;
         incTotalArtigos();
         this.codigo ="A" + numeroArtigosF();
@@ -46,6 +47,7 @@ public abstract class Artigo implements Serializable {
         this.descricao = descricao;
         this.precoBase = precoBase;
         this.emailUtilizador = emailUtilizador;
+        this.codTransportadora = codTransportadora;
     }
 
     /**----------------------------------------------
@@ -60,6 +62,7 @@ public abstract class Artigo implements Serializable {
         this.codigo = artigo.getCodigo();
         this.precoBase = artigo.getPrecoBase();
         this.emailUtilizador = artigo.getEmailUtilizador();
+        this.codTransportadora = artigo.codTransportadora;
     }
 
 
@@ -91,8 +94,8 @@ public abstract class Artigo implements Serializable {
         return precoBase;
     }
 
-    public Transportadora getTransportadora(){
-        return transportadora;
+    public int getCodTransportadora(){
+        return codTransportadora;
     }
     /**----------------------------------------------
                         Setters
@@ -115,8 +118,8 @@ public abstract class Artigo implements Serializable {
     public void setEmailUtilizador(String emailUtilizador) {
         this.emailUtilizador = emailUtilizador;
     }
-    public void setTransportadora(Transportadora transportadora){
-        this.transportadora = transportadora;
+    public void setTransportadora(int codtransportadora){
+        this.codTransportadora = codtransportadora;
     }
 
     //Equals
@@ -146,7 +149,7 @@ public abstract class Artigo implements Serializable {
                 "\n    Descricao -> " + descricao +
                 "\n    precoBase -> " + precoBase + " € " +
                 "\n    Email do Dono -> " + emailUtilizador +
-                "\n    Tranpostador Associada -> " + transportadora +
+                "\n    Cod Tranpostador Associada -> " + codTransportadora +
                 '\n';
     }
 
