@@ -161,12 +161,13 @@ public class Vintage implements Serializable {
 
         while(!ok){
             codTransp = getCodigoTransportadora();
-            if (listaTransportadoras.existeTransportadora(codTransp))
+            if (listaTransportadoras.existeTransportadora(codTransp)) {
+                retorno.setTransportadora(codTransp);//todo ver esta linha
                 ok = true;
+            }
             else
                 out.println("Nao existe transportadora com o codigo "+codTransp);
         }
-        retorno.setTransportadora(codTransp);
         listaArtigos.addArtigo(retorno);
         userLigado.addArtigosPorVender(retorno);
         out.println("Sapatilha adicionada com sucesso");
@@ -200,20 +201,23 @@ public class Vintage implements Serializable {
 
         while(!ok){
             codTransp = getCodigoTransportadora();
-            if (listaTransportadoras.existeTransportadora(codTransp))
+            if (listaTransportadoras.existeTransportadora(codTransp)){
                 try {
-                    if (listaTransportadoras.getTransportadoraLista(codTransp) instanceof TransportadoraPremium)
+                    Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codTransp);
+                    if (transportadora instanceof TransportadoraPremium) {
                         ok = true;
-                    else
+                        out.println("ola");//todo aqui
+                        retorno.setTransportadora(codTransp);
+                    } else
                         out.println("Essa transportadora nao leva artigos premium");
-                }catch (TransportadoraNaoExiste e){
-                    IO.error("Transportadora premium com o codigo "+ codTransp +" nao existe.");
+                } catch (TransportadoraNaoExiste e) {
+                    IO.error("Transportadora premium com o codigo " + codTransp + " nao existe.");
                 }
+            }
             else
                 out.println("Nao existe transportadora premium com o codigo "+codTransp);
         }
 
-        retorno.setTransportadora(codTransp);
         listaArtigos.addArtigo(retorno);
         userLigado.addArtigosPorVender(retorno);
         out.println("Sapatilha premium adicionada com sucesso");
@@ -244,13 +248,14 @@ public class Vintage implements Serializable {
 
         while(!ok){
             codTransp = getCodigoTransportadora();
-            if (listaTransportadoras.existeTransportadora(codTransp))
+            if (listaTransportadoras.existeTransportadora(codTransp)) {
+                retorno.setTransportadora(codTransp);
                 ok = true;
+            }
             else
                 out.println("Nao existe transportadora com o codigo "+codTransp);
         }
 
-        retorno.setTransportadora(codTransp);
         listaArtigos.addArtigo(retorno);
         userLigado.addArtigosPorVender(retorno);
         out.println("Mala adicionada com sucesso");
@@ -284,8 +289,10 @@ public class Vintage implements Serializable {
             codTransp = getCodigoTransportadora();
             if (listaTransportadoras.existeTransportadora(codTransp)) {
                 try {
-                    if (listaTransportadoras.getTransportadoraLista(codTransp) instanceof TransportadoraPremium)
+                    if (listaTransportadoras.getTransportadoraLista(codTransp) instanceof TransportadoraPremium) {
+                        retorno.setTransportadora(codTransp);//todo problema aqui
                         ok = true;
+                    }
                     else
                         out.println("Essa transportadora nao leva artigos premium");
                 }catch (TransportadoraNaoExiste e){
@@ -296,7 +303,6 @@ public class Vintage implements Serializable {
                 out.println("Nao existe transportadora com o codigo "+codTransp);
         }
 
-        retorno.setTransportadora(codTransp);
         listaArtigos.addArtigo(retorno);
         userLigado.addArtigosPorVender(retorno);
         out.println("Mala premium adicionada com sucesso");
@@ -327,8 +333,10 @@ public class Vintage implements Serializable {
 
         while(!ok){
             codTransp = getCodigoTransportadora();
-            if (listaTransportadoras.existeTransportadora(codTransp))
+            if (listaTransportadoras.existeTransportadora(codTransp)) {
+                retorno.setTransportadora(codTransp);
                 ok = true;
+            }
             else
                 out.println("Nao existe transportadora com o codigo "+codTransp);
         }
