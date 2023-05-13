@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import java.util.*;
 
+import static java.lang.System.out;
+
 public class ListaFaturas implements Serializable {
     private final Map<Integer, List<FaturaVendedor>> listaFaturasVenderores;
 
@@ -171,19 +173,25 @@ public class ListaFaturas implements Serializable {
         return faturaVendedors;
     }
 
-    public Map<String,Double> getAllFaturasVendedorOrdenar(){
+    public void getAllFaturasVendedorOrdenar(){
         Map<String,Double> retorno = new HashMap<>();
 
         for (Integer a : listaFaturasVenderores.keySet()) {
             for (FaturaVendedor b : listaFaturasVenderores.get(a)){
                 if(retorno.containsKey(b.getVendedor().getEmail()))
                     retorno.put(b.getVendedor().getEmail(),(retorno.get(b.getVendedor().getEmail()) + b.getPreco()));
-
                 else
                     retorno.put(b.getVendedor().getEmail(),b.getPreco());
             }
         }
-        return retorno;
+
+        List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
+        listaOrdenada.sort(Map.Entry.comparingByValue());
+
+        for (Map.Entry<String,Double> entrada:listaOrdenada){
+            out.println("Email cliente: " +entrada.getKey() + " dinheiro gasto: "+entrada.getValue());
+        }
     }
+
 
 }
