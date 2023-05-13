@@ -23,6 +23,6 @@ public class MalaPremium extends Mala implements Premium {
     }
     @Override
     public MalaPremium clone() {
-        return new MalaPremium();
+        return new MalaPremium(this);
     }
 }
