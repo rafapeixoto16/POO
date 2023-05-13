@@ -55,6 +55,7 @@ public class IO {
             "Criar Transportadora",
             "Listar Transportadoras",
             "Alterar Imposto de Transportadorta",
+            "Alterar Fórmula para Custo de Expedição de Transportadora"
     };
 
     public static final String[] opcoesMenuCriarTransportadora = {

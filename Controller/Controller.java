@@ -209,6 +209,10 @@ public class Controller {
                 vintage.alterarImposto();
                 this.transportadoras();
                 break;
+            case 4:
+                //vintage. todo funcao para alterar a formula da transportadora
+                this.transportadoras();
+                break;
             case 0:
                 this.menuUtilizador();
                 break;
