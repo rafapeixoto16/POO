@@ -1,11 +1,13 @@
 package model;
 
 import Exceptions.*;
+import View.IO;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static View.Input.*;
@@ -135,6 +137,11 @@ public class Vintage implements Serializable {
     }
 
     public void criaSapatilha() {
+        if(listaTransportadoras.getTransportadorasList().isEmpty()){
+            IO.error("Nao existem transportadoras disponiveis para adicionar artigos.");
+            return;
+        }
+
         Sapatilha retorno = new Sapatilha();
 
         retorno.setNovo(getNovo());
@@ -148,12 +155,38 @@ public class Vintage implements Serializable {
         retorno.setCor(getCor());
         retorno.setEmailUtilizador(userLigado.getEmail());
 
-        listaArtigos.addArtigo(retorno);
-        userLigado.addArtigosPorVender(retorno);
-        out.println("Sapatilha adicionada com sucesso");
+        out.println();
+        listaTransportadoras();
+
+        boolean ok = false;
+        int codTransp = -1;
+
+        while(!ok){
+            codTransp = getCodigoTransportadora();
+            if (listaTransportadoras.existeTransportadora(codTransp))
+                ok = true;
+            else
+                out.println("Nao existe transportadora com o codigo "+codTransp);
+        }
+        try {
+            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp));
+            listaArtigos.addArtigo(retorno);
+            userLigado.addArtigosPorVender(retorno);
+            out.println("Sapatilha adicionada com sucesso");
+
+        }
+        catch (TransportadoraNaoExiste e){
+            IO.error("Ups ocurreu um erro...");
+        }
+
     }
 
     public void criaSapatilhaPremium() {
+        if(existeTranspPremium()){
+            IO.error("Nao existem transportadoras premium disponiveis para adicionar artigos.");
+            return;
+        }
+
         SapatilhaPremium retorno = new SapatilhaPremium();
 
         retorno.setNovo(getNovo());
@@ -167,12 +200,44 @@ public class Vintage implements Serializable {
         retorno.setCor(getCor());
         retorno.setEmailUtilizador(userLigado.getEmail());
 
-        listaArtigos.addArtigo(retorno);
-        userLigado.addArtigosPorVender(retorno);
-        out.println("Sapatilha premium adicionada com sucesso");
+        out.println();
+        listaTransportadoras();//todo so transportadora premium
+
+        boolean ok = false;
+        int codTransp = -1;
+
+        while(!ok){
+            codTransp = getCodigoTransportadora();
+            if (listaTransportadoras.existeTransportadora(codTransp))
+                try {
+                    if (listaTransportadoras.getTransportadoraLista(codTransp) instanceof TransportadoraPremium)
+                        ok = true;
+                    else
+                        out.println("Essa transportadora nao leva artigos premium");
+                }catch (TransportadoraNaoExiste e){
+                    IO.error("Transportadora premium com o codigo "+ codTransp +" nao existe.");
+                }
+            else
+                out.println("Nao existe transportadora premium com o codigo "+codTransp);
+        }
+
+        try {
+            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp));
+            listaArtigos.addArtigo(retorno);
+            userLigado.addArtigosPorVender(retorno);
+            out.println("Sapatilha premium adicionada com sucesso");
+
+        }
+        catch (TransportadoraNaoExiste e){
+            IO.error("Ups ocurreu um erro...");
+        }
     }
 
     public void criaMala() {
+        if(listaTransportadoras.getTransportadorasList().isEmpty()){
+            IO.error("Nao existem transportadoras disponiveis para adicionar artigos.");
+            return;
+        }
         Mala retorno = new Mala();
 
         retorno.setNovo(getNovo());
@@ -185,12 +250,38 @@ public class Vintage implements Serializable {
         retorno.setAno_colecao(getAno_colecao());//todo alterar o getano_colecao
         retorno.setEmailUtilizador(userLigado.getEmail());
 
-        listaArtigos.addArtigo(retorno);
-        userLigado.addArtigosPorVender(retorno);
-        out.println("Mala adicionada com sucesso");
+        out.println();
+        listaTransportadoras();
+
+        boolean ok = false;
+        int codTransp = -1;
+
+        while(!ok){
+            codTransp = getCodigoTransportadora();
+            if (listaTransportadoras.existeTransportadora(codTransp))
+                ok = true;
+            else
+                out.println("Nao existe transportadora com o codigo "+codTransp);
+        }
+
+        try {
+            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp));
+            listaArtigos.addArtigo(retorno);
+            userLigado.addArtigosPorVender(retorno);
+            out.println("Mala adicionada com sucesso");
+
+        }
+        catch (TransportadoraNaoExiste e){
+            IO.error("Ups ocurreu um erro...");
+        }
     }
 
     public void criaMalaPremium() {
+        if(existeTranspPremium()){
+            IO.error("Nao existem transportadoras premium disponiveis para adicionar artigos.");
+            return;
+        }
+
         MalaPremium retorno = new MalaPremium();
 
         retorno.setNovo(getNovo());
@@ -203,12 +294,46 @@ public class Vintage implements Serializable {
         retorno.setAno_colecao(getAno_colecao());//todo alterar o getano_colecao
         retorno.setEmailUtilizador(userLigado.getEmail());
 
-        listaArtigos.addArtigo(retorno);
-        userLigado.addArtigosPorVender(retorno);
-        out.println("Mala premium adicionada com sucesso");
+        out.println();
+        listaTransportadorasPremium();
+
+        boolean ok = false;
+        int codTransp = -1;
+
+        while(!ok){
+            codTransp = getCodigoTransportadora();
+            if (listaTransportadoras.existeTransportadora(codTransp)) {
+                try {
+                    if (listaTransportadoras.getTransportadoraLista(codTransp) instanceof TransportadoraPremium)
+                        ok = true;
+                    else
+                        out.println("Essa transportadora nao leva artigos premium");
+                }catch (TransportadoraNaoExiste e){
+                    IO.error("Transportadora com o codigo "+ codTransp +" nao existe.");
+                }
+            }
+            else
+                out.println("Nao existe transportadora com o codigo "+codTransp);
+        }
+
+        try {
+            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp));
+            listaArtigos.addArtigo(retorno);
+            userLigado.addArtigosPorVender(retorno);
+            out.println("Mala premium adicionada com sucesso");
+
+        }
+        catch (TransportadoraNaoExiste e){
+            IO.error("Ups ocurreu um erro...");
+        }
     }
 
     public void criaTShirt() {
+        if(listaTransportadoras.getTransportadorasList().isEmpty()){
+            IO.error("Nao existem transportadoras disponiveis para adicionar artigos.");
+            return;
+        }
+
         TShirt retorno = new TShirt();
 
         retorno.setNovo(getNovo());
@@ -220,25 +345,44 @@ public class Vintage implements Serializable {
         retorno.setPadrao(getPadrao());
         retorno.setEmailUtilizador(userLigado.getEmail());
 
-        listaArtigos.addArtigo(retorno);
-        userLigado.addArtigosPorVender(retorno);
-        out.println("Tshirt adicionada com sucesso");
+        out.println();
+        listaTransportadoras();
+
+        boolean ok = false;
+        int codTransp = -1;
+
+        while(!ok){
+            codTransp = getCodigoTransportadora();
+            if (listaTransportadoras.existeTransportadora(codTransp))
+                ok = true;
+            else
+                out.println("Nao existe transportadora com o codigo "+codTransp);
+        }
+        try {
+            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp));
+            listaArtigos.addArtigo(retorno);
+            userLigado.addArtigosPorVender(retorno);
+            out.println("Tshirt adicionada com sucesso");
+
+        }
+        catch (TransportadoraNaoExiste e){
+            IO.error("Ups ocurreu um erro...");
+        }
     }
 
 
     public void criaEncomenda() {
         try{
-            if(listaTransportadoras.getTransportadorasList().isEmpty()){
-                out.println("Nao existem transportadoras");
+            if(listaArtigos.getArtigosList().isEmpty()){
+                out.println("Nao existem artigos listados.");
                 return;
             }
 
             Encomenda encomenda = new Encomenda();
             encomenda.setEmailUtilizadorCompra(userLigado.getEmail());
-            String artigoString;
-            int codigoTransportadora;
-            List<String> usuarios = new ArrayList<>();
+            String artigoString = "";
 
+            List<String> usuarios = new ArrayList<>();
             out.println(listaArtigos.toString());
 
             do {
@@ -249,29 +393,13 @@ public class Vintage implements Serializable {
                 if (!artigoString.equals("concluida")){
                     try {
                         Artigo artigo = listaArtigos.getArtigoLista(artigoString);
+
                         if(!artigo.getEmailUtilizador().equals(userLigado.getEmail())) {
                             usuarios.add(artigo.getEmailUtilizador());
-
-                            if(!listaTransportadoras.getTransportadorasList().isEmpty()) {
-                                listaTransportadoras();
-
-                                out.println("Insira o codigo da transportadora");
-                                codigoTransportadora = getInt();
-
-                                try {
-                                    Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
-                                    encomenda.addEncomenda(transportadora, artigo);
-                                    listaUtilizadores.getUtilizadores().get(artigo.getEmailUtilizador()).addArtigosVendidos(artigo);
-                                    listaUtilizadores.getUtilizadores().get(artigo.getEmailUtilizador()).removeArtigosPorVender(artigo);
-                                    listaArtigos.removeArtigo(artigoString);//todo verificar isto
-
-                                }
-                                catch (TransportadoraNaoExiste e) {
-                                    out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
-                                }
-
-                            }else
-                                out.println("De momento nao existem transportadoras");
+                            encomenda.addEncomenda(artigo.getTransportadora(), artigo);
+                            listaUtilizadores.getUtilizadores().get(artigo.getEmailUtilizador()).addArtigosVendidos(artigo);
+                            listaUtilizadores.getUtilizadores().get(artigo.getEmailUtilizador()).removeArtigosPorVender(artigo);
+                            listaArtigos.removeArtigo(artigoString);
                         }
                         else
                             out.println("O artigo é seu.");
@@ -281,13 +409,13 @@ public class Vintage implements Serializable {
                     }
                 }
             }while (!artigoString.equals("concluida"));
-
             out.println("Encomenda criada com sucesso.");
 
             addDinheiroGanho(encomenda.calculaPercentagemVintage());
 
-            userLigado.adicionaEncomendasUtilizador(encomenda);//todo verificar se esta a adicionar
             encomenda.setPrecoTotal(encomenda.calculaPrecoEncomenda());
+
+            userLigado.adicionaEncomendasUtilizador(encomenda);//todo verificar se esta a adicionar
 
             FaturaCliente faturaCliente = new FaturaCliente();
             faturaCliente.setPreco(encomenda.getPrecoTotal());
@@ -306,22 +434,22 @@ public class Vintage implements Serializable {
 
             listaEncomendas.addEncomenda(encomenda);
         }
+
         catch (EncomendaJaExistente e){
             out.println("Essa encomenda ja existe");
         }
     }
     public void cancelaEncomenda(int codigoEncomenda) {
         try{
-            //todo adicionar os artigos a lista de artigos outra vez ect
             Encomenda encomendaACancelar = listaEncomendas.getEncomendaLista(codigoEncomenda);
-            if(userLigado.encomendaUtilizador(encomendaACancelar)) {
+            if(userLigado.encomendaUtilizador(encomendaACancelar)){
                 if (encomendaACancelar.validoCancelamentoEncomenda()) {
                     List<Artigo> artigos = encomendaACancelar.getArtigos();
 
                     for (Artigo a : artigos) {
                         Utilizador dono = listaUtilizadores.getUtilizador(a.getEmailUtilizador());
                         dono.cancelaVenda(a);
-
+                        listaArtigos.addArtigo(a);
                     }
 
                     userLigado.removeEncomendasUtilizador(encomendaACancelar);
@@ -329,9 +457,9 @@ public class Vintage implements Serializable {
 
                     listaFaturas.removeFaturaCliente(encomendaACancelar.getCodEnc());
 
-                    //todo altera ir
                     listaFaturas.removeFaturaVendedor(encomendaACancelar.getCodEnc());
                     out.println("Encomenda cancelada com sucesso");
+
                 } else
                     out.println("Essa encomenda ja foi / começou a ser entregue.");
             }
@@ -486,7 +614,35 @@ public class Vintage implements Serializable {
         out.println(sb);
     }
 
+    public void listaTransportadorasPremium() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Transportadora a : listaTransportadoras.getTransportadorasList()) {
+            if (a instanceof TransportadoraPremium)
+                sb.append(a.toString());//todo testar
+        }
+
+        out.println(sb);
+    }
+
+    public boolean existeTranspPremium(){
+        boolean retorno = false;
+        Iterator<Transportadora> a = listaTransportadoras.getTransportadorasList().iterator();
+        Transportadora b;
+
+        while(a.hasNext() && !retorno){
+            b = a.next();
+            retorno = b instanceof TransportadoraPremium;
+        }
+
+        return retorno;
+    }
+
+
     public void calculaVendas(){
 
     }
+
+
+
 }

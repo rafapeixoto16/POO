@@ -25,7 +25,7 @@ public class Encomenda implements Serializable {
     private boolean estado;
     private LocalDate dataEncomenda;
     private String emailUtilizadorCompra;
-    private final Map<Transportadora, List<Artigo> > encomenda;
+    private final Map<Transportadora, List<Artigo>> encomenda;
 
 
     public List<Artigo> getArtigos (){
@@ -228,19 +228,23 @@ public class Encomenda implements Serializable {
 
         for (Transportadora a : itens){
             List<Artigo> artigos = this.getLista(a);
+            double valorTranps = calculaTransp();
             for (Artigo b : artigos)
-                retorno += b.calculaPrecoFinal() * a.getImposto() + b.calculaPrecoFinal();
+                retorno +=  + b.calculaPrecoFinal();
         }
         return retorno;
     }
 
     public boolean validoCancelamentoEncomenda(){
-        List<Transportadora> encomendaList = this.encomenda.keySet().stream().toList();
         boolean retorno = true;
 
-        for (Transportadora a : encomendaList){
-            if(ChronoUnit.DAYS.between(Vintage.dataAtual(),this.dataEncomenda) > a.getDiasEntrega())
-                return false;
+        Iterator<Transportadora> it = encomenda.keySet().iterator();
+        Transportadora b;
+
+        while (it.hasNext()  && retorno){
+            b = it.next();
+            if(ChronoUnit.DAYS.between(Vintage.dataAtual(),this.dataEncomenda) > b.getDiasEntrega() + 2)
+                retorno = false;
         }
 
         return retorno;
