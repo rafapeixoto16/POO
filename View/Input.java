@@ -395,7 +395,9 @@ public class Input {
     }
 
     public static int getFormulaTransportacao() {
-        //todo anao print formulas;
+        out.print("(Valor Base * Margem de Lucro + (1 + Imposto)) * 0.85 <- 3\n");
+        out.print("Valor Base + Margem de Lucro * (1 + Imposto)          <- 2\n");
+        out.print("(Valor Base * Margem de Lucro * (1 + Imposto)) * 0.9  <- 1\n");
 
         out.print("Formula escolhida: ");
         int f = -1;
