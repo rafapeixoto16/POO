@@ -7,7 +7,6 @@ public class MalaPremium extends Mala implements Premium {
     public MalaPremium(){
         super();
     }
-
     public MalaPremium(MalaPremium malaPremium){
         super(malaPremium);
     }

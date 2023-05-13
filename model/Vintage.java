@@ -167,7 +167,7 @@ public class Vintage implements Serializable {
                 out.println("Nao existe transportadora com o codigo "+codTransp);
         }
         try {
-            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp));
+            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp).clone());
             listaArtigos.addArtigo(retorno);
             userLigado.addArtigosPorVender(retorno);
             out.println("Sapatilha adicionada com sucesso");
@@ -220,7 +220,7 @@ public class Vintage implements Serializable {
         }
 
         try {
-            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp));
+            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp).clone());
             listaArtigos.addArtigo(retorno);
             userLigado.addArtigosPorVender(retorno);
             out.println("Sapatilha premium adicionada com sucesso");
@@ -263,7 +263,7 @@ public class Vintage implements Serializable {
         }
 
         try {
-            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp));
+            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp).clone());
             listaArtigos.addArtigo(retorno);
             userLigado.addArtigosPorVender(retorno);
             out.println("Mala adicionada com sucesso");
@@ -315,7 +315,7 @@ public class Vintage implements Serializable {
         }
 
         try {
-            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp));
+            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp).clone());
             listaArtigos.addArtigo(retorno);
             userLigado.addArtigosPorVender(retorno);
             out.println("Mala premium adicionada com sucesso");
@@ -357,7 +357,7 @@ public class Vintage implements Serializable {
                 out.println("Nao existe transportadora com o codigo "+codTransp);
         }
         try {
-            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp));
+            retorno.setTransportadora(listaTransportadoras.getTransportadoraLista(codTransp).clone());
             listaArtigos.addArtigo(retorno);
             userLigado.addArtigosPorVender(retorno);
             out.println("Tshirt adicionada com sucesso");
@@ -778,6 +778,18 @@ public class Vintage implements Serializable {
 
         return retorno;
     }
+
+    public void alteraFormulaTransportadora(int codigo){
+        if (listaTransportadoras.existeTransportadora(codigo)){
+
+
+            return;
+        }
+        IO.error("Nao existem transportadoras com o codigo "+codigo);
+
+    }
+
+
 
     public void calculaVendas(){
 
