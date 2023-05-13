@@ -25,7 +25,7 @@ public class Transportadora implements Serializable {
         opcaoFormula = 0;
     }
 
-    public Transportadora (int imposto, int margemLucro){
+    public Transportadora (int imposto, int margemLucro,int opcaoFormula){
         incTotalTransp();
         codTransportadora = numeroTransp();
         this.imposto = imposto;

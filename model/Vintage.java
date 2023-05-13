@@ -483,6 +483,12 @@ public class Vintage implements Serializable {
             int dias = getDias();
             transportadora.setDiasEntrega(dias);
 
+            int formulaTransportacao = getFormulaTransportacao();
+            transportadora.setOpcaoFormula(formulaTransportacao);
+
+            int margemLucro = getMargemLucro();
+            transportadora.setMargemLucro(margemLucro);
+
             listaTransportadoras.addTransportadora(transportadora);
             out.println("Transportadora criada com sucesso");
         }
@@ -579,37 +585,26 @@ public class Vintage implements Serializable {
         out.println(sb);
     }
 
-    public void listarEncomendaUser(String codigo){ //todo é um vendedor
-        ArrayList<String> strings = new ArrayList<>();
+    public void listarEncomendaUser(String codigo){
+        ArrayList <Integer> codEncomendas = new ArrayList<>();
         if(listaUtilizadores.existeUtilizador(codigo)){
-            //faturas todas as keys ver se na lista tem o email do vendedor se tiver add lista e nao continuar.
-
-
-        }
-
-
-        if(listaUtilizadores.existeUtilizador(codigo)){
-            List<Integer> codArtigos = listaUtilizadores.getUtilizador(codigo).retornaCodigoEncomendaUser();
-
+            for(Integer j :listaFaturas.getListaFaturasVenderores().keySet()){
+                for(FaturaVendedor b :listaFaturas.getListaFaturasVenderores().get(j)){
+                    if(b.getVendedor().getEmail().equals(codigo))
+                        codEncomendas.add(b.getEncomenda().getCodEnc());
+                }
+            }
             StringBuilder sb = new StringBuilder();
 
-            for (int a : codArtigos) {
-                try {
-                    Encomenda encomenda = listaEncomendas.getEncomendaLista(a);
-                    sb.append(encomenda.toString());
-                } catch (EncomendaNaoExiste e) {
-                    out.println("Ups ocurreu um erro...");
-                }
+            for (int a : codEncomendas){
+                sb.append(a);
+                sb.append("\n");
             }
 
             out.println(sb);
+            return;
         }
-        else {
-            IO.error("Nao existe um utilizador com o email "+ codigo);
-        }
-
-
-
+        IO.error("Nao existe um utilizador com o email "+ codigo);
     }
 
 
@@ -673,35 +668,10 @@ public class Vintage implements Serializable {
         return retorno;
     }
 
-    public void getAllFaturasClienteTopOrdenar(LocalDate inicio,LocalDate fim) {
-        Map<String,Double> retorno = new HashMap<>();
-
-        for (Integer a : listaFaturas.getListaFaturasClientes().keySet()) {/
-            try {
-                if(listaEncomendas.getEncomendaLista(a).getDataEncomenda().isBefore(fim) && listaEncomendas.getEncomendaLista(a).getDataEncomenda().isAfter(inicio)) {
-                    for (FaturaCliente b : listaFaturas.getListaFaturasClientes().get(a)) {
-
-                        if (retorno.containsKey(b.getCliente().getEmail()))
-                            retorno.put(b.getCliente().getEmail(), (retorno.get(b.getCliente().getEmail()) + b.getPreco()));
-                        else
-                            retorno.put(b.getCliente().getEmail(), b.getPreco());
-                    }
-                }
-            }catch (EncomendaNaoExiste ignored){}
-        }
-
-        List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
-        listaOrdenada.sort(Map.Entry.comparingByValue());
-
-        Map.Entry<String,Double> entrada = listaOrdenada.get(0);
-        out.println("Cliente que mais gastou : \n");
-        out.println("Inicio "+ inicio + "\nFim "+ fim + "\n Email cliente: "+ entrada.getKey() + " dinheiro gasto: " + entrada.getValue());
-    }
-
     public void getAllFaturasClienteOrdenar(LocalDate inicio,LocalDate fim) {
         Map<String,Double> retorno = new HashMap<>();
 
-        for (Integer a : listaFaturas.getListaFaturasClientes().keySet()) {/
+        for (Integer a : listaFaturas.getListaFaturasClientes().keySet()) {
             try {
                 if(listaEncomendas.getEncomendaLista(a).getDataEncomenda().isBefore(fim) && listaEncomendas.getEncomendaLista(a).getDataEncomenda().isAfter(inicio)) {
                     for (FaturaCliente b : listaFaturas.getListaFaturasClientes().get(a)) {
@@ -738,10 +708,34 @@ public class Vintage implements Serializable {
         List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
         listaOrdenada.sort(Map.Entry.comparingByValue());
 
-        for (Map.Entry<String,Double> entrada:listaOrdenada)
-            out.println("Email vendedor: " +entrada.getKey() + " dinheiro ganho: "+entrada.getValue());
+        Map.Entry<String,Double> entrada = listaOrdenada.get(0);
+        out.println("Email vendedor: " +entrada.getKey() + " dinheiro ganho: "+entrada.getValue());
+    }
+
+    public void getAllFaturasVendedorTopOrdenar(LocalDate inicio,LocalDate fim){
+        Map<String,Double> retorno = new HashMap<>();
+
+        for (Integer a : listaFaturas.getListaFaturasVenderores().keySet()) {
+            try {
+                if(listaEncomendas.getEncomendaLista(a).getDataEncomenda().isBefore(fim) && listaEncomendas.getEncomendaLista(a).getDataEncomenda().isAfter(inicio)) {
+                    for (FaturaVendedor b : listaFaturas.getListaFaturasVenderores().get(a)) {
+                        if (retorno.containsKey(b.getVendedor().getEmail()))
+                            retorno.put(b.getVendedor().getEmail(), (retorno.get(b.getVendedor().getEmail()) + b.getPreco()));
+                        else
+                            retorno.put(b.getVendedor().getEmail(), b.getPreco());
+                    }
+                }
+            }catch (EncomendaNaoExiste ignored){}
+        }
+
+        List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
+        listaOrdenada.sort(Map.Entry.comparingByValue());
+
+        Map.Entry<String,Double> entrada = listaOrdenada.get(0);
+        out.println("Email vendedor: " +entrada.getKey() + " dinheiro ganho: "+entrada.getValue());
 
     }
+
 
     public void getAllFaturasVendedorOrdenar(LocalDate inicio,LocalDate fim){
         Map<String,Double> retorno = new HashMap<>();
@@ -765,6 +759,16 @@ public class Vintage implements Serializable {
         for (Map.Entry<String,Double> entrada:listaOrdenada){
             out.println("Email vendedor: " +entrada.getKey() + " dinheiro gasto: "+entrada.getValue());
         }
+    }
+
+    public double calculaListaArtigosPreco(List<Artigo> artigos){
+        double retorno = 0;
+
+        for (Artigo a : artigos){
+            retorno += a.calculaPrecoFinal();
+        }
+
+        return retorno;
     }
 
     public void calculaVendas(){

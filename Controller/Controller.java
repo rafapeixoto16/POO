@@ -264,13 +264,18 @@ public class Controller {
                 break;
             case 3:
                 //TODO "Listar as encomendas emitidas por um vendedor"
-                this.estatisticas();
+                String email = Input.getEmail();
+                this.vintage.listarEncomendaUser(email);
                 break;
             case 4:
-                this.vintage.getAllFaturasClienteOrdenar();
+                LocalDate data = Input.getDate("Insira uma data de inicio");
+                LocalDate date1 = Input.getDate("Insira a data termino");
+                this.vintage.getAllFaturasClienteOrdenar(data,date1);
                 break;
             case 5:
-                this.vintage.getAllFaturasVendedorOrdenar();
+                LocalDate data2 = Input.getDate("Insira uma data de inicio");
+                LocalDate date3 = Input.getDate("Insira a data termino");
+                this.vintage.getAllFaturasVendedorOrdenar(data2,date3);
                 break;
             case 6:
                 out.println(Vintage.getDinheiroGanho());
@@ -286,13 +291,13 @@ public class Controller {
 
         switch (opcao){
             case 1:
-                //vintage;TODO VENDEDOR QUE MAIS FATUROU DESDE SEMPRE
+                this.vintage.getAllFaturasVendedorTopOrdenar();
                 this.estatisticas();
                 break;
             case 2:
-                LocalDate data1 = Input.getDate();
-                LocalDate data2 = Input.getDate();
-                //vintage.TODO VENDEDOR QUE MAIS FATUROU NUM PERIODO DE TEMPO
+                LocalDate data1 = Input.getDate("Insira a data de inicio.");
+                LocalDate data2 = Input.getDate("Insira a data de termino.");
+                this.vintage.getAllFaturasVendedorTopOrdenar(data1,data2);
                 this.estatisticas();
                 break;
             case 0:

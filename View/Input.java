@@ -120,7 +120,9 @@ public class Input {
         return option;
     }
 
-    public static LocalDate getDate() {
+    public static LocalDate getDate(String print) {
+
+        out.println(print);
         LocalDate date = null;
         boolean valid = false;
 
@@ -405,6 +407,21 @@ public class Input {
                 ok = true;
             else
                 IO.error("Nao existe uma formula com esse valor\n");
+        }
+        return f;
+    }
+
+    public static int getMargemLucro(){
+        out.print("Insira a margem de lucro: ");
+        int f = -1;
+        boolean ok = false;
+
+        while (!ok){
+            f = Input.getInt();
+            if(f>=0)
+                ok = true;
+            else
+                out.println("As transportadoras so aceitam margem de lucro positivas");
         }
         return f;
     }

@@ -79,5 +79,4 @@ public class ListaArtigos implements Serializable {
         ListaArtigos umArtigo = (ListaArtigos) o;
         return this.getArtigosList().equals(umArtigo.getArtigosList());
     }
-
 }
