@@ -262,6 +262,9 @@ public class Vintage implements Serializable {
                                     Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codigoTransportadora);
                                     encomenda.addEncomenda(transportadora, artigo);
                                     listaUtilizadores.getUtilizadores().get(artigo.getEmailUtilizador()).addArtigosVendidos(artigo);
+                                    listaUtilizadores.getUtilizadores().get(artigo.getEmailUtilizador()).removeArtigosPorVender(artigo);
+                                    listaArtigos.removeArtigo(artigoString);//todo verificar isto
+
                                 }
                                 catch (TransportadoraNaoExiste e) {
                                     out.println("Nao existe uma transportadora com codigo " + codigoTransportadora);
@@ -309,6 +312,7 @@ public class Vintage implements Serializable {
     }
     public void cancelaEncomenda(int codigoEncomenda) {
         try{
+            //todo adicionar os artigos a lista de artigos outra vez ect
             Encomenda encomendaACancelar = listaEncomendas.getEncomendaLista(codigoEncomenda);
             if(userLigado.encomendaUtilizador(encomendaACancelar)) {
                 if (encomendaACancelar.validoCancelamentoEncomenda()) {
@@ -317,6 +321,7 @@ public class Vintage implements Serializable {
                     for (Artigo a : artigos) {
                         Utilizador dono = listaUtilizadores.getUtilizador(a.getEmailUtilizador());
                         dono.cancelaVenda(a);
+
                     }
 
                     userLigado.removeEncomendasUtilizador(encomendaACancelar);
@@ -331,7 +336,7 @@ public class Vintage implements Serializable {
                     out.println("Essa encomenda ja foi / começou a ser entregue.");
             }
             else
-                out.println("A encomenda com codigo "+codigoEncomenda+" nao lhe pertence.");
+                out.println("A encomenda com codigo "+ codigoEncomenda +" nao lhe pertence.");
 
         }
         catch (EncomendaNaoExiste e) {
