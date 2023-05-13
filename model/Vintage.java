@@ -579,6 +579,30 @@ public class Vintage implements Serializable {
         out.println(sb);
     }
 
+    public void listarEncomendaUser(String codigo){
+        if(listaUtilizadores.existeUtilizador(codigo)){
+            List<Integer> codArtigos = listaUtilizadores.getUtilizador(codigo).retornaCodigoEncomendaUser();
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int a : codArtigos) {
+                try {
+                    Encomenda encomenda = listaEncomendas.getEncomendaLista(a);
+                    sb.append(encomenda.toString());
+                } catch (EncomendaNaoExiste e) {
+                    out.println("Ups ocurreu um erro...");
+                }
+            }
+
+            out.println(sb);
+            return;
+        }
+        else {
+            IO.error("Nao existe um utilizador com o email "+ codigo);
+        }
+    }
+
+
     public void listaFaturasComprado(){
         StringBuilder sb = new StringBuilder();
         List<Integer> codEncomendas = userLigado.retornaCodigoEncomendaUser();
@@ -642,7 +666,7 @@ public class Vintage implements Serializable {
     public void getAllFaturasClienteOrdenar(LocalDate inicio,LocalDate fim) {
         Map<String,Double> retorno = new HashMap<>();
 
-        for (Integer a : listaFaturas.getListaFaturasClientes().keySet()) {//todo alterar
+        for (Integer a : listaFaturas.getListaFaturasClientes().keySet()) {/
             try {
                 if(listaEncomendas.getEncomendaLista(a).getDataEncomenda().isBefore(fim) && listaEncomendas.getEncomendaLista(a).getDataEncomenda().isAfter(inicio)) {
                     for (FaturaCliente b : listaFaturas.getListaFaturasClientes().get(a)) {
@@ -664,6 +688,67 @@ public class Vintage implements Serializable {
         Map.Entry<String,Double> entrada = listaOrdenada.get(0);
         out.println("Cliente que mais gastou : \n");
         out.println("Inicio "+ inicio + "\nFim "+ fim + "\n Email cliente: "+ entrada.getKey() + " dinheiro gasto: " + entrada.getValue());
+    }
+
+
+    public void getAllFaturasVendedorOrdenar(){
+        Map<String,Double> retorno = new HashMap<>();
+
+        for (Integer a : listaFaturas.getListaFaturasVenderores().keySet()) {
+            for (FaturaVendedor b : listaFaturas.getListaFaturasVenderores().get(a)){
+                if(retorno.containsKey(b.getVendedor().getEmail()))
+                    retorno.put(b.getVendedor().getEmail(),(retorno.get(b.getVendedor().getEmail()) + b.getPreco()));
+                else
+                    retorno.put(b.getVendedor().getEmail(),b.getPreco());
+            }
+        }
+
+        List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
+        listaOrdenada.sort(Map.Entry.comparingByValue());
+
+        for (Map.Entry<String,Double> entrada:listaOrdenada){
+            out.println("Email vendedor: " +entrada.getKey() + " dinheiro gasto: "+entrada.getValue());
+        }
+    }
+
+    public void getAllFaturasVendedorOrdenar(LocalDate inicio,LocalDate fim){
+        Map<String,Double> retorno = new HashMap<>();
+
+        for (Integer a : listaFaturas.getListaFaturasVenderores().keySet()) {
+            for (FaturaVendedor b : listaFaturas.getListaFaturasVenderores().get(a)){
+                if(retorno.containsKey(b.getVendedor().getEmail()))
+                    retorno.put(b.getVendedor().getEmail(),(retorno.get(b.getVendedor().getEmail()) + b.getPreco()));
+                else
+                    retorno.put(b.getVendedor().getEmail(),b.getPreco());
+            }
+        }
+
+        List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
+        listaOrdenada.sort(Map.Entry.comparingByValue());
+
+        for (Map.Entry<String,Double> entrada:listaOrdenada){
+            out.println("Email vendedor: " +entrada.getKey() + " dinheiro gasto: "+entrada.getValue());
+        }
+    }
+
+    public void getAllFaturasClienteOrdenar() {
+        Map<String,Double> retorno = new HashMap<>();
+
+        for (Integer a : listaFaturasClientes.keySet()) {
+            for (FaturaCliente b : listaFaturasClientes.get(a)){
+                if(retorno.containsKey(b.getCliente().getEmail()))
+                    retorno.put(b.getCliente().getEmail(),(retorno.get(b.getCliente().getEmail()) + b.getPreco()));
+                else
+                    retorno.put(b.getCliente().getEmail(),b.getPreco());
+            }
+        }
+
+        List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
+        listaOrdenada.sort(Map.Entry.comparingByValue());
+
+        Map.Entry<String,Double> entrada = listaOrdenada.get(0);
+        out.println("Cliente que mais gastou desde sempre : \n");
+        out.println("Email cliente: "+ entrada.getKey() + " dinheiro gasto: " + entrada.getValue());
     }
 
 

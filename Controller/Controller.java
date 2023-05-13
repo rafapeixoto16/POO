@@ -267,10 +267,10 @@ public class Controller {
                 this.estatisticas();
                 break;
             case 4:
-                this.vintage.getListaFaturas().getAllFaturasClienteOrdenar();
+                this.vintage.getAllFaturasClienteOrdenar();
                 break;
             case 5:
-                this.vintage.getListaFaturas().getAllFaturasVendedorOrdenar();
+                this.vintage.getAllFaturasVendedorOrdenar();
                 break;
             case 6:
                 out.println(Vintage.getDinheiroGanho());

@@ -181,45 +181,4 @@ public class ListaFaturas implements Serializable {
         }
         return faturaVendedors;
     }
-
-    public void getAllFaturasVendedorOrdenar(){
-        Map<String,Double> retorno = new HashMap<>();
-
-        for (Integer a : listaFaturasVenderores.keySet()) {
-            for (FaturaVendedor b : listaFaturasVenderores.get(a)){
-                if(retorno.containsKey(b.getVendedor().getEmail()))
-                    retorno.put(b.getVendedor().getEmail(),(retorno.get(b.getVendedor().getEmail()) + b.getPreco()));
-                else
-                    retorno.put(b.getVendedor().getEmail(),b.getPreco());
-            }
-        }
-
-        List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
-        listaOrdenada.sort(Map.Entry.comparingByValue());
-
-        for (Map.Entry<String,Double> entrada:listaOrdenada){
-            out.println("Email vendedor: " +entrada.getKey() + " dinheiro gasto: "+entrada.getValue());
-        }
-    }
-
-    public void getAllFaturasClienteOrdenar() {
-        Map<String,Double> retorno = new HashMap<>();
-
-        for (Integer a : listaFaturasClientes.keySet()) {
-            for (FaturaCliente b : listaFaturasClientes.get(a)){
-                if(retorno.containsKey(b.getCliente().getEmail()))
-                    retorno.put(b.getCliente().getEmail(),(retorno.get(b.getCliente().getEmail()) + b.getPreco()));
-                else
-                    retorno.put(b.getCliente().getEmail(),b.getPreco());
-            }
-        }
-
-        List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
-        listaOrdenada.sort(Map.Entry.comparingByValue());
-
-        Map.Entry<String,Double> entrada = listaOrdenada.get(0);
-        out.println("Cliente que mais gastou desde sempre : \n");
-        out.println("Email cliente: "+ entrada.getKey() + " dinheiro gasto: " + entrada.getValue());
-    }
-
 }
