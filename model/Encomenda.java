@@ -228,6 +228,7 @@ public class Encomenda implements Serializable {
 
         for (Transportadora a : itens){
             List<Artigo> artigos = this.getLista(a);
+
             retorno += a.custoExpedicao(artigos);
 
             for (Artigo b : artigos)
@@ -248,7 +249,6 @@ public class Encomenda implements Serializable {
             if(ChronoUnit.DAYS.between(Vintage.dataAtual(),this.dataEncomenda) > b.getDiasEntrega() + 2)
                 retorno = false;
         }
-
         return retorno;
     }
 
@@ -263,7 +263,6 @@ public class Encomenda implements Serializable {
                     retorno+=0.25;
             }
         }
-
         return retorno;
     }
 

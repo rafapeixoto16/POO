@@ -37,6 +37,7 @@ public class Transportadora implements Serializable {
         this.codTransportadora = transportadora.codTransportadora;
         this.imposto = transportadora.imposto;
         this.margemLucro = transportadora.margemLucro;
+        this.opcaoFormula = transportadora.opcaoFormula;
     }
     public double getImposto() {
         return imposto;

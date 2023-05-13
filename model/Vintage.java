@@ -510,6 +510,12 @@ public class Vintage implements Serializable {
             int dias = getDias();
             transportadora.setDiasEntrega(dias);
 
+            int formulaTransportacao = getFormulaTransportacao();
+            transportadora.setOpcaoFormula(formulaTransportacao);
+
+            int margemLucro = getMargemLucro();
+            transportadora.setMargemLucro(margemLucro);
+
             listaTransportadoras.addTransportadora(transportadora);
             out.println("Transportadora criada com sucesso");
         }
@@ -662,7 +668,8 @@ public class Vintage implements Serializable {
 
         while(a.hasNext() && !retorno){
             b = a.next();
-            retorno = b instanceof TransportadoraPremium;
+            if(b instanceof TransportadoraPremium)
+                retorno = true;
         }
 
         return retorno;
@@ -705,11 +712,13 @@ public class Vintage implements Serializable {
             }
         }
 
+
         List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
         listaOrdenada.sort(Map.Entry.comparingByValue());
 
         Map.Entry<String,Double> entrada = listaOrdenada.get(0);
         out.println("Email vendedor: " +entrada.getKey() + " dinheiro ganho: "+entrada.getValue());
+
     }
 
     public void getAllFaturasVendedorTopOrdenar(LocalDate inicio,LocalDate fim){
@@ -733,7 +742,6 @@ public class Vintage implements Serializable {
 
         Map.Entry<String,Double> entrada = listaOrdenada.get(0);
         out.println("Email vendedor: " +entrada.getKey() + " dinheiro ganho: "+entrada.getValue());
-
     }
 
 
