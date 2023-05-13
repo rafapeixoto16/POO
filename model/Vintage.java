@@ -180,7 +180,7 @@ public class Vintage implements Serializable {
     }
 
     public void criaSapatilhaPremium() {
-        if(!(existeTranspPremium())){
+        if((existeTranspPremium())){
             IO.error("Nao existem transportadoras premium disponiveis para adicionar artigos.");
             return;
         }
@@ -500,7 +500,7 @@ public class Vintage implements Serializable {
 
     public void criaTransportadoraPremium() {
         try{
-            TransportadoraPremium transportadora = new TransportadoraPremium();
+            Transportadora transportadora = new TransportadoraPremium();
 
             double imposto = (double) getImposto() / 100;
             transportadora.setImposto(imposto);
@@ -643,6 +643,7 @@ public class Vintage implements Serializable {
 
         for (Transportadora a : listaTransportadoras.getTransportadorasList()){
             sb.append(a.toString());
+            sb.append("\n");
         }
 
         out.println(sb);
@@ -662,10 +663,16 @@ public class Vintage implements Serializable {
     }
 
     public boolean existeTranspPremium(){
-        long n = 0;
-        n = listaTransportadoras.getTransportadorasList().stream().filter(transportadora -> transportadora instanceof TransportadoraPremium).count();
+        boolean retorno = false;
+        Iterator<Transportadora> a = listaTransportadoras.getTransportadorasList().iterator();
+        Transportadora b;
 
-        return n != 0;
+        while(a.hasNext() && !retorno){
+            b = a.next();
+            retorno = b instanceof TransportadoraPremium;
+        }
+
+        return retorno;
     }
 
     public void getAllFaturasClienteOrdenar(LocalDate inicio,LocalDate fim) {
