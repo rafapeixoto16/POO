@@ -439,6 +439,7 @@ public class Vintage implements Serializable {
             out.println("Essa encomenda ja existe");
         }
     }
+
     public void cancelaEncomenda(int codigoEncomenda) {
         try{
             Encomenda encomendaACancelar = listaEncomendas.getEncomendaLista(codigoEncomenda);
@@ -618,8 +619,10 @@ public class Vintage implements Serializable {
         StringBuilder sb = new StringBuilder();
 
         for (Transportadora a : listaTransportadoras.getTransportadorasList()) {
-            if (a instanceof TransportadoraPremium)
-                sb.append(a.toString());//todo testar
+            if (a instanceof TransportadoraPremium) {
+                String b = a.toString();
+                sb.append(b);
+            }
         }
 
         out.println(sb);
@@ -637,12 +640,7 @@ public class Vintage implements Serializable {
 
         return retorno;
     }
-
-
     public void calculaVendas(){
 
     }
-
-
-
 }

@@ -199,7 +199,7 @@ public class Input {
     }
 
     public static int getDim() {
-        out.print("Dimensao da Mala: ");
+        out.print("Dimensao da Mala (cm^3): ");
         int dim = Input.getInt();
         return dim;
     }
