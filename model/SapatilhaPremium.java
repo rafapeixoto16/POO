@@ -3,9 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class SapatilhaPremium extends Sapatilha implements Premium {
-    public SapatilhaPremium(){
-        super();
-    }
+    public SapatilhaPremium(){super();}
 
     public SapatilhaPremium(SapatilhaPremium sapatilhaPremium){
         super(sapatilhaPremium);
@@ -23,12 +21,7 @@ public class SapatilhaPremium extends Sapatilha implements Premium {
 
     @Override
     public SapatilhaPremium clone(){
-       return new SapatilhaPremium();
-    }
-
-    @Override
-    public String toString(){
-        return super.toString();
+       return new SapatilhaPremium(this);
     }
 
     @Override
