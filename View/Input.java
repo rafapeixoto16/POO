@@ -279,10 +279,10 @@ public class Input {
 
         while (!ok){
             cor = Input.getString();
-            if(cor.matches("[0-9]+"))
+            if(!cor.matches("[0-9]+"))
                 ok=true;
             else
-                IO.error("A cor da sapatilha nao pode ser numero");
+                IO.error("A cor da sapatilha nao pode ser um numero");
         }
 
         return cor;

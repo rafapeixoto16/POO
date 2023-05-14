@@ -371,6 +371,7 @@ public class Vintage implements Serializable {
                         Artigo artigo = listaArtigos.getArtigoLista(artigoString);
 
                         if(!artigo.getEmailUtilizador().equals(userLigado.getEmail())) {
+                            out.println("ola " + artigo.getEmailUtilizador());//todo apagar depois
                             usuarios.add(artigo.getEmailUtilizador());
                             encomenda.addEncomenda(listaTransportadoras.getTransportadoraLista(artigo.getCodTransportadora()), artigo);
                             listaUtilizadores.getUtilizadores().get(artigo.getEmailUtilizador()).addArtigosVendidos(artigo);
@@ -402,6 +403,7 @@ public class Vintage implements Serializable {
 
             listaFaturas.addFaturaCliente(encomenda.getCodEnc(),faturaCliente);
 
+            //todo ver esta funcionar nao esta funcionar
             for (String a : usuarios) {
                 FaturaVendedor faturaVendedor = new FaturaVendedor();
                 faturaVendedor.setEncomenda(encomenda);

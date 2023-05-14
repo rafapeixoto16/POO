@@ -286,7 +286,8 @@ public class Controller {
                 this.menuUtilizador();
                 break;
             case 6:
-                out.println(Vintage.getDinheiroGanho());
+                out.println("Dinheiro :" + Vintage.getDinheiroGanho() + " €");
+                Input.getEnter();
                 this.menuUtilizador();
                 break;
             case 0:

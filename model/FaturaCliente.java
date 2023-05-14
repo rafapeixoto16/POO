@@ -61,8 +61,6 @@ public class FaturaCliente extends Fatura implements Serializable {
 
 
     public double calculaPrecoEncomendaCliente(Encomenda encomenda){
-        List<Artigo> artigos = encomenda.getArtigos();
-
-        return artigos.stream().mapToDouble(Artigo::calculaPrecoFinal).sum();
+        return encomenda.calculaPrecoEncomenda();
     }
 }

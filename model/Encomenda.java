@@ -249,7 +249,7 @@ public class Encomenda implements Serializable {
 
         while (it.hasNext()  && retorno){
             b = it.next();
-            if(ChronoUnit.DAYS.between(Vintage.dataAtual(),this.dataEncomenda) > b.getDiasEntrega() + 2)
+            if(ChronoUnit.DAYS.between(Vintage.dataAtual(),this.dataEncomenda) > b.getDiasEntrega() + 2)//todo verificar esta condiçao
                 retorno = false;
         }
         return retorno;
