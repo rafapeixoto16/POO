@@ -215,7 +215,7 @@ public class Controller {
                 this.transportadoras();
                 break;
             case 4:
-                this.vintage.alteraFormulaTransportadora(Input.getCodigoTransportadora());
+                this.vintage.getListaTransportadoras().alteraFormulaTransportadora(Input.getCodigoTransportadora());
                 this.transportadoras();
                 break;
             case 0:

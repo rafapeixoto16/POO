@@ -2,6 +2,7 @@ package model;
 
 import Exceptions.TransportadoraJaExistente;
 import Exceptions.TransportadoraNaoExiste;
+import View.IO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,8 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static View.Input.getCodigoTransportadora;
-import static View.Input.getImposto;
+import static View.Input.*;
 import static java.lang.System.out;
 
 public class ListaTransportadoras implements Serializable {
@@ -91,10 +91,19 @@ public class ListaTransportadoras implements Serializable {
     public void alterarImposto(int idTransp){
         if(listaTransportadoras.containsKey(idTransp) ){
             Transportadora l = listaTransportadoras.get(idTransp);
-            l.setImposto(getImposto());
+            l.setImposto((double) getImposto()/100);
             return;
         }
         out.println("A transportadora com id " + idTransp + " nao existe");
+    }
+
+    public void alteraFormulaTransportadora(int codigo) {
+        if (listaTransportadoras.containsKey(codigo)){
+            int fA = getFormulaTransportacao();
+            listaTransportadoras.get(codigo).setOpcaoFormula(fA);
+            return;
+        }
+        IO.error("Nao existem transportadoras com o codigo " + codigo);
     }
 
 }

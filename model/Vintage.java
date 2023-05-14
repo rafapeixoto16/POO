@@ -12,6 +12,7 @@ import static View.Input.*;
 import static java.lang.System.out;
 
 public class Vintage implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     private ListaArtigos listaArtigos;
     private ListaUtilizadores listaUtilizadores;
@@ -760,16 +761,6 @@ public class Vintage implements Serializable {
         }
 
         return retorno;
-    }
-
-    public void alteraFormulaTransportadora(int codigo) {
-        try {
-            int fA = getFormulaTransportacao();
-            listaTransportadoras.getTransportadoraLista(codigo).setOpcaoFormula(fA);
-        }
-        catch (TransportadoraNaoExiste e){
-            IO.error("Nao existem transportadoras com o codigo " + codigo);
-        }
     }
 
     public void transportadoraMaiorValor(){
