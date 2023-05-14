@@ -669,7 +669,8 @@ public class Vintage implements Serializable {
 
         for (Integer a : listaFaturas.getListaFaturasClientes().keySet()) {
             try {
-                if(listaEncomendas.getEncomendaLista(a).getDataEncomenda().isBefore(fim) && listaEncomendas.getEncomendaLista(a).getDataEncomenda().isAfter(inicio)) {
+                if((listaEncomendas.getEncomendaLista(a).getDataEncomenda().isBefore(fim) ||listaEncomendas.getEncomendaLista(a).getDataEncomenda().isEqual(fim))
+                        && (listaEncomendas.getEncomendaLista(a).getDataEncomenda().isAfter(inicio) ||listaEncomendas.getEncomendaLista(a).getDataEncomenda().isEqual(inicio) )) {
                     for (FaturaCliente b : listaFaturas.getListaFaturasClientes().get(a)) {
 
                         if (retorno.containsKey(b.getCliente().getEmail()))
@@ -714,7 +715,8 @@ public class Vintage implements Serializable {
 
         for (Integer a : listaFaturas.getListaFaturasVenderores().keySet()) {
             try {
-                if(listaEncomendas.getEncomendaLista(a).getDataEncomenda().isBefore(fim) && listaEncomendas.getEncomendaLista(a).getDataEncomenda().isAfter(inicio)) {
+                if((listaEncomendas.getEncomendaLista(a).getDataEncomenda().isBefore(fim) || listaEncomendas.getEncomendaLista(a).getDataEncomenda().isEqual(inicio))
+                        && (listaEncomendas.getEncomendaLista(a).getDataEncomenda().isAfter(inicio) ||listaEncomendas.getEncomendaLista(a).getDataEncomenda().isEqual(inicio))) {
                     for (FaturaVendedor b : listaFaturas.getListaFaturasVenderores().get(a)) {
                         if (retorno.containsKey(b.getVendedor().getEmail()))
                             retorno.put(b.getVendedor().getEmail(), (retorno.get(b.getVendedor().getEmail()) + b.getPreco()));
@@ -753,7 +755,7 @@ public class Vintage implements Serializable {
         listaOrdenada.sort(Map.Entry.comparingByValue());
 
         for (Map.Entry<String,Double> entrada:listaOrdenada){
-            out.println("Email vendedor: " +entrada.getKey() + " dinheiro gasto: "+entrada.getValue());
+            out.println("Email vendedor: " +entrada.getKey() + " dinheiro gasto: "+String.format("%.2f",entrada.getValue()));
         }
     }
 
