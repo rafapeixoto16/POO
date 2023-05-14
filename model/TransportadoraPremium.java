@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDate;
+
 public class TransportadoraPremium extends Transportadora implements Premium {
     public TransportadoraPremium(){
         super();
