@@ -174,6 +174,7 @@ public class Input {
     }
 
     public static String getMorada() {
+        out.print("Morada: ");
         boolean ok = false;
         String morada = "";
 
