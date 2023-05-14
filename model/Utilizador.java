@@ -153,7 +153,7 @@ public class Utilizador implements Serializable {
                 "\n    NIF      -> " + numeroFiscal +
                 "\n    Email    -> " + email +
                 "\n    Morada   -> " + morada +
-                "\n    Dinheiro Vendas : " + dinheiroVendas;
+                "\n    Dinheiro Vendas : " + dinheiroVendas + " €";
     }
 
     /**----------------------------------------------

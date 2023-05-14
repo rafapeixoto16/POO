@@ -40,7 +40,7 @@ public abstract class Fatura {
 
     @Override
     public String toString(){
-        return "Encomenda"+encomenda.toString()+"\n preço: "+preco;
+        return "Encomenda"+encomenda.toString()+"\n preço: "+preco+" €";
     }
 
     @Override

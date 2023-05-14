@@ -104,12 +104,12 @@ public class Sapatilha extends Artigo {
 
     @Override
     public String toString() {
-        return super.toString()+ "Estado da Sapatilha" +
+        return super.toString()+ "Caracteristicas da Sapatilha" +
                 "\n    Tamanho -> " + tamanho +
                 "\n    Tipo -> " + auxAtacadores(atacadores) +
                 "\n    Ano de Lançamento -> " + data.getYear() +
                 "\n    Cor -> " + cor +
-                "\n    Preço Artigo -> "+ String.format("%.2f",calculaPrecoFinal()) +"\n";
+                "\n    Preço Artigo -> "+ String.format("%.2f",calculaPrecoFinal()) +" €\n";
     }
 
     private String auxAtacadores(boolean atacadores) {

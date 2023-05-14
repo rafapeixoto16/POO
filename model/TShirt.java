@@ -71,10 +71,10 @@ public class TShirt extends Artigo {
 
     @Override
     public String toString(){
-        return super.toString() + "Estado da Tshirt" +
+        return super.toString() + "Caracteristicas da Tshirt" +
                 "\n    Tamanho -> " + auxTamanho(this.getTamanho()) +
                 "\n    Padrao -> "+ auxPadrao(this.getPadrao())  +
-                "\n    Preço Artigo -> "+ String.format("%.2f",calculaPrecoFinal()) +"\n";
+                "\n    Preço Artigo -> "+ String.format("%.2f",calculaPrecoFinal()) +" €\n";
     }
 
     private String auxTamanho(int tamanho){

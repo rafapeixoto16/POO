@@ -71,7 +71,7 @@ public class ListaUtilizadores implements Serializable {
 
     @Override
     public String toString(){
-        return "Lista de utilizadores{"+"lista = "+listaUtilizadores+ '}';
+        return "Lista de utilizadores:\n"+listaUtilizadores+ '\n';
     }
 
     @Override

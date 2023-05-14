@@ -68,7 +68,7 @@ public class ListaEncomendas implements Serializable {
 
     @Override
     public String toString(){
-        return "Lista de encomendas{"+"lista = "+listaEncomendas+ '}';
+        return "Lista de encomendas:\n"+listaEncomendas+ '\n';
     }
 
     @Override

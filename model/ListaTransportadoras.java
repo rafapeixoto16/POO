@@ -69,7 +69,7 @@ public class ListaTransportadoras implements Serializable {
 
     @Override
     public String toString(){
-        return "Lista de transportadoras{"+"lista = "+listaTransportadoras+ '}';
+        return "Lista de transportadoras:\n"+listaTransportadoras+ '\n';
     }
 
     @Override

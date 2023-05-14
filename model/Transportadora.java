@@ -94,8 +94,8 @@ public class Transportadora implements Serializable {
         return "Transportadora: \n" +
                 " Codigo  : " + getCodTransportadora()+"\n" +
                 " Imposto : " + getImposto() + "\n"+
-                " Margem de Lucro : " + getMargemLucro() + "\n"+
-                " Duraçao entrega :"+ getDiasEntrega()+"\n"+
+                " Margem de Lucro : " + getMargemLucro() + " €\n"+
+                " Duraçao entrega :"+ getDiasEntrega()+" dia(s)\n"+
                 " Formula para Custo de Expedição :"+ getOpcaoFormula()+"\n";
     }
 

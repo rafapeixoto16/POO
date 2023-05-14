@@ -84,11 +84,11 @@ public class Mala extends Artigo {
 
     @Override
     public String toString(){
-        return super.toString() + "Estado da Mala"+
-                "\n    Dimensao -> "+ dim+
+        return super.toString() + "Caracteristicas da Mala"+
+                "\n    Dimensao -> "+ dim+" cm^3" +
                 "\n    Material -> "+ material+
                 "\n    Ano de Lançamento -> "+ ano_colecao.getYear()+
-                "\n    Preço Artigo -> "+ String.format("%.2f",calculaPrecoFinal()) +"\n";
+                "\n    Preço Artigo -> "+ String.format("%.2f",calculaPrecoFinal()) +" €\n";
     }
 
     @Override

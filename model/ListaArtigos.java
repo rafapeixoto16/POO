@@ -64,7 +64,7 @@ public class ListaArtigos implements Serializable {
 
     @Override
     public String toString(){
-        return "Lista de Artigos{"+"lista = "+listaArtigos+ '}';
+        return "Lista de Artigos:\n"+listaArtigos;
     }
 
     @Override
