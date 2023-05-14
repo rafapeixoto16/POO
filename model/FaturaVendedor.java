@@ -54,8 +54,9 @@ public class FaturaVendedor extends Fatura implements Serializable {
 
     @Override
     public String toString(){
-        return "Vendedor: "+vendedor.toString()+"\n"
-                +"Encomenda :" + super.toString()+"\n";
+        return  "Vendedor: "+vendedor.toString()+"\n"
+                + "Encomenda: " + super.toString()+"\n"
+                + "Dinheiro da venda: " + calculaPrecoEncomendaVendedor(this.getEncomenda());
     }
     public double calculaPrecoEncomendaVendedor(Encomenda encomenda){
         double retorno = 0;

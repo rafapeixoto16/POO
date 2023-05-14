@@ -242,15 +242,19 @@ public class Encomenda implements Serializable {
     }
 
     public boolean validoCancelamentoEncomenda(){
-        boolean retorno = true;
-
         Iterator<Transportadora> it = encomenda.keySet().iterator();
         Transportadora b;
+        boolean retorno = true;
 
         while (it.hasNext()  && retorno){
             b = it.next();
-            if(ChronoUnit.DAYS.between(Vintage.dataAtual(),this.dataEncomenda) > b.getDiasEntrega() + 2)//todo verificar esta condiçao
+
+            System.out.println( b.getDiasEntrega() + 2);
+            System.out.println(ChronoUnit.DAYS.between(this.dataEncomenda,Vintage.dataAtual()));
+
+            if(ChronoUnit.DAYS.between(this.dataEncomenda,Vintage.dataAtual()) > b.getDiasEntrega() + 2) {
                 retorno = false;
+            }
         }
         return retorno;
     }
@@ -261,9 +265,9 @@ public class Encomenda implements Serializable {
         for (Transportadora a : this.encomenda.keySet()){
             for (Artigo b : this.encomenda.get(a)){
                 if(b.getNovo())
-                    retorno+=0.5;
+                    retorno += 0.5;
                 else
-                    retorno+=0.25;
+                    retorno += 0.25;
             }
         }
         return retorno;
