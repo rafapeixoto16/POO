@@ -146,19 +146,44 @@ public class Input {
 
     public static String getEmail() {
         out.print("Email: ");
+        boolean ok = false;
+        String email = "";
 
-        String email = Input.getString();
+        while (!ok){
+            email = getString();
+            if (email != "")
+                ok = true;
+            else
+                IO.error("O Email não pode ser um campo nulo");
+        }
         return email;
     }
     public static String getName() {
         out.print("Nome: ");
-        String name = Input.getString();
-        return name;
+        boolean ok = false;
+        String nome = "";
+
+        while (!ok){
+            nome = getString();
+            if (nome != "")
+                ok = true;
+            else
+                IO.error("O Nome não pode ser um campo nulo");
+        }
+        return nome;
     }
 
     public static String getMorada() {
-        out.print("Morada: ");
-        String morada = Input.getString();
+        boolean ok = false;
+        String morada = "";
+
+        while (!ok){
+            morada = getString();
+            if (morada != "")
+                ok = true;
+            else
+                IO.error("A Morada não pode ser um campo nulo");
+        }
         return morada;
     }
     public static int getNIF() {
