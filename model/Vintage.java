@@ -583,12 +583,13 @@ public class Vintage implements Serializable {
     public void listarEncomendaUser(String codigo){
         ArrayList <Integer> codEncomendas = new ArrayList<>();
         if(listaUtilizadores.existeUtilizador(codigo)){
-            for(Integer j :listaFaturas.getListaFaturasVenderores().keySet()){
-                for(FaturaVendedor b :listaFaturas.getListaFaturasVenderores().get(j)){
+            for (List<FaturaVendedor> faturaVendedors :listaFaturas.getListaFaturasVenderores().values()){
+                for (FaturaVendedor b : faturaVendedors){
                     if(b.getVendedor().getEmail().equals(codigo))
                         codEncomendas.add(b.getEncomenda().getCodEnc());
                 }
             }
+
             StringBuilder sb = new StringBuilder();
 
             for (int a : codEncomendas){
@@ -599,6 +600,7 @@ public class Vintage implements Serializable {
             out.println(sb);
             return;
         }
+
         IO.error("Nao existe um utilizador com o email "+ codigo);
     }
 
