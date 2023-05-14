@@ -612,13 +612,18 @@ public class Vintage implements Serializable {
     public void listaFaturasVendas(){
         StringBuilder sb = new StringBuilder();
 
-        List<FaturaVendedor> lista = listaFaturas.getFaturasVendedorUserLigado(userLigado.getEmail());
-        for(FaturaVendedor a : lista)
-        {
-            sb.append(a.toString());
-        }
+        try{
+            List<FaturaVendedor> lista = listaFaturas.getFaturasVendedorUserLigado(userLigado.getEmail());
 
-        out.println(sb);
+
+            for(FaturaVendedor a : lista)
+            {
+                sb.append(a.toString());
+            }
+            out.println(sb);
+        }catch (NullPointerException e){
+            IO.error("Nao existe para este utilizador");
+        }
     }
 
     public void listaTransportadoras(){
@@ -687,15 +692,12 @@ public class Vintage implements Serializable {
     public void getAllFaturasVendedorTopOrdenar(){
         Map<String,Double> retorno = new HashMap<>();
 
-        for (Integer a : listaFaturas.getListaFaturasVenderores().keySet()) {
-            for (FaturaVendedor b : listaFaturas.getListaFaturasVenderores().get(a)){
-                if(retorno.containsKey(b.getVendedor().getEmail()))
-                    retorno.put(b.getVendedor().getEmail(),(retorno.get(b.getVendedor().getEmail()) + b.getPreco()));
-                else
-                    retorno.put(b.getVendedor().getEmail(),b.getPreco());
-            }
+        for (Utilizador b : listaUtilizadores.getUtilizadoresList()){
+            if(!retorno.containsKey(b.getEmail()))
+                retorno.put(b.getEmail(),b.calculaDinheiroVendas());
+            else
+                retorno.put(b.getEmail(),b.calculaDinheiroVendas()+retorno.get(b.getEmail()));
         }
-
 
         List<Map.Entry<String, Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
         listaOrdenada.sort(Map.Entry.comparingByValue());
@@ -718,7 +720,9 @@ public class Vintage implements Serializable {
                             retorno.put(b.getVendedor().getEmail(), b.getPreco());
                     }
                 }
-            }catch (EncomendaNaoExiste ignored){}
+            }catch (EncomendaNaoExiste encomendaNaoExiste){
+                IO.error("ups...");
+            }
         }
 
         List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
@@ -781,7 +785,7 @@ public class Vintage implements Serializable {
         listaOrdenada.sort(Map.Entry.comparingByValue());
 
         Map.Entry<Integer,Double> entrada = listaOrdenada.get(0);
-        out.println("Transportadora com maior faturaçao: " +entrada.getKey() + " dinheiro ganho: "+entrada.getValue());
+        out.println("Transportadora com maior faturaçao: " +entrada.getKey() + " dinheiro ganho: "+String.format("%.2f €",entrada.getValue()));
     }
 
     public void ListaArtigoGeral(){
