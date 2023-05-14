@@ -289,7 +289,7 @@ public class Vintage implements Serializable {
             if (listaTransportadoras.existeTransportadora(codTransp)) {
                 try {
                     if (listaTransportadoras.getTransportadoraLista(codTransp) instanceof TransportadoraPremium) {
-                        retorno.setTransportadora(codTransp);//todo problema aqui
+                        retorno.setTransportadora(codTransp);
                         ok = true;
                     }
                     else
@@ -371,7 +371,6 @@ public class Vintage implements Serializable {
                         Artigo artigo = listaArtigos.getArtigoLista(artigoString);
 
                         if(!artigo.getEmailUtilizador().equals(userLigado.getEmail())) {
-                            out.println("ola " + artigo.getEmailUtilizador());//todo apagar depois
                             usuarios.add(artigo.getEmailUtilizador());
                             encomenda.addEncomenda(listaTransportadoras.getTransportadoraLista(artigo.getCodTransportadora()), artigo);
                             listaUtilizadores.getUtilizadores().get(artigo.getEmailUtilizador()).addArtigosVendidos(artigo);
