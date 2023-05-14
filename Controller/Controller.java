@@ -107,6 +107,10 @@ public class Controller {
                 out.println(vintage.getUserLigado().listaArtigosPorVender());
                 this.artigos();
                 break;
+            case 4:
+                //todo funcao que lista todos os artigos
+                this.artigos();
+                break;
             case 0:
                 this.menuUtilizador();
                 break;

@@ -24,7 +24,8 @@ public class IO {
     public static final String[] opcoesMenuArtigos = {
             "Criar Artigo",
             "Remover Artigo",
-            "Listar Artigos",
+            "Listar os meus Artigos",
+            "Listar Todos os Artigos"
     };
 
     public static final String[] opcoesMenuCriarArtigo = {
