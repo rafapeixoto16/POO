@@ -74,7 +74,8 @@ public class Mala extends Artigo {
 
         if(desconto <= 0)
             precoFinal = precoFinal * 0.95;
-
+        else if (desconto>precoFinal)
+            precoFinal = precoFinal;
         else
             precoFinal = precoFinal - desconto;
 
