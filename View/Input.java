@@ -189,7 +189,7 @@ public class Input {
     }
 
     public static double getPrecoBase() {
-        out.print("Preço Base do Artigo: ");
+        out.print("Preço Base do Artigo: "); //todo >0
         double pb = Input.getDouble();
         return pb;
     }
@@ -202,12 +202,12 @@ public class Input {
 
     public static int getDim() {
         out.print("Dimensao da Mala (cm^3): ");
-        int dim = Input.getInt();
+        int dim = Input.getInt(); //todo nao faz sentido dimensao ser menor 0
         return dim;
     }
 
     public static String getMaterial() {
-        out.print("Material da Mala: ");
+        out.print("Material da Mala: ");//todo mesma merda cor sapatilha
         String material = Input.getString();
         return material;
     }
@@ -230,7 +230,7 @@ public class Input {
         return LocalDate.of(ano,1,1);
     }
     public static int getTamanhoSapatilha() {
-        out.print("Tamanho da Sapatilha: ");
+        out.print("Tamanho da Sapatilha: ");//todo so numero de 13 a 60
         int tamanho = Input.getInt();
         return tamanho;
     }
@@ -274,7 +274,17 @@ public class Input {
     }
     public static String getCor() {
         out.print("Cor da Spatilha: ");
-        String cor = Input.getString();
+        String cor = "";
+        boolean ok = false;
+
+        while (!ok){
+            cor = Input.getString();
+            if(cor.matches("[0-9]+"))
+                ok=true;
+            else
+                IO.error("A cor da sapatilha nao pode ser numero");
+        }
+
         return cor;
     }
 

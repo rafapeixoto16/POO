@@ -74,7 +74,7 @@ public class TShirt extends Artigo {
         return super.toString() + "Estado da Tshirt" +
                 "\n    Tamanho -> " + auxTamanho(this.getTamanho()) +
                 "\n    Padrao -> "+ auxPadrao(this.getPadrao())  +
-                "\n    Preço Artigo -> "+ calculaPrecoFinal() +"\n";
+                "\n    Preço Artigo -> "+ String.format("%.2f",calculaPrecoFinal()) +"\n";
     }
 
     private String auxTamanho(int tamanho){

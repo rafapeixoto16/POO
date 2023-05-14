@@ -363,7 +363,7 @@ public class Vintage implements Serializable {
 
             do {
                 out.println("Insira o codigo do artigo que deseja adicionar a sua encomenda");
-                out.println("Para concluir a encomenda digite : concluida");
+                out.println("Para concluir a encomenda digite : concluida\n");
                 artigoString = getCodigo();
 
                 if (!artigoString.equals("concluida")){
@@ -381,13 +381,13 @@ public class Vintage implements Serializable {
                             out.println("\nO artigo é seu.");
 
                     } catch (ArtigoNaoExiste e) {
-                        out.println("Nao existe um artigo com codigo " + artigoString);
+                        out.println("Nao existe um artigo com codigo " + artigoString +"\n");
                     }catch (TransportadoraNaoExiste e){
-                        out.println("Nao existe essa tadmasfv");//todo
+                        out.println("Nao existe essa transportadora");
                     }
                 }
             }while (!artigoString.equals("concluida"));
-            out.println("Encomenda criada com sucesso.");
+            out.println("Encomenda criada com sucesso.\n");
 
             addDinheiroGanho(encomenda.calculaPercentagemVintage());
 

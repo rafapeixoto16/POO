@@ -87,7 +87,7 @@ public class Mala extends Artigo {
                 "\n    Dimensao -> "+ dim+
                 "\n    Material -> "+ material+
                 "\n    Ano de Lançamento -> "+ ano_colecao.getYear()+
-                "\n    Preço Artigo -> "+ calculaPrecoFinal() +"\n";
+                "\n    Preço Artigo -> "+ String.format("%.2f",calculaPrecoFinal()) +"\n";
     }
 
     @Override
