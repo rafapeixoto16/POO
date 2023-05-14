@@ -120,28 +120,59 @@ public class Input {
         return option;
     }
 
-    public static LocalDate getDate(String print) {
+    public static int getDay(int mes){
+        out.print("Dia: ");
+        boolean ok = false;
+        int dia = -1;
+        while (!ok){
+            dia = getInt();
+            if (mes == 2 && dia >= 1 && dia <= 29)
+                ok = true;
+            else if (((mes == 1) ||( mes == 3) ||( mes == 5) || (mes == 7) || (mes == 8) || (mes == 10) || (mes == 12)) && (dia >= 1) && (dia <= 31))
+                ok = true;
+            else if ((dia >= 1) && (dia <= 30))
+                ok = true;
+            else
+                IO.error("Dia Inválido");
+        }
+        return dia;
+    }
 
-        out.println(print);
-        LocalDate date = null;
-        boolean valid = false;
+    public static int getMes(){
+        out.print("Mês: ");
+        boolean ok = false;
+        int mes = -1;
+        while (!ok){
+            mes = getInt();
+            if (mes >= 1 && mes <= 12)
+                ok = true;
+            else
+                IO.error("Mês Inválido");
+        }
+        return mes;
+    }
 
-        String format = "dd-mm-aaaa";
-        DateTimeFormatter f = DateTimeFormatter.ofPattern(format);
+    public static int getAno(){
+        out.print("Ano: ");
+        boolean ok = false;
+        int anoAtual = LocalDate.now().getYear();
+        int ano = -1;
+        while (!ok){
+            ano = getInt();
+            if (ano >= 1900 && ano <= anoAtual)
+                ok = true;
+            else
+                IO.error("Ano Inválido, apenas estão válidos os anos entre 1900 e "+anoAtual);
+        }
+        return ano;
+    }
 
-        do {
-            try {
-                out.print("Data no formato " + format + " : ");
-                date = LocalDate.parse(Input.getString(), f);
-                if (date != null) {
-                    valid = true;
-                }
-            } catch (DateTimeParseException e) {
-                IO.error(e.getMessage());
-            }
-        } while (!valid);
-
-        return date;
+    public static LocalDate getDate() {
+        out.print("Data AAAA-MM-DD\n");
+        int ano = getAno();
+        int mes = getMes();
+        int dia = getDay(mes);
+        return LocalDate.of(ano,mes,dia);
     }
 
     public static String getEmail() {
