@@ -12,6 +12,7 @@ import static View.Input.*;
 import static java.lang.System.out;
 
 public class Vintage implements Serializable {
+    private static final long serialVersionUID = 1L;
     private ListaArtigos listaArtigos;
     private ListaUtilizadores listaUtilizadores;
     private ListaTransportadoras listaTransportadoras;
@@ -387,6 +388,12 @@ public class Vintage implements Serializable {
                     }
                 }
             }while (!artigoString.equals("concluida"));
+
+            if(encomenda.getArtigos().isEmpty()){
+                out.println("Nao existem artigos para criar encomenda" );
+                return;
+            }
+
             out.println("Encomenda criada com sucesso.\n");
 
             addDinheiroGanho(encomenda.calculaPercentagemVintage());
@@ -699,7 +706,6 @@ public class Vintage implements Serializable {
 
         Map.Entry<String,Double> entrada = listaOrdenada.get(0);
         out.println("Email vendedor: " +entrada.getKey() + " dinheiro ganho: "+entrada.getValue());
-
     }
 
     public void getAllFaturasVendedorTopOrdenar(LocalDate inicio,LocalDate fim){
@@ -760,19 +766,35 @@ public class Vintage implements Serializable {
         return retorno;
     }
 
-    public void alteraFormulaTransportadora(int codigo){
-        if (listaTransportadoras.existeTransportadora(codigo)){
-
-
-            return;
+    public void alteraFormulaTransportadora(int codigo) {
+        try {
+            int fA = getFormulaTransportacao();
+            listaTransportadoras.getTransportadoraLista(codigo).setOpcaoFormula(fA);
         }
-        IO.error("Nao existem transportadoras com o codigo "+codigo);
-
+        catch (TransportadoraNaoExiste e){
+            IO.error("Nao existem transportadoras com o codigo " + codigo);
+        }
     }
 
+    public void transportadoraMaiorValor(){
+        Map<Integer,Double> transportadora = new HashMap<>();
+        for (Encomenda a : listaEncomendas.getEncomendasList()){
+            for (Transportadora l : a.retornaKeys()){
+                if(transportadora.containsKey(l.getCodTransportadora())){
+                    double valorAtual = transportadora.get(l.getCodTransportadora());
+                    transportadora.put(l.getCodTransportadora(),l.calculaPrecoFinal(a.getArtigos())+valorAtual);
+                }
+                else{
+                    transportadora.put(l.getCodTransportadora(),l.calculaPrecoFinal(a.getArtigos()));
+                }
+            }
+        }
 
+        List<Map.Entry<Integer,Double>> listaOrdenada = new ArrayList<>(transportadora.entrySet());
+        listaOrdenada.sort(Map.Entry.comparingByValue());
 
-    public void calculaVendas(){
-
+        Map.Entry<Integer,Double> entrada = listaOrdenada.get(0);
+        out.println("Transportadora com maior faturaçao: " +entrada.getKey() + " dinheiro ganho: "+entrada.getValue());
     }
+
 }

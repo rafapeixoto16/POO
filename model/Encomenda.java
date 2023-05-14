@@ -61,9 +61,9 @@ public class Encomenda implements Serializable {
 
 
 
-    public List<Transportadora> retornaKeys(Encomenda encomenda){
+    public List<Transportadora> retornaKeys(){
         List<Transportadora> retorno = new ArrayList<>();
-        for (Transportadora a : encomenda.encomenda.keySet()){
+        for (Transportadora a : this.encomenda.keySet()){
             retorno.add(a.clone());
         }
         return retorno;
@@ -178,6 +178,8 @@ public class Encomenda implements Serializable {
 
         for (List<Artigo> a : encomenda.values()){
             for (Artigo b : a){
+                String add = "Codigo da encomenda: "+getCodEnc();
+                retorno.append(add);
                 retorno.append(b.toString());
                 retorno.append("\n");
             }
@@ -248,10 +250,6 @@ public class Encomenda implements Serializable {
 
         while (it.hasNext()  && retorno){
             b = it.next();
-
-            System.out.println( b.getDiasEntrega() + 2);
-            System.out.println(ChronoUnit.DAYS.between(this.dataEncomenda,Vintage.dataAtual()));
-
             if(ChronoUnit.DAYS.between(this.dataEncomenda,Vintage.dataAtual()) > b.getDiasEntrega() + 2) {
                 retorno = false;
             }

@@ -214,7 +214,7 @@ public class Controller {
                 this.transportadoras();
                 break;
             case 4:
-                //vintage. todo funcao para alterar a formula da transportadora
+                this.vintage.alteraFormulaTransportadora(Input.getCodigoTransportadora());
                 this.transportadoras();
                 break;
             case 0:
@@ -267,32 +267,30 @@ public class Controller {
                 this.pTempo();
                 break;
             case 2:
-                //TODO "Transportadora com maior volume de faturação",
+                this.vintage.transportadoraMaiorValor();
                 this.estatisticas();
-                this.menuUtilizador();
                 break;
             case 3:
-                //TODO "Listar as encomendas emitidas por um vendedor"
                 String email = Input.getEmail();
                 this.vintage.listarEncomendaUser(email);
-                this.menuUtilizador();
+                this.estatisticas();
                 break;
             case 4:
                 LocalDate data = Input.getDate("Insira uma data de inicio");
                 LocalDate date1 = Input.getDate("Insira a data termino");
                 this.vintage.getAllFaturasClienteOrdenar(data,date1);
-                this.menuUtilizador();
+                this.estatisticas();
                 break;
             case 5:
                 LocalDate data2 = Input.getDate("Insira uma data de inicio");
                 LocalDate date3 = Input.getDate("Insira a data termino");
                 this.vintage.getAllFaturasVendedorOrdenar(data2,date3);
-                this.menuUtilizador();
+                this.estatisticas();
                 break;
             case 6:
                 out.println("Dinheiro :" + Vintage.getDinheiroGanho() + " €");
                 Input.getEnter();
-                this.menuUtilizador();
+                this.estatisticas();
                 break;
             case 0:
                 this.menuUtilizador();
