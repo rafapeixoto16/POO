@@ -419,7 +419,8 @@ public class Vintage implements Serializable {
                     faturaVendedor.setVendedor(listaUtilizadores.getUtilizador(a));
                     faturaVendedor.setPreco(encomenda.calculaPrecoEncomenda());
                     listaFaturas.addFaturaVendedor(encomenda.getCodEnc(), faturaVendedor.clone());
-                }catch (Exception ignored){}
+                }
+                catch (Exception ignored){}
             }
 
             listaEncomendas.addEncomenda(encomenda);
@@ -728,7 +729,7 @@ public class Vintage implements Serializable {
         List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
         listaOrdenada.sort(Map.Entry.comparingByValue());
 
-        Map.Entry<String,Double> entrada = listaOrdenada.get(0);
+        Map.Entry<String,Double> entrada = listaOrdenada.get(listaOrdenada.size()-1);
         out.println("Email vendedor: " +entrada.getKey() + " dinheiro ganho: "+entrada.getValue());
     }
 

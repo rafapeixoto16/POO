@@ -139,11 +139,12 @@ public class ListaFaturas implements Serializable {
 
     public void addFaturaVendedor(Integer idEncomenda, FaturaVendedor faturaVendedor){
         if (listaFaturasVenderores.containsKey(idEncomenda)) {
-            listaFaturasVenderores.get(idEncomenda).add(faturaVendedor.clone());
+            listaFaturasVenderores.get(idEncomenda).add(faturaVendedor);
         }
+
         else {
             List<FaturaVendedor> lista2 = new ArrayList<>();
-            lista2.add(faturaVendedor.clone());
+            lista2.add(faturaVendedor);
             listaFaturasVenderores.put(idEncomenda,lista2);
         }
     }
@@ -176,10 +177,9 @@ public class ListaFaturas implements Serializable {
         for (List<FaturaVendedor> b : listaFaturasVenderores.values()){
            for (FaturaVendedor a : b)
            {
-                if(a.getVendedor().getEmail().equals(email))
+               if(a.getVendedor().getEmail().equals(email))
                     faturaVendedor.add(a.clone());
            }
-
         }
         return faturaVendedor;
     }

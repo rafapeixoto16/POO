@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Fatura {
+public abstract class Fatura implements Serializable {
     private Encomenda encomenda;
     private double preco;
 
@@ -40,7 +41,7 @@ public abstract class Fatura {
 
     @Override
     public String toString(){
-        return "Encomenda"+encomenda.toString()+"\n preço: "+preco+" €";
+        return "Encomenda"+encomenda.toString()+"\n";
     }
 
     @Override
