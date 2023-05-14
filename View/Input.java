@@ -189,8 +189,17 @@ public class Input {
     }
 
     public static double getPrecoBase() {
-        out.print("Preço Base do Artigo: "); //todo >0
-        double pb = Input.getDouble();
+        out.print("Preço Base do Artigo: ");
+        double pb = -1;
+        boolean ok = false;
+
+        while (!ok){
+            pb = Input.getDouble();
+            if (pb>0)
+                ok = true;
+            else
+                IO.error("O Preço Base do artigo tem de ser maior que 0€");
+        }
         return pb;
     }
 
@@ -202,13 +211,32 @@ public class Input {
 
     public static int getDim() {
         out.print("Dimensao da Mala (cm^3): ");
-        int dim = Input.getInt(); //todo nao faz sentido dimensao ser menor 0
+        int dim = -1;
+
+        boolean ok = false;
+
+        while (!ok){
+            dim = Input.getInt();
+            if (dim>0)
+                ok = true;
+            else
+                IO.error("A dimensão da mala tem de ser maior que 0cm^3");
+        }
         return dim;
     }
 
     public static String getMaterial() {
-        out.print("Material da Mala: ");//todo mesma merda cor sapatilha
-        String material = Input.getString();
+        out.print("Material da Mala: ");
+        String material = "";
+        boolean ok = false;
+
+        while (!ok){
+            material = Input.getString();
+            if(!material.matches("[0-9]+"))
+                ok=true;
+            else
+                IO.error("O material da mala não pode ser um número");
+        }
         return material;
     }
 
@@ -230,8 +258,17 @@ public class Input {
         return LocalDate.of(ano,1,1);
     }
     public static int getTamanhoSapatilha() {
-        out.print("Tamanho da Sapatilha: ");//todo so numero de 13 a 60
-        int tamanho = Input.getInt();
+        out.print("Tamanho da Sapatilha: ");
+        int tamanho = -1;
+        boolean ok = false;
+
+        while (!ok){
+            tamanho = Input.getInt();
+            if (tamanho>=13 && tamanho<=60)
+                ok = true;
+            else
+                IO.error("O tamanho da sapatilha tem de ser maior que 13 e menor que 60");
+        }
         return tamanho;
     }
 
@@ -247,7 +284,7 @@ public class Input {
             if (op == 1 || op == 0)
                 ok = true;
             else
-                IO.error("O valor numero inserido tem de ser 1 (Atacadores) ou 0 (Atilhos)");
+                IO.error("O valor número inserido tem de ser 1 (Atacadores) ou 0 (Atilhos)");
         }
 
         boolean at;
@@ -258,7 +295,7 @@ public class Input {
 
     //Para classe Spatilha
     public static LocalDate getData() {
-        out.print("Ano de colecao da Sapatilha: ");
+        out.print("Ano de coleção da Sapatilha: ");
         int ano = -1;
         boolean ok = false;
 
@@ -282,7 +319,7 @@ public class Input {
             if(!cor.matches("[0-9]+"))
                 ok=true;
             else
-                IO.error("A cor da sapatilha nao pode ser um numero");
+                IO.error("A cor da sapatilha não pode ser um número");
         }
 
         return cor;
