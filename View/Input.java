@@ -167,7 +167,8 @@ public class Input {
         return ano;
     }
 
-    public static LocalDate getDate() {
+    public static LocalDate getDate(String string) {
+        out.println(string);
         out.print("Data AAAA-MM-DD\n");
         int ano = getAno();
         int mes = getMes();
