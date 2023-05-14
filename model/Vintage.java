@@ -586,10 +586,12 @@ public class Vintage implements Serializable {
             StringBuilder sb = new StringBuilder();
 
             for (int a : codEncomendas){
-                sb.append(a);
-                sb.append("\n");
+                try {
+                    sb.append(listaEncomendas.getEncomendaLista(a).toString());
+                    sb.append("\n");
+                }
+                catch (Exception ignored){}
             }
-
             out.println(sb);
             return;
         }
@@ -616,13 +618,15 @@ public class Vintage implements Serializable {
         try{
             List<FaturaVendedor> lista = listaFaturas.getFaturasVendedorUserLigado(userLigado.getEmail());
 
+            out.println();
 
             for(FaturaVendedor a : lista)
             {
                 sb.append(a.toString());
             }
             out.println(sb);
-        }catch (NullPointerException e){
+        }
+        catch (NullPointerException e){
             IO.error("Nao existe para este utilizador");
         }
     }
@@ -729,6 +733,9 @@ public class Vintage implements Serializable {
         List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
         listaOrdenada.sort(Map.Entry.comparingByValue());
 
+        if(listaOrdenada.size()==0)
+            return;
+
         Map.Entry<String,Double> entrada = listaOrdenada.get(listaOrdenada.size()-1);
         out.println("Email vendedor: " +entrada.getKey() + " dinheiro ganho: "+entrada.getValue());
     }
@@ -785,7 +792,7 @@ public class Vintage implements Serializable {
         List<Map.Entry<Integer,Double>> listaOrdenada = new ArrayList<>(transportadora.entrySet());
         listaOrdenada.sort(Map.Entry.comparingByValue());
 
-        Map.Entry<Integer,Double> entrada = listaOrdenada.get(0);
+        Map.Entry<Integer,Double> entrada = listaOrdenada.get(listaOrdenada.size()-1);
         out.println("Transportadora com maior faturaçao: " +entrada.getKey() + " dinheiro ganho: "+String.format("%.2f €",entrada.getValue()));
     }
 

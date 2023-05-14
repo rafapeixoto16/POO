@@ -319,7 +319,6 @@ public class Controller {
         }
     }
 
-
     public void tempo(){
         vintage.avancoTemporal();
         this.menuUtilizador();
