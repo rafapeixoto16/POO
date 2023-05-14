@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static View.Input.getCodigoTransportadora;
+import static View.Input.getImposto;
+import static java.lang.System.out;
+
 public class ListaTransportadoras implements Serializable {
     private final Map<Integer, Transportadora> listaTransportadoras;
     public ListaTransportadoras(){
@@ -81,6 +85,16 @@ public class ListaTransportadoras implements Serializable {
 
         ListaTransportadoras transportadoras= (ListaTransportadoras) o;
         return this.getTransportadorasList().equals(transportadoras.getTransportadorasList());
+    }
+
+
+    public void alterarImposto(int idTransp){
+        if(listaTransportadoras.containsKey(idTransp) ){
+            Transportadora l = listaTransportadoras.get(idTransp);
+            l.setImposto(getImposto());
+            return;
+        }
+        out.println("A transportadora com id " + idTransp + " nao existe");
     }
 
 }

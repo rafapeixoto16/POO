@@ -411,12 +411,14 @@ public class Vintage implements Serializable {
 
             listaFaturas.addFaturaCliente(encomenda.getCodEnc(),faturaCliente);
 
-            for (String a : usuarios) {
-                FaturaVendedor faturaVendedor = new FaturaVendedor();
-                faturaVendedor.setEncomenda(encomenda.clone());
-                faturaVendedor.setVendedor(listaUtilizadores.getUtilizador(a).clone());
-                faturaVendedor.setPreco(encomenda.calculaPrecoEncomenda());
-                listaFaturas.addFaturaVendedor(encomenda.getCodEnc(), faturaVendedor.clone());
+            for (String a : usuarios){
+                try {
+                    FaturaVendedor faturaVendedor = new FaturaVendedor();
+                    faturaVendedor.setEncomenda(encomenda);
+                    faturaVendedor.setVendedor(listaUtilizadores.getUtilizador(a));
+                    faturaVendedor.setPreco(encomenda.calculaPrecoEncomenda());
+                    listaFaturas.addFaturaVendedor(encomenda.getCodEnc(), faturaVendedor.clone());
+                }catch (Exception ignored){}
             }
 
             listaEncomendas.addEncomenda(encomenda);
@@ -551,17 +553,6 @@ public class Vintage implements Serializable {
         }
     }
 
-    public void alterarImposto(){
-        int idTransp = getCodigoTransportadora();
-        try {
-            Transportadora l = listaTransportadoras.getTransportadoraLista(idTransp);
-            l.setImposto(getImposto());
-        }
-        catch (TransportadoraNaoExiste e){
-            e.printStackTrace();
-            out.println("A transportadora com id " + idTransp + " nao existe");
-        }
-    }
 
     public void listarEncomendaUser(){
         List<Integer> codArtigos = userLigado.retornaCodigoEncomendaUser();

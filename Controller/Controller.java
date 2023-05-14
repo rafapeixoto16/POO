@@ -13,6 +13,7 @@ import View.IO;
 import java.io.Serial;
 import java.time.LocalDate;
 
+import static View.Input.getCodigoTransportadora;
 import static java.lang.System.out;
 
 public class Controller {
@@ -210,7 +211,7 @@ public class Controller {
                 this.transportadoras();
                 break;
             case 3:
-                vintage.alterarImposto();
+                vintage.getListaTransportadoras().alterarImposto(getCodigoTransportadora());
                 this.transportadoras();
                 break;
             case 4:
