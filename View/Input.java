@@ -177,7 +177,7 @@ public class Input {
     }
 
     public static int getNumDonos() {
-        out.print("Número de donos que o Artigo já teve: ");
+        out.print("Número de donos que o Artigo já teve (0 se o Artigo for Novo): ");
         int numDonos = Input.getInt();
         return numDonos;
     }
@@ -348,25 +348,6 @@ public class Input {
         return imposto;
     }
 
-    public static boolean getNovo() {
-        out.print("Novo   <- 1\n");
-        out.print("Usado  <- 0\n");
-        out.print("Estado do artigo: ");
-        int padrao = -1;
-        boolean ok = false;
-
-        while (!ok) {
-            padrao = Input.getInt();
-            if (padrao == 1 || padrao == 0)
-                ok = true;
-            else
-                IO.error("O valor numero inserido tem de ser 1 (Novo) ou 0 (Usado)");
-        }
-        boolean at;
-
-        at = padrao == 1;
-        return at;
-    }
 
     public static int getCodEncomenda() {
         out.print("Código da Encomenda: ");
