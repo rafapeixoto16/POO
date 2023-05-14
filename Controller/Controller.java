@@ -265,24 +265,29 @@ public class Controller {
             case 2:
                 //TODO "Transportadora com maior volume de faturação",
                 this.estatisticas();
+                this.menuUtilizador();
                 break;
             case 3:
                 //TODO "Listar as encomendas emitidas por um vendedor"
                 String email = Input.getEmail();
                 this.vintage.listarEncomendaUser(email);
+                this.menuUtilizador();
                 break;
             case 4:
                 LocalDate data = Input.getDate("Insira uma data de inicio");
                 LocalDate date1 = Input.getDate("Insira a data termino");
                 this.vintage.getAllFaturasClienteOrdenar(data,date1);
+                this.menuUtilizador();
                 break;
             case 5:
                 LocalDate data2 = Input.getDate("Insira uma data de inicio");
                 LocalDate date3 = Input.getDate("Insira a data termino");
                 this.vintage.getAllFaturasVendedorOrdenar(data2,date3);
+                this.menuUtilizador();
                 break;
             case 6:
                 out.println(Vintage.getDinheiroGanho());
+                this.menuUtilizador();
                 break;
             case 0:
                 this.menuUtilizador();

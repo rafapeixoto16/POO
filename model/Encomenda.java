@@ -179,9 +179,12 @@ public class Encomenda implements Serializable {
         for (List<Artigo> a : encomenda.values()){
             for (Artigo b : a){
                 retorno.append(b.toString());
+                retorno.append("\n");
             }
         }
-        retorno.append("Preco Final ").append(calculaPrecoEncomenda()).append("\n");
+        retorno.append("Preco Final ");
+        retorno.append(calculaPrecoEncomenda());
+        retorno.append("\n");
         return retorno.toString();
     }
 
@@ -226,10 +229,10 @@ public class Encomenda implements Serializable {
         double retorno = 0;
         List<Transportadora> itens = this.encomenda.keySet().stream().toList();
 
-        for (Transportadora a : itens){
-            List<Artigo> artigos = this.getLista(a);
+        for (Transportadora transportadora : itens){
+            List<Artigo> artigos = this.getLista(transportadora);
 
-            retorno += a.calculaPrecoFinal(artigos);
+            retorno += transportadora.calculaPrecoFinal(artigos);
 
             for (Artigo b : artigos)
                 retorno +=b.calculaPrecoFinal();
