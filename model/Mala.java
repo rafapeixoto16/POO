@@ -86,7 +86,8 @@ public class Mala extends Artigo {
         return super.toString() + "Estado da Mala"+
                 "\n    Dimensao -> "+ dim+
                 "\n    Material -> "+ material+
-                "\n    Ano de Lançamento -> "+ ano_colecao.getYear();
+                "\n    Ano de Lançamento -> "+ ano_colecao.getYear()+
+                "\n    Preço Artigo -> "+ calculaPrecoFinal() +"\n";
     }
 
     @Override

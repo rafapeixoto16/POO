@@ -379,7 +379,7 @@ public class Vintage implements Serializable {
                             listaArtigos.removeArtigo(artigoString);
                         }
                         else
-                            out.println("O artigo é seu.");
+                            out.println("\nO artigo é seu.");
 
                     } catch (ArtigoNaoExiste e) {
                         out.println("Nao existe um artigo com codigo " + artigoString);

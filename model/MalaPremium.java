@@ -24,4 +24,22 @@ public class MalaPremium extends Mala implements Premium {
     public MalaPremium clone() {
         return new MalaPremium(this);
     }
+
+    @Override
+    public String toString(){
+        return super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o)
+            return true;
+
+        if(o == null || this.getClass() != o.getClass())
+            return false;
+
+        MalaPremium t = (MalaPremium) o;
+        return super.equals(t);
+    }
+
 }

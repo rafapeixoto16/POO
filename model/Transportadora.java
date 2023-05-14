@@ -103,7 +103,7 @@ public class Transportadora implements Serializable {
         return new Transportadora(this);
     }
 
-    public double custoExpedicao (List<Artigo> artigos) {
+    public double calculaPrecoFinal (List<Artigo> artigos) {
         double precoExpedicao = 0;
         int nArtigo = artigos.size();
         int valorBase;

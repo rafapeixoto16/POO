@@ -106,7 +106,7 @@ public class Sapatilha extends Artigo {
                 "\n    Tipo -> " + auxAtacadores(atacadores) +
                 "\n    Ano de Lançamento -> " + data.getYear() +
                 "\n    Cor -> " + cor +
-                '\n';
+                "\n    Preço Artigo -> "+ calculaPrecoFinal() +"\n";
     }
 
     private String auxAtacadores(boolean atacadores) {

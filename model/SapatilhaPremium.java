@@ -25,4 +25,21 @@ public class SapatilhaPremium extends Sapatilha implements Premium {
     public SapatilhaPremium clone(){
        return new SapatilhaPremium();
     }
+
+    @Override
+    public String toString(){
+        return super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o)
+            return true;
+
+        if(o == null || this.getClass() != o.getClass())
+            return false;
+
+        SapatilhaPremium t = (SapatilhaPremium) o;
+        return super.equals(t);
+    }
 }

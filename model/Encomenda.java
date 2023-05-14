@@ -229,7 +229,7 @@ public class Encomenda implements Serializable {
         for (Transportadora a : itens){
             List<Artigo> artigos = this.getLista(a);
 
-            retorno += a.custoExpedicao(artigos);
+            retorno += a.calculaPrecoFinal(artigos);
 
             for (Artigo b : artigos)
                 retorno +=b.calculaPrecoFinal();
