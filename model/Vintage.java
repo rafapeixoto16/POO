@@ -702,7 +702,7 @@ public class Vintage implements Serializable {
         List<Map.Entry<String, Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
         listaOrdenada.sort(Map.Entry.comparingByValue());
 
-        Map.Entry<String,Double> entrada = listaOrdenada.get(0);
+        Map.Entry<String,Double> entrada = listaOrdenada.get(listaOrdenada.size()-1);
         out.println("Email vendedor: " +entrada.getKey() + " dinheiro ganho: "+entrada.getValue());
     }
 
