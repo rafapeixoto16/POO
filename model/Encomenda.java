@@ -181,7 +181,7 @@ public class Encomenda implements Serializable {
                 retorno.append(b.toString());
             }
         }
-        retorno.append("Preco Final ").append(calculaPrecoEncomenda());
+        retorno.append("Preco Final ").append(calculaPrecoEncomenda()).append("\n");
         return retorno.toString();
     }
 
