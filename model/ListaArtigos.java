@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.System.out;
+
 public class ListaArtigos implements Serializable {
     private final Map<String, Artigo> listaArtigos;
     public ListaArtigos(){

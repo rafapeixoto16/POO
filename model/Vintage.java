@@ -163,7 +163,7 @@ public class Vintage implements Serializable {
         while(!ok){
             codTransp = getCodigoTransportadora();
             if (listaTransportadoras.existeTransportadora(codTransp)) {
-                retorno.setTransportadora(codTransp);//todo ver esta linha
+                retorno.setTransportadora(codTransp);
                 ok = true;
             }
             else
@@ -796,6 +796,16 @@ public class Vintage implements Serializable {
 
         Map.Entry<Integer,Double> entrada = listaOrdenada.get(0);
         out.println("Transportadora com maior faturaçao: " +entrada.getKey() + " dinheiro ganho: "+entrada.getValue());
+    }
+
+    public void ListaArtigoGeral(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Artigo b : listaArtigos.getArtigosList()){
+            sb.append(b.toString());
+        }
+
+        out.println(sb);
     }
 
 }

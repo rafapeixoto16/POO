@@ -108,7 +108,7 @@ public class Controller {
                 this.artigos();
                 break;
             case 4:
-                //todo funcao que lista todos os artigos
+                this.vintage.ListaArtigoGeral();
                 this.artigos();
                 break;
             case 0:
