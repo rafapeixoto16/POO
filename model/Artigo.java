@@ -55,7 +55,7 @@ public abstract class Artigo implements Serializable {
      ----------------------------------------------**/
 
     public Artigo (Artigo artigo){
-        this.novo = artigo.isNovo();
+        this.novo = artigo.getNovo();
         this.numDonos = artigo.getNumDonos();
         this.avaliacao = artigo.getAvaliacao();
         this.descricao = artigo.getDescricao();
@@ -69,7 +69,7 @@ public abstract class Artigo implements Serializable {
     /**----------------------------------------------
                            Getters
      ----------------------------------------------**/
-    public boolean isNovo() {
+    public boolean getNovo() {
         return novo;
     }
     public int getNumDonos() {

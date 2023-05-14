@@ -62,8 +62,9 @@ public class TShirt extends Artigo {
     public double calculaPrecoFinal(){
         double precoFinal = getPrecoBase();
 
-        if(this.getPadrao() == 0)
+        if(this.getPadrao() == 0 || this.getNovo())
             return precoFinal;
+
 
         return precoFinal / 2;
     }
