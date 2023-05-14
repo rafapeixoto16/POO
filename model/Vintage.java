@@ -697,7 +697,7 @@ public class Vintage implements Serializable {
         }
 
 
-        List<Map.Entry<String,Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
+        List<Map.Entry<String, Double>> listaOrdenada = new ArrayList<>(retorno.entrySet());
         listaOrdenada.sort(Map.Entry.comparingByValue());
 
         Map.Entry<String,Double> entrada = listaOrdenada.get(0);
@@ -793,5 +793,4 @@ public class Vintage implements Serializable {
 
         out.println(sb);
     }
-
 }

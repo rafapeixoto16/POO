@@ -105,7 +105,7 @@ public class Controller {
                 this.artigos();
                 break;
             case 3:
-                out.println(vintage.getUserLigado().listaArtigosPorVender());
+                out.println(this.vintage.calculaDinheiroVendasUL());
                 this.artigos();
                 break;
             case 4:
