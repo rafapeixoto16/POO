@@ -142,8 +142,8 @@ public class Vintage implements Serializable {
 
         Sapatilha retorno = new Sapatilha();
 
-        retorno.setNovo(getNovo());
         retorno.setNumDonos(getNumDonos());
+        retorno.setNovo(retorno.getNumDonos() == 0);
         retorno.setDescricao(getDescricao());
         retorno.setPrecoBase(getPrecoBase());
         retorno.setAvaliacao(getAvaliacao());
@@ -182,8 +182,8 @@ public class Vintage implements Serializable {
 
         SapatilhaPremium retorno = new SapatilhaPremium();
 
-        retorno.setNovo(getNovo());
         retorno.setNumDonos(getNumDonos());
+        retorno.setNovo(retorno.getNumDonos() == 0);
         retorno.setDescricao(getDescricao());
         retorno.setTamanho(getTamanhoSapatilha());
         retorno.setAvaliacao(getAvaliacao());
@@ -206,7 +206,6 @@ public class Vintage implements Serializable {
                     Transportadora transportadora = listaTransportadoras.getTransportadoraLista(codTransp);
                     if (transportadora instanceof TransportadoraPremium) {
                         ok = true;
-                        out.println("ola");//todo aqui
                         retorno.setTransportadora(codTransp);
                     } else
                         out.println("Essa transportadora nao leva artigos premium");
@@ -230,8 +229,8 @@ public class Vintage implements Serializable {
         }
         Mala retorno = new Mala();
 
-        retorno.setNovo(getNovo());
         retorno.setNumDonos(getNumDonos());
+        retorno.setNovo(retorno.getNumDonos() == 0);
         retorno.setAvaliacao(getAvaliacao());
         retorno.setDescricao(getDescricao());
         retorno.setDim(getDim());
@@ -269,8 +268,8 @@ public class Vintage implements Serializable {
 
         MalaPremium retorno = new MalaPremium();
 
-        retorno.setNovo(getNovo());
         retorno.setNumDonos(getNumDonos());
+        retorno.setNovo(retorno.getNumDonos() == 0);
         retorno.setAvaliacao(getAvaliacao());
         retorno.setDescricao(getDescricao());
         retorno.setDim(getDim());
@@ -316,8 +315,8 @@ public class Vintage implements Serializable {
 
         TShirt retorno = new TShirt();
 
-        retorno.setNovo(getNovo());
         retorno.setNumDonos(getNumDonos());
+        retorno.setNovo(retorno.getNumDonos() == 0);
         retorno.setAvaliacao(getAvaliacao());
         retorno.setDescricao(getDescricao());
         retorno.setPrecoBase(getPrecoBase());

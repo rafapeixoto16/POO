@@ -74,8 +74,12 @@ public class Sapatilha extends Artigo {
     public double calculaPrecoFinal(){
         double precoFinal = getPrecoBase();
 
-        if(super.getNumDonos() > 1  ||data.getDayOfYear() - LocalDate.now().getDayOfYear() > 0 || tamanho > 45){
-            precoFinal = precoFinal - precoFinal/(super.getNumDonos()*super.getAvaliacao());
+        if(getNovo())
+            return precoFinal;
+
+        if(this.data.getDayOfYear() - Vintage.dataAtual().getDayOfYear() > 0 || tamanho > 45){
+            precoFinal = precoFinal - precoFinal / (this.getNumDonos()*((double) this.getAvaliacao() /100));
+            precoFinal = precoFinal - precoFinal * getNumDonos() / getAvaliacao() / 100 / 20;
         }
 
         return precoFinal;
