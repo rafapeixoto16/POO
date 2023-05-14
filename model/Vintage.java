@@ -385,6 +385,8 @@ public class Vintage implements Serializable {
                         out.println("Nao existe um artigo com codigo " + artigoString +"\n");
                     }catch (TransportadoraNaoExiste e){
                         out.println("Nao existe essa transportadora");
+                    }catch (NullPointerException e){
+                        out.println("O codigo do artigo nao pode ser null");
                     }
                 }
             }while (!artigoString.equals("concluida"));
@@ -400,7 +402,7 @@ public class Vintage implements Serializable {
 
             encomenda.setPrecoTotal(encomenda.calculaPrecoEncomenda());
 
-            userLigado.adicionaEncomendasUtilizador(encomenda);//todo verificar se esta a adicionar
+            userLigado.adicionaEncomendasUtilizador(encomenda);
 
             FaturaCliente faturaCliente = new FaturaCliente();
             faturaCliente.setPreco(encomenda.getPrecoTotal());
@@ -409,11 +411,10 @@ public class Vintage implements Serializable {
 
             listaFaturas.addFaturaCliente(encomenda.getCodEnc(),faturaCliente);
 
-            //todo ver esta funcionar nao esta funcionar
             for (String a : usuarios) {
                 FaturaVendedor faturaVendedor = new FaturaVendedor();
                 faturaVendedor.setEncomenda(encomenda);
-                faturaVendedor.setVendedor(listaUtilizadores.getUtilizador(a));
+                faturaVendedor.setVendedor(listaUtilizadores.getUtilizador(a).clone());
                 faturaVendedor.setPreco(encomenda.calculaPrecoEncomenda());
                 listaFaturas.addFaturaVendedor(encomenda.getCodEnc(), faturaVendedor);
             }
