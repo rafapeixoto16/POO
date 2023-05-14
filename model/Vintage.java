@@ -413,10 +413,10 @@ public class Vintage implements Serializable {
 
             for (String a : usuarios) {
                 FaturaVendedor faturaVendedor = new FaturaVendedor();
-                faturaVendedor.setEncomenda(encomenda);
+                faturaVendedor.setEncomenda(encomenda.clone());
                 faturaVendedor.setVendedor(listaUtilizadores.getUtilizador(a).clone());
                 faturaVendedor.setPreco(encomenda.calculaPrecoEncomenda());
-                listaFaturas.addFaturaVendedor(encomenda.getCodEnc(), faturaVendedor);
+                listaFaturas.addFaturaVendedor(encomenda.getCodEnc(), faturaVendedor.clone());
             }
 
             listaEncomendas.addEncomenda(encomenda);
