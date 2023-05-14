@@ -184,8 +184,9 @@ public class Encomenda implements Serializable {
                 retorno.append("\n");
             }
         }
-        retorno.append("Preco Final ");
-        retorno.append(calculaPrecoEncomenda());
+        retorno.append("Preço Final ");
+        retorno.append(String.format("%.2f",calculaPrecoEncomenda()));
+        retorno.append(" €");
         retorno.append("\n");
         return retorno.toString();
     }
