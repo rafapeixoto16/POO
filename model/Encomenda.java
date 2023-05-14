@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Encomenda implements Serializable {
     private static int numeroEncomendas = 0;
@@ -257,7 +256,7 @@ public class Encomenda implements Serializable {
         double retorno = 0;
         for (Transportadora a : this.encomenda.keySet()){
             for (Artigo b : this.encomenda.get(a)){
-                if(b.isNovo())
+                if(b.getNovo())
                     retorno+=0.5;
                 else
                     retorno+=0.25;

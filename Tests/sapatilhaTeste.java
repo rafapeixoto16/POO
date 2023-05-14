@@ -32,7 +32,7 @@ public class sapatilhaTeste {
     @Test
     public void testGets(){
         Sapatilha sapatilha = new Sapatilha(true,1,10,"airForce", 99.99,40,true,LocalDate.of(2023,1,1),"Branco","mail",1);
-        assertTrue(sapatilha.isNovo() == true);
+        assertTrue(sapatilha.getNovo() == true);
         assertTrue(sapatilha.getNumDonos() == 1);
         assertTrue(sapatilha.getAvaliacao() == 10);
         assertTrue(sapatilha.getDescricao().equals("airForce"));

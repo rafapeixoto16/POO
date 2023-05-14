@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class MalaPremium extends Mala implements Premium {
 
+
     public MalaPremium(){
         super();
     }

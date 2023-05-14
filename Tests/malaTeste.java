@@ -32,7 +32,7 @@ public class malaTeste {
     @Test
     public void testGets(){
         Mala mala = new Mala(true,1,10,"Cavalinho",70,4,"couro", LocalDate.of(2023,1,1),"mail",1);
-        assertTrue(mala.isNovo() == true);
+        assertTrue(mala.getNovo() == true);
         assertTrue(mala.getNumDonos() == 1);
         assertTrue(mala.getAvaliacao() == 10);
         assertTrue(mala.getDescricao().equals("Cavalinho"));
