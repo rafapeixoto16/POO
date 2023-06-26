@@ -80,34 +80,6 @@ public class Vintage implements Serializable {
         return false;
     }
 
-    public void logout() {
-        userLigado = null;
-    }
-
-    public ListaArtigos getListaArtigos() {
-        return listaArtigos;
-    }
-
-    public ListaUtilizadores getListaUtilizadores() {
-        return listaUtilizadores;
-    }
-
-    public ListaTransportadoras getListaTransportadoras() {
-        return listaTransportadoras;
-    }
-
-    public ListaEncomendas getListaEncomendas() {
-        return listaEncomendas;
-    }
-
-    public ListaFaturas getListaFaturas() {
-        return listaFaturas;
-    }
-
-    public Utilizador getUserLigado() {
-        return userLigado;
-    }
-
     public void setListaArtigos(ListaArtigos listaArtigos) {
         this.listaArtigos = listaArtigos;
     }
